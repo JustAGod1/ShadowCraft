@@ -21,7 +21,7 @@ import java.util.Map;
  */
 public class WitherReplacerEntity extends TileEntity {
 
-    public static final List<WitherReplacerEntity> instances = new ArrayList<>();
+    public static final List<WitherReplacerEntity> instances = new ArrayList<WitherReplacerEntity>();
 
     private static final String CRYSTAL_TAG = "crystal";
     private static final String IS_HAVE_CRYSTAL_TAG = "is_have_crystal";
@@ -37,7 +37,7 @@ public class WitherReplacerEntity extends TileEntity {
 
 
     private final String caption = "JustAGod - красавчик";
-    private final Map<Vector3, FlowTransmitter> transmitters = new HashMap<>();
+    private final Map<Vector3, FlowTransmitter> transmitters = new HashMap<Vector3, FlowTransmitter>();
     private ItemStack crystal;
 
     public WitherReplacerEntity() {

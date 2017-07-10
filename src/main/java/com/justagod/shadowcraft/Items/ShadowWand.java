@@ -3,7 +3,10 @@ package com.justagod.shadowcraft.Items;
 import com.justagod.shadowcraft.Flows.Linkable;
 import com.justagod.shadowcraft.ShadowCraft;
 import com.justagod.shadowcraft.Utils.Vector3;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockHopper;
+import net.minecraft.entity.item.EntityMinecartHopper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -31,6 +34,11 @@ public class ShadowWand extends Item {
         setCreativeTab(ShadowCraft.items);
     }
 
+
+    @Override
+    public boolean onDroppedByPlayer(ItemStack item, EntityPlayer player) {
+        return super.onDroppedByPlayer(item, player);
+    }
 
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean p_77624_4_) {

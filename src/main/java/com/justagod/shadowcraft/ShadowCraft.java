@@ -1,11 +1,12 @@
 package com.justagod.shadowcraft;
 
+import com.justagod.shadowcraft.Blocks.ChargePads.LavaChargePad;
 import com.justagod.shadowcraft.Blocks.FloatingBlock.FloatingBlock;
 import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperBlock;
 import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperEntity;
 import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperItemBlock;
 import com.justagod.shadowcraft.CraftingItems.ShadowCore;
-import com.justagod.shadowcraft.Items.ShadowShears;
+import com.justagod.shadowcraft.Items.RechargeableItems.*;
 import com.justagod.shadowcraft.Items.ShadowWand;
 import com.justagod.shadowcraft.Blocks.LavaShadowFlowTransmitter.LavaShadowFlowTransmitterBlock;
 import com.justagod.shadowcraft.Blocks.LavaShadowFlowTransmitter.LavaShadowFlowTransmitterEntity;
@@ -27,7 +28,9 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.util.EnumHelper;
 
 import static cpw.mods.fml.common.registry.GameRegistry.addRecipe;
 
@@ -39,6 +42,8 @@ public class ShadowCraft
     public static final String MODID = "shadowcraft";
     public static final String VERSION = "1.0";
 
+    public static final ToolMaterial SHADOW_MATERIAL = EnumHelper.addToolMaterial("SHADOW_MATERIAL", 3, 2897, 12, 5, 22);
+
     public static final ShadowBlocksTab blocks = new ShadowBlocksTab();
     public static final ShadowItemsTab items = new ShadowItemsTab();
 
@@ -48,6 +53,7 @@ public class ShadowCraft
     public static final LavaShadowFlowTransmitterBlock lavaShadowFlowTransmitterBlock = new LavaShadowFlowTransmitterBlock();
     public static final FloatingBlock floatingBlock = new FloatingBlock();
     public static final WebZapperBlock webZapper = new WebZapperBlock();
+    public static final LavaChargePad lavaChargePad = new LavaChargePad();
 
     public static final CaptionLabelRenderer captionLabelRenderer = new CaptionLabelRenderer();
 
@@ -58,6 +64,10 @@ public class ShadowCraft
 
     public static final ShadowWand shadowWand = new ShadowWand();
     public static final ShadowShears shadowShears = new ShadowShears();
+    public static final ShadowPickaxe shadowPickaxe = new ShadowPickaxe();
+    public static final ShadowAxe shadowAxe = new ShadowAxe();
+    public static final ShadowShovel shadowShovel = new ShadowShovel();
+    public static final ShadowHoe shadowHoe = new ShadowHoe();
 
 
 
@@ -78,6 +88,8 @@ public class ShadowCraft
         GameRegistry.registerBlock(webZapper, WebZapperItemBlock.class, "web_zapper");
         GameRegistry.registerTileEntity(WebZapperEntity.class, "shadowcraft:web_zapper");
 
+        GameRegistry.registerBlock(lavaChargePad, "lava_charge_pad");
+
         GameRegistry.registerBlock(floatingBlock, "floating_block");
 
         GameRegistry.registerItem(budgetaryShadowCrystal, "budgetary_shadow_crystal");
@@ -89,6 +101,10 @@ public class ShadowCraft
 
         GameRegistry.registerItem(shadowWand, "shadow_wand");
         GameRegistry.registerItem(shadowShears, "shadow_shears");
+        GameRegistry.registerItem(shadowPickaxe, "shadow_pickaxe");
+        GameRegistry.registerItem(shadowAxe, "shadow_axe");
+        GameRegistry.registerItem(shadowShovel, "shadow_shovel");
+        GameRegistry.registerItem(shadowHoe, "shadow_hoe");
 
         registerRecipes();
 

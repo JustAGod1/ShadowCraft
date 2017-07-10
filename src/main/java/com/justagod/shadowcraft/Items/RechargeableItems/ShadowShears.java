@@ -1,11 +1,18 @@
-package com.justagod.shadowcraft.Items;
+package com.justagod.shadowcraft.Items.RechargeableItems;
 
+import com.justagod.shadowcraft.Blocks.ChargePads.ChargePad;
+import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
 
 import java.util.List;
 
+import static com.justagod.shadowcraft.Items.RechargeableItems.RechargeHelper.updateItem;
 import static com.justagod.shadowcraft.ShadowCraft.items;
 
 /**
@@ -25,4 +32,13 @@ public class ShadowShears extends ItemShears {
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean p_77624_4_) {
         list.add("Почти в три раза лучше обычных");
     }
+
+    @Override
+    public boolean onEntityItemUpdate(EntityItem entityItem) {
+        updateItem(entityItem);
+
+        return false;
+    }
+
+
 }
