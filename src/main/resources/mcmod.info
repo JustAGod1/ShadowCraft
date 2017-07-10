@@ -1,0 +1,16 @@
+[
+{
+  "modid": "shadowcraft",
+  "name": "Shadow Craft",
+  "description": "This mod was made special for server Shadowcraft",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["JustAGod"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

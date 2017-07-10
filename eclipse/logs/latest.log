@@ -1,0 +1,202 @@
+[00:02:05] [main/INFO]: Setting user: Player434
+[00:02:06] [Client thread/INFO]: LWJGL Version: 2.9.1
+[00:02:19] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Shadow Craft
+[00:02:20] [Sound Library Loader/INFO]: Sound engine started
+[00:02:21] [Client thread/INFO]: Created: 16x16 textures/blocks-atlas
+[00:02:21] [Client thread/INFO]: Created: 16x16 textures/items-atlas
+[00:02:21] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Shadow Craft
+[00:02:21] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[00:02:21] [Client thread/INFO]: Created: 256x256 textures/items-atlas
+[00:02:22] [Sound Library Loader/INFO]: Sound engine started
+[00:02:30] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
+[00:02:30] [Server thread/INFO]: Generating keypair
+[00:02:30] [Server thread/INFO]: Preparing start region for level 0
+[00:02:31] [Server thread/INFO]: Changing view distance to 12, from 10
+[00:02:31] [Server thread/INFO]: Player434[local:E:d50b849e] logged in with entity id 516 at (494.28581214303824, 6.0, 274.30000001192093)
+[00:02:31] [Server thread/INFO]: Player434 присоединился к игре
+[00:02:32] [Server thread/INFO]: Saving and pausing game...
+[00:02:32] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[00:02:32] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[00:02:32] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[00:02:44] [Server thread/INFO]: [Player434: Ваш режим игры изменён на Выживание]
+[00:02:44] [Client thread/INFO]: [CHAT] Ваш игровой режим обновлён
+[00:03:41] [Server thread/INFO]: Player434 заработал достижение [Проверить карманы]
+[00:03:41] [Client thread/INFO]: [CHAT] Player434 заработал достижение [Проверить карманы]
+[00:03:44] [Server thread/INFO]: [Player434: Ваш режим игры изменён на Творческий режим]
+[00:03:44] [Client thread/INFO]: [CHAT] Ваш игровой режим обновлён
+[00:03:52] [Server thread/INFO]: [Player434: Ваш режим игры изменён на Выживание]
+[00:03:52] [Client thread/INFO]: [CHAT] Ваш игровой режим обновлён
+[00:04:32] [Server thread/INFO]: [Player434: Ваш режим игры изменён на Творческий режим]
+[00:04:32] [Client thread/INFO]: [CHAT] Ваш игровой режим обновлён
+[00:04:46] [Server thread/INFO]: [Player434: Ваш режим игры изменён на Выживание]
+[00:04:46] [Client thread/INFO]: [CHAT] Ваш игровой режим обновлён
+[00:05:50] [Server thread/INFO]: [Player434: Ваш режим игры изменён на Творческий режим]
+[00:05:50] [Client thread/INFO]: [CHAT] Ваш игровой режим обновлён
+[00:06:27] [Server thread/INFO]: [Player434: Ваш режим игры изменён на Выживание]
+[00:06:27] [Client thread/INFO]: [CHAT] Ваш игровой режим обновлён
+[00:07:58] [Server thread/INFO]: [Player434: Ваш режим игры изменён на Творческий режим]
+[00:07:58] [Client thread/INFO]: [CHAT] Ваш игровой режим обновлён
+[00:08:34] [Server thread/INFO]: Saving and pausing game...
+[00:08:34] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[00:08:34] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[00:08:34] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[00:08:41] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Shadow Craft
+[00:08:41] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[00:08:41] [Client thread/INFO]: Created: 256x256 textures/items-atlas
+[00:08:42] [Sound Library Loader/INFO]: Sound engine started
+[00:09:19] [Server thread/INFO]: Saving and pausing game...
+[00:09:19] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[00:09:20] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[00:09:20] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[00:16:34] [Client thread/INFO]: [CHAT] 'day' - не является допустимым числом
+[00:16:41] [Client thread/INFO]: [CHAT] /weather <clear/rain/thunder> [длительность в секундах]
+[00:16:54] [Server thread/INFO]: [Player434: Изменение на ясную погоду]
+[00:16:54] [Client thread/INFO]: [CHAT] Изменение на ясную погоду
+[00:17:01] [Server thread/INFO]: [Player434: Установлено время: 1000]
+[00:17:01] [Client thread/INFO]: [CHAT] Установлено время: 1000
+[00:17:15] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_00.17.15.png
+[00:17:38] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_00.17.38.png
+[00:18:55] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_00.18.54.png
+[00:18:58] [Server thread/INFO]: Saving and pausing game...
+[00:18:58] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[00:18:58] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[00:18:58] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[00:18:59] [Server thread/INFO]: Saving and pausing game...
+[00:18:59] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[00:18:59] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[00:18:59] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[00:19:00] [Server thread/INFO]: Stopping server
+[00:19:00] [Server thread/INFO]: Saving players
+[00:19:00] [Server thread/INFO]: Saving worlds
+[00:19:00] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[00:19:00] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[00:19:00] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[00:19:03] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
+[00:19:03] [Server thread/INFO]: Generating keypair
+[00:19:03] [Server thread/INFO]: Preparing start region for level 0
+[00:19:04] [Server thread/INFO]: Changing view distance to 12, from 10
+[00:19:04] [Server thread/INFO]: Player434[local:E:280bd841] logged in with entity id 3265600 at (431.98850459010504, 4.0, 241.07584739247335)
+[00:19:04] [Server thread/INFO]: Player434 присоединился к игре
+[00:19:17] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_00.19.17.png
+[00:19:32] [Server thread/INFO]: Saving and pausing game...
+[00:19:32] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[00:19:32] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[00:19:32] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[00:35:14] [Server thread/INFO]: Saving and pausing game...
+[00:35:14] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[00:35:14] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[00:35:14] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[00:54:38] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_00.54.38.png
+[00:54:39] [Server thread/INFO]: Saving and pausing game...
+[00:54:39] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[00:54:39] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[00:54:39] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[01:00:55] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_01.00.55.png
+[01:00:59] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_01.00.59.png
+[01:01:00] [Server thread/INFO]: Saving and pausing game...
+[01:01:00] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[01:01:00] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[01:01:00] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[01:09:31] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_01.09.31.png
+[01:11:21] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_01.11.21.png
+[01:11:26] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_01.11.26.png
+[01:13:44] [Client thread/INFO]: [CHAT] Неизвестная команда. Напишите /help для просмотра списка команд
+[01:13:47] [Client thread/INFO]: [CHAT] Неизвестная команда. Напишите /help для просмотра списка команд
+[01:13:50] [Server thread/INFO]: [Player434: Инвентарь игрока Player434 очищен, удалено 1291 предметов]
+[01:13:50] [Client thread/INFO]: [CHAT] Инвентарь игрока Player434 очищен, удалено 1291 предметов
+[01:14:23] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_01.14.23.png
+[01:14:52] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_01.14.52.png
+[01:17:41] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_01.17.41.png
+[01:19:24] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_01.19.24.png
+[01:19:53] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_01.19.53.png
+[01:21:19] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_01.21.19.png
+[01:21:43] [Server thread/INFO]: Saving and pausing game...
+[01:21:43] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[01:21:43] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[01:21:43] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[01:23:41] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_01.23.41.png
+[01:23:46] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_01.23.46.png
+[01:25:25] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_01.25.25.png
+[01:28:57] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_01.28.57.png
+[01:28:58] [Server thread/INFO]: Saving and pausing game...
+[01:28:58] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[01:28:58] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[01:28:58] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[01:31:16] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_01.31.16.png
+[01:31:17] [Server thread/INFO]: Saving and pausing game...
+[01:31:17] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[01:31:17] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[01:31:17] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[01:34:21] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_01.34.21.png
+[01:34:22] [Server thread/INFO]: Saving and pausing game...
+[01:34:22] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[01:34:22] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[01:34:22] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[01:38:11] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_01.38.11.png
+[01:38:16] [Server thread/INFO]: Saving and pausing game...
+[01:38:16] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[01:38:16] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[01:38:16] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[01:42:23] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_01.42.23.png
+[01:42:29] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_01.42.29.png
+[01:42:30] [Server thread/INFO]: Saving and pausing game...
+[01:42:30] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[01:42:30] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[01:42:30] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[01:42:45] [Server thread/INFO]: [Player434: Инвентарь игрока Player434 очищен, удалено 6 предметов]
+[01:42:45] [Client thread/INFO]: [CHAT] Инвентарь игрока Player434 очищен, удалено 6 предметов
+[01:42:50] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_01.42.50.png
+[01:42:51] [Server thread/INFO]: Saving and pausing game...
+[01:42:51] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[01:42:51] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[01:42:51] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[02:00:26] [Server thread/INFO]: Saving and pausing game...
+[02:00:26] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[02:00:26] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[02:00:26] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[02:05:46] [Server thread/INFO]: Saving and pausing game...
+[02:05:46] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[02:05:46] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[02:05:46] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[02:05:47] [Server thread/INFO]: Stopping server
+[02:05:47] [Server thread/INFO]: Saving players
+[02:05:47] [Server thread/INFO]: Saving worlds
+[02:05:47] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[02:05:47] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[02:05:47] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[02:05:49] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
+[02:05:49] [Server thread/INFO]: Generating keypair
+[02:05:49] [Server thread/INFO]: Preparing start region for level 0
+[02:05:50] [Server thread/INFO]: Changing view distance to 12, from 10
+[02:05:50] [Server thread/INFO]: Player434[local:E:e35fd7f6] logged in with entity id 8813081 at (429.9951034763294, 6.666192007206014, 250.40556514032428)
+[02:05:50] [Server thread/INFO]: Player434 присоединился к игре
+[02:08:28] [Server thread/INFO]: [Player434: Ваш режим игры изменён на Выживание]
+[02:08:28] [Client thread/INFO]: [CHAT] Ваш игровой режим обновлён
+[02:09:37] [Server thread/INFO]: Saving and pausing game...
+[02:09:37] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[02:09:37] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[02:09:37] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[02:17:27] [Server thread/INFO]: [Player434: Ваш режим игры изменён на Творческий режим]
+[02:17:27] [Client thread/INFO]: [CHAT] Ваш игровой режим обновлён
+[02:17:45] [Server thread/INFO]: Saving and pausing game...
+[02:17:45] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[02:17:45] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[02:17:45] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[02:31:54] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 2745ms behind, skipping 54 tick(s)
+[02:32:18] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 9637ms behind, skipping 192 tick(s)
+[02:32:53] [Server thread/INFO]: Saving and pausing game...
+[02:32:53] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[02:32:53] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[02:32:53] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[02:50:37] [Client thread/INFO]: [CHAT] Снимок экрана сохранён как 2017-07-10_02.50.37.png
+[02:50:38] [Server thread/INFO]: Saving and pausing game...
+[02:50:38] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[02:50:38] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[02:50:38] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[02:51:12] [Client thread/INFO]: Stopping!
+[02:51:12] [Server thread/INFO]: Stopping server
+[02:51:12] [Server thread/INFO]: Saving players
+[02:51:12] [Server thread/INFO]: Saving worlds
+[02:51:12] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[02:51:12] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[02:51:12] [Server thread/INFO]: Saving chunks for level 'New World'/The End

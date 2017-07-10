@@ -1,0 +1,22 @@
+itemGroup.shadowBlocks=Теневые блоки
+itemGroup.shadowItems=Теневые предметы
+
+tile.wither_replacer.name=Маяк-рассказчик
+tile.lava_shadow_flow_transmitter.name=Лавовый источник теневого потока[WIP]
+tile.web_zapper.name=Истребитель паутины
+tile.floating_block.name=Парящий блок
+
+item.budgetaryShadowCrystal.name=Бюджетный теневой кристалл
+item.weekShadowCrystal.name=Слабый теневой кристалл
+item.mediumShadowCrystal.name=Средний теневой кристалл
+item.strongShadowCrystal.name=Сильный теневой кристалл
+item.shadow_core.name=Теневое ядро
+item.shadow_wand.name=Теневой посох
+item.shadow_shears.name=Ножницы тени
+
+msg.entityNullMsg.txt=Сущность нулевая. Пожалуйста свяжитесь с администратором или JustAGod.
+msg.something_was_changed.txt=Что-то изменилось. Создать связь невозможно.
+msg.second_block_selected.txt=Вы выделили второй блок.
+msg.bind_completed.txt=Связь успешно создана!
+msg.first_block_selected.txt=Вы выделили первый блок.
+msg.unable_to_create_link.txt=Невозможно создать связь между этими блоками.

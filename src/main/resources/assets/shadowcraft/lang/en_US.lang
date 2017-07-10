@@ -1,0 +1,22 @@
+itemGroup.shadowBlocks=Shadow blocks
+itemGroup.shadowItems=Shadow items
+
+tile.wither_replacer.name=Beacon-Teller
+tile.lava_shadow_flow_transmitter.name=Lava Shadow Flow Transmitter[WIP]
+tile.web_zapper.name=Web Zapper
+tile.floating_block.name=Floating block
+
+item.budgetaryShadowCrystal.name=Budgetary Shadow Crystal
+item.weekShadowCrystal.name=Week Shadow Crystal
+item.mediumShadowCrystal.name=Medium Shadow Crystal
+item.strongShadowCrystal.name=Strong Shadow Crystal
+item.shadow_core.name=Shadow Core
+item.shadow_wand.name=Shadow Wand
+item.shadow_shears.name=Shadow Shears
+
+msg.entityNullMsg.txt=Entity is null. Please contact admin or JustAGod.
+msg.something_was_changed.txt=Something was changed. Unable to create link.
+msg.second_block_selected.txt=Second block was selected.
+msg.bind_completed.txt=Link was created successfully!
+msg.first_block_selected.txt=First block was selected.
+msg.unable_to_create_link.txt=Unable to create link between this blocks.
