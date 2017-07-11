@@ -4,6 +4,7 @@ import com.justagod.shadowcraft.ShadowCraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public abstract class ShadowCrystal extends Item {
     public abstract int getRequiredShadowFlows();
 
     public abstract void drawTextAt(String text, double pos);
+
 
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean p_77624_4_) {

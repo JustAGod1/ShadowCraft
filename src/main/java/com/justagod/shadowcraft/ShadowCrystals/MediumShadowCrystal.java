@@ -37,7 +37,7 @@ public class MediumShadowCrystal extends ShadowCrystal {
         glPushMatrix();
         {
             GL11.glColor3d(1, 1, 1);
-            fontRender.drawString(text, (int) (pos - (fontRender.getStringWidth(text) / 2)), 30, 100);
+            fontRender.drawString("§1" + text, (int) (pos - (fontRender.getStringWidth(text) / 2)), 30, 100);
         }
         glPopMatrix();
     }

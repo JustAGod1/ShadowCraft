@@ -1,5 +1,6 @@
 package com.justagod.shadowcraft.Blocks.ChargePads;
 
+import net.minecraft.block.BlockHopper;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
@@ -22,7 +23,6 @@ public class LavaChargePad extends ChargePad {
 
     @Override
     public boolean isCanRecharge(World world, int startX, int startY, int startZ) {
-        if (1 == 1) return true;
 
         int count = 0;
 

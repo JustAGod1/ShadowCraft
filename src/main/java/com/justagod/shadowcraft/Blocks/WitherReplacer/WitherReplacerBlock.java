@@ -6,15 +6,21 @@ import com.justagod.shadowcraft.Flows.Linkable;
 import com.justagod.shadowcraft.ShadowCraft;
 import com.justagod.shadowcraft.ShadowCrystals.ShadowCrystal;
 import com.justagod.shadowcraft.Utils.Vector3;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockChest;
+import net.minecraft.block.BlockHopper;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
 
 import static com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerEntity.instances;
 
@@ -131,6 +137,15 @@ public class WitherReplacerBlock extends FlowReceiver implements ITileEntityProv
         deleteEntity(x, y, z);
     }
 
+    @Override
+    public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
+        WitherReplacerEntity entity = (WitherReplacerEntity) world.getTileEntity(x, y, z);
+
+        if (entity.getCrystal() != null) {
+            EntityItem entityItem = new EntityItem(world, x + 0.5, y + 0.7, z + 0.5,  entity.getCrystal());
+            world.spawnEntityInWorld(entityItem);
+        }
+    }
 
     @Override
     public void onBlockPreDestroy(World world, int x, int y, int z, int meta) {
@@ -153,6 +168,20 @@ public class WitherReplacerBlock extends FlowReceiver implements ITileEntityProv
             if ((entity.xCoord == x) && (entity.yCoord == y) && (entity.zCoord == z)) instances.remove(i);
         }
     }
+
+    @Override
+    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
+        ArrayList<ItemStack> drop = new ArrayList<ItemStack>();
+
+        drop.add(new ItemStack(this));
+
+        WitherReplacerEntity entity = (WitherReplacerEntity) world.getTileEntity(x, y, z);
+
+        if (entity.getCrystal() != null) drop.add(entity.getCrystal());
+
+        return drop;
+    }
+
 
     @Override
     public synchronized boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float clickX, float clickY, float clickZ) {

@@ -3,13 +3,17 @@ package com.justagod.shadowcraft.Blocks.WitherReplacer;
 import com.justagod.shadowcraft.Flows.FlowTransmitter;
 import com.justagod.shadowcraft.ShadowCrystals.ShadowCrystal;
 import com.justagod.shadowcraft.Utils.Vector3;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,13 +35,12 @@ public class WitherReplacerEntity extends TileEntity {
     private static final String TRANSMITTER_X = "x";
     private static final String TRANSMITTER_Y = "y";
     private static final String TRANSMITTER_Z = "z";
-    private static final String DATA_TAG = "data";
-
-    private boolean data = false;
 
 
     private final String caption = "JustAGod - красавчик";
     private final Map<Vector3, FlowTransmitter> transmitters = new HashMap<Vector3, FlowTransmitter>();
+    private final List<Vector3> tmpArray = new ArrayList<Vector3>();
+    private boolean isTransmittersFilled = false;
     private ItemStack crystal;
 
     public WitherReplacerEntity() {
@@ -63,8 +66,9 @@ public class WitherReplacerEntity extends TileEntity {
     }
 
     public float getCurrentMaxDistance() {
+        if (!isTransmittersFilled) return -1;
         if (crystal == null) return -1;
-        //if (((ShadowCrystal) crystal.getItem()).getRequiredShadowFlows() > getShadowFlowsCount()) return -1;
+        if (((ShadowCrystal) crystal.getItem()).getRequiredShadowFlows() > getShadowFlowsCount()) return -1;
         return (float) ((ShadowCrystal) crystal.getItem()).getTellRadius();
     }
 
@@ -86,6 +90,13 @@ public class WitherReplacerEntity extends TileEntity {
             }
         }
 
+        if (!isTransmittersFilled && hasWorldObj()) {
+            for (Vector3 vector3 : tmpArray) {
+                noteTransmitter((int) vector3.getX(), (int) vector3.getY(), (int) vector3.getZ());
+            }
+
+            isTransmittersFilled = true;
+        }
 
     }
 
@@ -93,6 +104,7 @@ public class WitherReplacerEntity extends TileEntity {
     public boolean equals(Object obj) {
         return obj.toString().equals(toString());
     }
+
 
     @Override
     public AxisAlignedBB getRenderBoundingBox() {
@@ -119,7 +131,6 @@ public class WitherReplacerEntity extends TileEntity {
     public void writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
 
-        compound.setBoolean(DATA_TAG, true);
 
         if (crystal != null) {
             NBTTagCompound crystalCompound = new NBTTagCompound();
@@ -131,10 +142,7 @@ public class WitherReplacerEntity extends TileEntity {
             compound.setBoolean(IS_HAVE_CRYSTAL_TAG, false);
         }
 
-        NBTTagCompound transmitters = new NBTTagCompound();
-        transmitters.setInteger(TRANSMITTERS_COUNT_TAG, this.transmitters.size());
-
-        int i = 0;
+        NBTTagList transmitters = new NBTTagList();
 
         for (Vector3 pos : this.transmitters.keySet()) {
             NBTTagCompound transmitter = new NBTTagCompound();
@@ -143,7 +151,7 @@ public class WitherReplacerEntity extends TileEntity {
             transmitter.setInteger(TRANSMITTER_Y, (int) pos.getY());
             transmitter.setInteger(TRANSMITTER_Z, (int) pos.getZ());
 
-            transmitters.setTag(TRANSMITTER_ENTRY_TAG + i, transmitter);
+            transmitters.appendTag(transmitter);
         }
 
         compound.setTag(TRANSMITTERS_TAG, transmitters);
@@ -159,24 +167,32 @@ public class WitherReplacerEntity extends TileEntity {
             this.crystal = ItemStack.loadItemStackFromNBT(crystalCompound);
         }
 
-        NBTTagCompound transmitters = (NBTTagCompound) compound.getTag(TRANSMITTERS_TAG);
-        int count = transmitters.getInteger(TRANSMITTERS_COUNT_TAG);
+        NBTTagList tagList = (NBTTagList) compound.getTag(TRANSMITTERS_TAG);
 
-        for (int i = 0; i < count; i++) {
-            NBTTagCompound transmitter = (NBTTagCompound) transmitters.getTag(TRANSMITTER_ENTRY_TAG + i);
+        for (int i = 0; i < tagList.tagCount(); i++) {
+            NBTTagCompound transmitter = tagList.getCompoundTagAt(i);
 
-            noteTransmitter(transmitter.getInteger(TRANSMITTER_X), transmitter.getInteger(TRANSMITTER_Y), transmitter.getInteger(TRANSMITTER_Z));
+            tmpArray.add(new Vector3(
+                    transmitter.getInteger(TRANSMITTER_X),
+                    transmitter.getInteger(TRANSMITTER_Y),
+                    transmitter.getInteger(TRANSMITTER_Z)
+            ));
         }
-
 
     }
 
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
         readFromNBT(pkt.func_148857_g());
+
     }
 
-
+    @Override
+    public Packet getDescriptionPacket() {
+        NBTTagCompound tagCom = new NBTTagCompound();
+        this.writeToNBT(tagCom);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, this.blockMetadata, tagCom);
+    }
 
     private void noteTransmitter(int x, int y, int z) {
         Block block = worldObj.getBlock(x, y, z);

@@ -1,24 +1,41 @@
-[02:25:56] [main/INFO]: Setting user: Player330
-[02:25:57] [Client thread/INFO]: LWJGL Version: 2.9.1
-[02:26:10] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Shadow Craft
-[02:26:11] [Sound Library Loader/INFO]: Sound engine started
-[02:26:13] [Client thread/INFO]: Created: 16x16 textures/blocks-atlas
-[02:26:13] [Client thread/INFO]: Created: 16x16 textures/items-atlas
-[02:26:16] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Shadow Craft
-[02:26:17] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
-[02:26:18] [Client thread/INFO]: Created: 256x256 textures/items-atlas
-[02:26:18] [Sound Library Loader/INFO]: Sound engine started
-[02:26:22] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
-[02:26:22] [Server thread/INFO]: Generating keypair
-[02:26:23] [Server thread/INFO]: Preparing start region for level 0
-[02:26:24] [Server thread/INFO]: Changing view distance to 12, from 10
-[02:26:24] [Server thread/INFO]: Player330[local:E:3395da81] logged in with entity id 195 at (418.5595423095646, 4.0, 242.5110085333298)
-[02:26:24] [Server thread/INFO]: Player330 присоединился к игре
-[02:26:25] [Server thread/INFO]: Saving and pausing game...
-[02:26:25] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[02:26:25] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[02:26:25] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[02:26:29] [Server thread/INFO]: Player330 заработал достижение [Проверить карманы]
-[02:26:29] [Client thread/INFO]: [CHAT] Player330 заработал достижение [Проверить карманы]
-[02:27:03] [Client thread/INFO]: [CHAT] Предмет с идентификатором shadowcraft:shadow_hoe не существует
-[02:27:23] [Client Shutdown Thread/INFO]: Stopping server
+[14:21:09] [main/INFO]: Setting user: Player292
+[14:21:10] [Client thread/INFO]: LWJGL Version: 2.9.1
+[14:21:19] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Shadow Craft
+[14:21:20] [Sound Library Loader/INFO]: Sound engine started
+[14:21:20] [Client thread/INFO]: Created: 16x16 textures/blocks-atlas
+[14:21:20] [Client thread/INFO]: Created: 16x16 textures/items-atlas
+[14:21:20] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Shadow Craft
+[14:21:20] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[14:21:20] [Client thread/INFO]: Created: 256x256 textures/items-atlas
+[14:21:21] [Sound Library Loader/INFO]: Sound engine started
+[14:21:25] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
+[14:21:25] [Server thread/INFO]: Generating keypair
+[14:21:25] [Server thread/INFO]: Preparing start region for level 0
+[14:21:26] [Server thread/INFO]: Changing view distance to 12, from 10
+[14:21:26] [Server thread/INFO]: Player292[local:E:830ce8cc] logged in with entity id 189 at (433.8221116090499, 4.0, 239.3459880923109)
+[14:21:26] [Server thread/INFO]: Player292 присоединился к игре
+[14:21:31] [Server thread/INFO]: Player292 заработал достижение [Проверить карманы]
+[14:21:31] [Client thread/INFO]: [CHAT] Player292 заработал достижение [Проверить карманы]
+[14:21:36] [Client thread/INFO]: [CHAT] /gamemode, /gamerule
+[14:21:37] [Server thread/INFO]: [Player292: Ваш режим игры изменён на Творческий режим]
+[14:21:37] [Client thread/INFO]: [CHAT] Ваш игровой режим обновлён
+[14:21:50] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 4236ms behind, skipping 84 tick(s)
+[14:21:50] [Server thread/INFO]: Saving and pausing game...
+[14:21:51] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[14:21:51] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[14:21:51] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[14:22:05] [Server thread/INFO]: Saving and pausing game...
+[14:22:05] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[14:22:05] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[14:22:05] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[14:23:46] [Server thread/INFO]: Saving and pausing game...
+[14:23:46] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[14:23:46] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[14:23:46] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[14:52:35] [Client thread/INFO]: Stopping!
+[14:52:35] [Server thread/INFO]: Stopping server
+[14:52:35] [Server thread/INFO]: Saving players
+[14:52:35] [Server thread/INFO]: Saving worlds
+[14:52:35] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[14:52:35] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[14:52:35] [Server thread/INFO]: Saving chunks for level 'New World'/The End
