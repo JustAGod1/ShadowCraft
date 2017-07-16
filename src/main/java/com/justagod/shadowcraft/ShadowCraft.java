@@ -2,30 +2,32 @@ package com.justagod.shadowcraft;
 
 import com.justagod.shadowcraft.Blocks.ChargePads.LavaChargePad;
 import com.justagod.shadowcraft.Blocks.FloatingBlock.FloatingBlock;
-import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperBlock;
-import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperEntity;
-import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperItemBlock;
-import com.justagod.shadowcraft.CraftingItems.ShadowCore;
-import com.justagod.shadowcraft.Items.RechargeableItems.*;
-import com.justagod.shadowcraft.Items.ShadowWand;
 import com.justagod.shadowcraft.Blocks.LavaShadowFlowTransmitter.LavaShadowFlowTransmitterBlock;
 import com.justagod.shadowcraft.Blocks.LavaShadowFlowTransmitter.LavaShadowFlowTransmitterEntity;
 import com.justagod.shadowcraft.Blocks.LavaShadowFlowTransmitter.LavaShadowFlowTransmitterRender;
+import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperBlock;
+import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperEntity;
+import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperItemBlock;
+import com.justagod.shadowcraft.Blocks.WitherReplacer.CaptionLabelRenderer;
+import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerBlock;
+import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerEntity;
+import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerRenderer;
+import com.justagod.shadowcraft.CraftingItems.ShadowCore;
+import com.justagod.shadowcraft.Items.AutoFeeders.ReinforcedShadowFeeder;
+import com.justagod.shadowcraft.Items.AutoFeeders.ShadowFeeder;
+import com.justagod.shadowcraft.Items.RechargeableItems.*;
+import com.justagod.shadowcraft.Items.ShadowWand;
 import com.justagod.shadowcraft.ShadowCrystals.BudgetaryShadowCrystal;
 import com.justagod.shadowcraft.ShadowCrystals.MediumShadowCrystal;
 import com.justagod.shadowcraft.ShadowCrystals.StrongShadowCrystal;
 import com.justagod.shadowcraft.ShadowCrystals.WeekShadowCrystal;
 import com.justagod.shadowcraft.Tabs.ShadowBlocksTab;
 import com.justagod.shadowcraft.Tabs.ShadowItemsTab;
-import com.justagod.shadowcraft.Blocks.WitherReplacer.CaptionLabelRenderer;
-import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerBlock;
-import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerEntity;
-import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerRenderer;
 import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item.ToolMaterial;
@@ -35,47 +37,37 @@ import net.minecraftforge.common.util.EnumHelper;
 import static cpw.mods.fml.common.registry.GameRegistry.addRecipe;
 
 @Mod(modid = ShadowCraft.MODID, version = ShadowCraft.VERSION)
-public class ShadowCraft
-{
-    public static ShadowCraft instance;
-
+public class ShadowCraft {
     public static final String MODID = "shadowcraft";
     public static final String VERSION = "1.0";
-
     public static final ToolMaterial SHADOW_MATERIAL = EnumHelper.addToolMaterial("SHADOW_MATERIAL", 3, 2897, 12, 5, 22);
-
     public static final ShadowBlocksTab blocks = new ShadowBlocksTab();
     public static final ShadowItemsTab items = new ShadowItemsTab();
-
     public static final ShadowCore shadowCore = new ShadowCore();
-
     public static final WitherReplacerBlock witherReplacer = new WitherReplacerBlock();
     public static final LavaShadowFlowTransmitterBlock lavaShadowFlowTransmitterBlock = new LavaShadowFlowTransmitterBlock();
     public static final FloatingBlock floatingBlock = new FloatingBlock();
     public static final WebZapperBlock webZapper = new WebZapperBlock();
     public static final LavaChargePad lavaChargePad = new LavaChargePad();
-
     public static final CaptionLabelRenderer captionLabelRenderer = new CaptionLabelRenderer();
-
     public static final BudgetaryShadowCrystal budgetaryShadowCrystal = new BudgetaryShadowCrystal();
     public static final WeekShadowCrystal weekShadowCrystal = new WeekShadowCrystal();
     public static final MediumShadowCrystal mediumShadowCrystal = new MediumShadowCrystal();
     public static final StrongShadowCrystal strongShadowCrystal = new StrongShadowCrystal();
-
     public static final ShadowWand shadowWand = new ShadowWand();
     public static final ShadowShears shadowShears = new ShadowShears();
     public static final ShadowPickaxe shadowPickaxe = new ShadowPickaxe();
     public static final ShadowAxe shadowAxe = new ShadowAxe();
     public static final ShadowShovel shadowShovel = new ShadowShovel();
     public static final ShadowHoe shadowHoe = new ShadowHoe();
+    public static final ShadowFeeder shadowFeeder = new ShadowFeeder();
+    public static final ReinforcedShadowFeeder reinforcedShadowFeeder = new ReinforcedShadowFeeder();
+    public static ShadowCraft instance;
 
-
-
-    
     @EventHandler
-    public void init(FMLInitializationEvent event)
-    {
+    public void init(FMLInitializationEvent event) {
         instance = this;
+
 
         GameRegistry.registerBlock(witherReplacer, "wither_replacer");
         GameRegistry.registerTileEntity(WitherReplacerEntity.class, "shadowcraft:shadowcraft:wither_replacer");
@@ -105,6 +97,8 @@ public class ShadowCraft
         GameRegistry.registerItem(shadowAxe, "shadow_axe");
         GameRegistry.registerItem(shadowShovel, "shadow_shovel");
         GameRegistry.registerItem(shadowHoe, "shadow_hoe");
+        GameRegistry.registerItem(shadowFeeder, "shadow_feeder");
+        GameRegistry.registerItem(reinforcedShadowFeeder, "reinforced_shadow_feeder");
 
         registerRecipes();
 

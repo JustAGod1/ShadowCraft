@@ -16,7 +16,9 @@ item.shadow_shears.name=Ножницы тени
 
 msg.entityNullMsg.txt=Сущность нулевая. Пожалуйста свяжитесь с администратором или JustAGod.
 msg.something_was_changed.txt=Что-то изменилось. Создать связь невозможно.
-msg.second_block_selected.txt=Вы выделили второй блок.
-msg.bind_completed.txt=Связь успешно создана!
-msg.first_block_selected.txt=Вы выделили первый блок.
-msg.unable_to_create_link.txt=Невозможно создать связь между этими блоками.
+msg.second_block_selected.txt=§9Вы выделили второй блок.
+msg.bind_completed.txt=§aСвязь успешно создана!
+msg.first_block_selected.txt=§bВы выделили первый блок.
+msg.unable_to_create_link.txt=§4Невозможно создать связь между этими блоками.
+
+sc.tooltip.shadow_wand=Служит для связывания блоков

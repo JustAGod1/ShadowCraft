@@ -6,6 +6,7 @@ import com.justagod.shadowcraft.Flows.Linkable;
 import com.justagod.shadowcraft.ShadowCraft;
 import com.justagod.shadowcraft.ShadowCrystals.ShadowCrystal;
 import com.justagod.shadowcraft.Utils.Vector3;
+import com.sun.xml.internal.ws.client.dispatch.PacketDispatch;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockHopper;
@@ -101,8 +102,9 @@ public class WitherReplacerBlock extends FlowReceiver implements ITileEntityProv
     }
 
     @Override
-    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
+    public TileEntity createNewTileEntity(World world, int p_149915_2_) {
         return new WitherReplacerEntity();
+
     }
 
     @Override
@@ -185,29 +187,32 @@ public class WitherReplacerBlock extends FlowReceiver implements ITileEntityProv
 
     @Override
     public synchronized boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float clickX, float clickY, float clickZ) {
-        System.out.println("ПКМ");
+        if (!world.isRemote) {
+            System.out.println("ПКМ");
 
-        WitherReplacerEntity entity = (WitherReplacerEntity) world.getTileEntity(x, y, z);
-        if (entity == null) {
-            player.addChatComponentMessage(new ChatComponentTranslation("msg.entityNullMsg.txt"));
-        }
-        if (side == 1) {
+            WitherReplacerEntity entity = (WitherReplacerEntity) world.getTileEntity(x, y, z);
+            if (entity == null) {
+                player.addChatComponentMessage(new ChatComponentTranslation("msg.entityNullMsg.txt"));
+            }
+            if (side == 1) {
 
-            if (entity.getCrystal() != null) {
-                if ((player.getCurrentEquippedItem() == null) && (player.isSneaking())) {
-                    world.spawnEntityInWorld(new EntityItem(world, x, y + 1, z, entity.getCrystal()));
-                    entity.setCrystal(null);
+                if (entity.getCrystal() != null) {
+                    if ((player.getCurrentEquippedItem() == null) && (player.isSneaking())) {
+                        world.spawnEntityInWorld(new EntityItem(world, x, y + 1, z, entity.getCrystal()));
+                        entity.setCrystal(null);
+                    }
+                    return true;
                 }
-                return true;
+
+                if (player.getCurrentEquippedItem() == null) return true;
+                if (player.getCurrentEquippedItem().getItem() instanceof ShadowCrystal) {
+                    entity.setCrystal(player.getCurrentEquippedItem().splitStack(1));
+                }
             }
 
-            if (player.getCurrentEquippedItem() == null) return true;
-            if (player.getCurrentEquippedItem().getItem() instanceof ShadowCrystal) {
-                entity.setCrystal(player.getCurrentEquippedItem().splitStack(1));
-            }
+            return true;
         }
-
-        return true;
+        return false;
     }
 
     @Override

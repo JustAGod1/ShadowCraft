@@ -12,6 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.List;
 /**
  * Created by Yuri on 08.07.17.
  */
-public class ShadowWand extends Item {
+public class ShadowWand extends ShadowItem {
 
     private static final String IS_BLOCK_IN_MEMORY_TAG = "is_block_in_memory";
     private static final String BLOCK_X_TAG = "block_x";
@@ -31,7 +32,6 @@ public class ShadowWand extends Item {
         super();
         setUnlocalizedName("shadow_wand");
         setTextureName("shadowcraft:shadow_wand");
-        setCreativeTab(ShadowCraft.items);
     }
 
 
@@ -42,11 +42,13 @@ public class ShadowWand extends Item {
 
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean p_77624_4_) {
-        list.add("Служит для связывания теневых блоков");
+        list.add(StatCollector.translateToLocal("sc.tooltip.shadow_wand"));
     }
 
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+
+        if (world.isRemote) return false;
 
         Block block = world.getBlock(x, y, z);
 
@@ -71,7 +73,7 @@ public class ShadowWand extends Item {
 
                 compound.setBoolean(IS_BLOCK_IN_MEMORY_TAG, false);
 
-                return true;
+                return false;
             }
 
             Linkable firstLink = (Linkable) block;
@@ -92,7 +94,7 @@ public class ShadowWand extends Item {
                 player.addChatComponentMessage(new ChatComponentTranslation("msg.unable_to_create_link.txt"));
             }
 
-            return true;
+            return false;
         }
 
         compound.setBoolean(IS_BLOCK_IN_MEMORY_TAG, true);
@@ -102,7 +104,7 @@ public class ShadowWand extends Item {
 
         player.addChatComponentMessage(new ChatComponentTranslation("msg.first_block_selected.txt"));
 
-        return true;
+        return false;
 
     }
 }

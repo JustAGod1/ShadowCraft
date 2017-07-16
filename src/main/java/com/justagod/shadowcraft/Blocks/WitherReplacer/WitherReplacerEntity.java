@@ -3,8 +3,9 @@ package com.justagod.shadowcraft.Blocks.WitherReplacer;
 import com.justagod.shadowcraft.Flows.FlowTransmitter;
 import com.justagod.shadowcraft.ShadowCrystals.ShadowCrystal;
 import com.justagod.shadowcraft.Utils.Vector3;
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -13,8 +14,8 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,46 +24,46 @@ import java.util.Map;
 /**
  * Created by Yuri on 06.07.17.
  */
-public class WitherReplacerEntity extends TileEntity {
+public class WitherReplacerEntity extends TileEntity implements IInventory {
 
     public static final List<WitherReplacerEntity> instances = new ArrayList<WitherReplacerEntity>();
 
     private static final String CRYSTAL_TAG = "crystal";
     private static final String IS_HAVE_CRYSTAL_TAG = "is_have_crystal";
     private static final String TRANSMITTERS_TAG = "transmitters";
-    private static final String TRANSMITTERS_COUNT_TAG = "transmitters_count";
-    private static final String TRANSMITTER_ENTRY_TAG = "transmitter";
     private static final String TRANSMITTER_X = "x";
     private static final String TRANSMITTER_Y = "y";
     private static final String TRANSMITTER_Z = "z";
 
 
-    private final String caption = "JustAGod - красавчик";
+    private static final String DEFAULT_CAPTION = "JustAGod - красавчик";
     private final Map<Vector3, FlowTransmitter> transmitters = new HashMap<Vector3, FlowTransmitter>();
     private final List<Vector3> tmpArray = new ArrayList<Vector3>();
     private boolean isTransmittersFilled = false;
     private ItemStack crystal;
 
     public WitherReplacerEntity() {
-        System.out.println("Entity created");
-
+        System.out.println("Entity created " + Integer.toHexString(hashCode()));
         instances.add(this);
     }
 
     public String getCaption() {
         if (!crystal.hasDisplayName()) {
-            return caption;
+            return DEFAULT_CAPTION;
         } else {
             return crystal.getDisplayName();
         }
     }
 
+    @Nullable
     public synchronized ItemStack getCrystal() {
         return crystal;
     }
 
     public synchronized void setCrystal(ItemStack crystal) {
         this.crystal = crystal;
+        this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+        this.markDirty();
     }
 
     public float getCurrentMaxDistance() {
@@ -165,6 +166,8 @@ public class WitherReplacerEntity extends TileEntity {
         if (compound.getBoolean(IS_HAVE_CRYSTAL_TAG)) {
             NBTTagCompound crystalCompound = (NBTTagCompound) compound.getTag(CRYSTAL_TAG);
             this.crystal = ItemStack.loadItemStackFromNBT(crystalCompound);
+        } else {
+            crystal = null;
         }
 
         NBTTagList tagList = (NBTTagList) compound.getTag(TRANSMITTERS_TAG);
@@ -201,5 +204,94 @@ public class WitherReplacerEntity extends TileEntity {
 
             transmitters.put(vector, (FlowTransmitter) block);
         }
+    }
+
+    @Override
+    public int getSizeInventory() {
+        return 1;
+    }
+
+    @Override
+    public ItemStack getStackInSlot(int slot) {
+        if (slot == 0) {
+            return crystal;
+        } else return null;
+    }
+
+    @Override
+    public ItemStack decrStackSize(int slot, int count) {
+        if (slot == 0) {
+            if (crystal == null) return null;
+            if (count < 1) return null;
+            if (count >= 1) {
+                ItemStack res = crystal;
+                setInventorySlotContents(slot, null);
+                markDirty();
+                return res;
+            }
+
+        }
+        return null;
+
+    }
+
+
+    @Override
+    public ItemStack getStackInSlotOnClosing(int slot) {
+        ItemStack stack = this.getStackInSlot(slot);
+        this.setInventorySlotContents(slot, null);
+        return stack;
+    }
+
+    @Override
+    public void setInventorySlotContents(int slot, ItemStack stack) {
+        if (slot < 0 || slot >= this.getSizeInventory())
+            return;
+
+        if (stack != null && stack.stackSize > this.getInventoryStackLimit())
+            stack.stackSize = this.getInventoryStackLimit();
+
+        if (stack != null && stack.stackSize == 0)
+            stack = null;
+
+        crystal = stack;
+        this.markDirty();
+        this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+
+    }
+
+    @Override
+    public String getInventoryName() {
+        return null;
+    }
+
+    @Override
+    public boolean hasCustomInventoryName() {
+        return false;
+    }
+
+    @Override
+    public int getInventoryStackLimit() {
+        return 1;
+    }
+
+    @Override
+    public boolean isUseableByPlayer(EntityPlayer player) {
+        return this.worldObj.getTileEntity(xCoord, yCoord, zCoord) == this && player.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) <= 64;
+    }
+
+    @Override
+    public void openInventory() {
+
+    }
+
+    @Override
+    public void closeInventory() {
+
+    }
+
+    @Override
+    public boolean isItemValidForSlot(int slot, ItemStack stack) {
+        return stack.getItem() instanceof ShadowCrystal;
     }
 }
