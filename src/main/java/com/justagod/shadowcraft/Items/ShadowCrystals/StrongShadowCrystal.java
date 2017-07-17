@@ -1,4 +1,4 @@
-package com.justagod.shadowcraft.ShadowCrystals;
+package com.justagod.shadowcraft.Items.ShadowCrystals;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -38,7 +38,8 @@ public class StrongShadowCrystal extends ShadowCrystal {
         {
             GL11.glColor3d(1, 1, 1);
 
-            fontRender.drawString("§2" + text, (int) (pos - (fontRender.getStringWidth(text) / 2)), 30, 100);
+
+            fontRender.drawString("§4" + text, (int) (pos - (fontRender.getStringWidth(text) / 2)), 30, 100);
         }
         glPopMatrix();
     }

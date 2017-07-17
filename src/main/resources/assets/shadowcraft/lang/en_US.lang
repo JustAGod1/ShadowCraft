@@ -20,3 +20,5 @@ msg.second_block_selected.txt=Second block was selected.
 msg.bind_completed.txt=Link was created successfully!
 msg.first_block_selected.txt=First block was selected.
 msg.unable_to_create_link.txt=Unable to create link between this blocks.
+
+container.wither_replacer=Beacon-Teller

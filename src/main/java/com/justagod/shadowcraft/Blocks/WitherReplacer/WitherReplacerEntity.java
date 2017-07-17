@@ -1,9 +1,10 @@
 package com.justagod.shadowcraft.Blocks.WitherReplacer;
 
 import com.justagod.shadowcraft.Flows.FlowTransmitter;
-import com.justagod.shadowcraft.ShadowCrystals.ShadowCrystal;
+import com.justagod.shadowcraft.Items.ShadowCrystals.ShadowCrystal;
 import com.justagod.shadowcraft.Utils.Vector3;
 import net.minecraft.block.Block;
+import net.minecraft.client.gui.GuiRepair;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -14,6 +15,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ public class WitherReplacerEntity extends TileEntity implements IInventory {
     private static final String CRYSTAL_TAG = "crystal";
     private static final String IS_HAVE_CRYSTAL_TAG = "is_have_crystal";
     private static final String TRANSMITTERS_TAG = "transmitters";
+    private static final String CAPTION_TAG = "caption";
     private static final String TRANSMITTER_X = "x";
     private static final String TRANSMITTER_Y = "y";
     private static final String TRANSMITTER_Z = "z";
@@ -40,19 +43,12 @@ public class WitherReplacerEntity extends TileEntity implements IInventory {
     private final Map<Vector3, FlowTransmitter> transmitters = new HashMap<Vector3, FlowTransmitter>();
     private final List<Vector3> tmpArray = new ArrayList<Vector3>();
     private boolean isTransmittersFilled = false;
+    private String caption = DEFAULT_CAPTION;
     private ItemStack crystal;
 
     public WitherReplacerEntity() {
         System.out.println("Entity created " + Integer.toHexString(hashCode()));
-        instances.add(this);
-    }
 
-    public String getCaption() {
-        if (!crystal.hasDisplayName()) {
-            return DEFAULT_CAPTION;
-        } else {
-            return crystal.getDisplayName();
-        }
     }
 
     @Nullable
@@ -66,6 +62,25 @@ public class WitherReplacerEntity extends TileEntity implements IInventory {
         this.markDirty();
     }
 
+    public String getCaption() {
+        return caption;
+    }
+
+    @Override
+    public void setWorldObj(World p_145834_1_) {
+        super.setWorldObj(p_145834_1_);
+
+        if (!worldObj.isRemote) {
+            instances.add(this);
+        }
+    }
+
+    public void setCaption(String caption) {
+        this.caption = caption;
+        this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+        this.markDirty();
+    }
+
     public float getCurrentMaxDistance() {
         if (!isTransmittersFilled) return -1;
         if (crystal == null) return -1;
@@ -75,6 +90,8 @@ public class WitherReplacerEntity extends TileEntity implements IInventory {
 
     public void addTransmitter(Vector3 pos, FlowTransmitter transmitter) {
         transmitters.put(pos, transmitter);
+        this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+        this.markDirty();
     }
 
     public void removeTransmitter(Vector3 pos) {
@@ -83,13 +100,6 @@ public class WitherReplacerEntity extends TileEntity implements IInventory {
 
     @Override
     public void updateEntity() {
-        for (int i = 0; i < instances.size(); i++) {
-            WitherReplacerEntity entity = instances.get(i);
-
-            if ((entity.xCoord == xCoord) && (entity.yCoord == yCoord) && (entity.zCoord == zCoord) && (entity != this) && (instances.contains(this))) {
-                instances.remove(i);
-            }
-        }
 
         if (!isTransmittersFilled && hasWorldObj()) {
             for (Vector3 vector3 : tmpArray) {
@@ -118,7 +128,7 @@ public class WitherReplacerEntity extends TileEntity implements IInventory {
                 zCoord + 2);
     }
 
-    private int getShadowFlowsCount() {
+    public int getShadowFlowsCount() {
         int count = 0;
         for (Map.Entry<Vector3, FlowTransmitter> entry : transmitters.entrySet()) {
             count += entry.getValue().getShadowFlowsCount(worldObj, (int) entry.getKey().getX(), (int) entry.getKey().getY(), (int) entry.getKey().getZ());
@@ -127,11 +137,22 @@ public class WitherReplacerEntity extends TileEntity implements IInventory {
         return count;
     }
 
+    public int getRequiredFlows() {
+        if (isHaveCrystal()) {
+            return ((ShadowCrystal) crystal.getItem()).getRequiredShadowFlows();
+        }
+        return -1;
+    }
+
+    public boolean isHaveCrystal() {
+        return crystal != null;
+    }
 
     @Override
     public void writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
 
+        compound.setString(CAPTION_TAG, caption);
 
         if (crystal != null) {
             NBTTagCompound crystalCompound = new NBTTagCompound();
@@ -162,6 +183,11 @@ public class WitherReplacerEntity extends TileEntity implements IInventory {
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
+
+        caption = compound.getString(CAPTION_TAG);
+
+        isTransmittersFilled = false;
+        transmitters.clear();
 
         if (compound.getBoolean(IS_HAVE_CRYSTAL_TAG)) {
             NBTTagCompound crystalCompound = (NBTTagCompound) compound.getTag(CRYSTAL_TAG);

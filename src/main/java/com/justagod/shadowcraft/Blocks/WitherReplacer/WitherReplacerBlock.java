@@ -3,21 +3,22 @@ package com.justagod.shadowcraft.Blocks.WitherReplacer;
 import com.justagod.shadowcraft.Flows.FlowReceiver;
 import com.justagod.shadowcraft.Flows.FlowTransmitter;
 import com.justagod.shadowcraft.Flows.Linkable;
+import com.justagod.shadowcraft.Network.GUIHandler;
 import com.justagod.shadowcraft.ShadowCraft;
-import com.justagod.shadowcraft.ShadowCrystals.ShadowCrystal;
+import com.justagod.shadowcraft.Items.ShadowCrystals.ShadowCrystal;
 import com.justagod.shadowcraft.Utils.Vector3;
-import com.sun.xml.internal.ws.client.dispatch.PacketDispatch;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockChest;
-import net.minecraft.block.BlockHopper;
+import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
@@ -88,23 +89,9 @@ public class WitherReplacerBlock extends FlowReceiver implements ITileEntityProv
         return false;
     }
 
-
-    @Override
-    public boolean canPlaceBlockAt(World world, int x, int y, int z) {
-        if (!world.getBlock(x, y, z).isReplaceable(world, x, y, z)) return false;
-        if (!world.getBlock(x, y + 1, z).isReplaceable(world, x, y, z)) return false;
-        if (!world.getBlock(x, y + 2, z).isReplaceable(world, x, y, z)) return false;
-        if (!world.getBlock(x + 1, y, z).isReplaceable(world, x, y, z)) return false;
-        if (!world.getBlock(x, y, z + 1).isReplaceable(world, x, y, z)) return false;
-        if (!world.getBlock(x - 1, y, z).isReplaceable(world, x, y, z)) return false;
-        if (!world.getBlock(x, y, z - 1).isReplaceable(world, x, y, z)) return false;
-        return true;
-    }
-
     @Override
     public TileEntity createNewTileEntity(World world, int p_149915_2_) {
         return new WitherReplacerEntity();
-
     }
 
     @Override
@@ -131,6 +118,8 @@ public class WitherReplacerBlock extends FlowReceiver implements ITileEntityProv
         }
         return top;
     }
+
+
 
     @Override
     public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int meta) {
@@ -208,6 +197,8 @@ public class WitherReplacerBlock extends FlowReceiver implements ITileEntityProv
                 if (player.getCurrentEquippedItem().getItem() instanceof ShadowCrystal) {
                     entity.setCrystal(player.getCurrentEquippedItem().splitStack(1));
                 }
+            } else {
+                player.openGui(ShadowCraft.instance, GUIHandler.WITHER_REPLACER_GUI, world, x, y, z);
             }
 
             return true;

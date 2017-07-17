@@ -1,6 +1,6 @@
 package com.justagod.shadowcraft.Blocks.WitherReplacer;
 
-import com.justagod.shadowcraft.ShadowCrystals.ShadowCrystal;
+import com.justagod.shadowcraft.Items.ShadowCrystals.ShadowCrystal;
 import com.justagod.shadowcraft.Utils.Vector3;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.Minecraft;

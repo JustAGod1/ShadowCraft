@@ -1,4 +1,4 @@
-package com.justagod.shadowcraft.ShadowCrystals;
+package com.justagod.shadowcraft.Items.ShadowCrystals;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -10,17 +10,18 @@ import static org.lwjgl.opengl.GL11.glPushMatrix;
 /**
  * Created by Yuri on 07.07.17.
  */
-public class BudgetaryShadowCrystal extends ShadowCrystal {
+public class WeekShadowCrystal extends ShadowCrystal {
 
-    public BudgetaryShadowCrystal() {
+    public WeekShadowCrystal() {
         super();
-        setUnlocalizedName("budgetaryShadowCrystal");
-        setTextureName("shadowcraft:budgetary_crystal");
+        setUnlocalizedName("weekShadowCrystal");
+
+        setTextureName("shadowcraft:week_crystal");
     }
 
     @Override
     public double getTellRadius() {
-        return 10;
+        return 15;
     }
 
     @Override
@@ -36,8 +37,9 @@ public class BudgetaryShadowCrystal extends ShadowCrystal {
         glPushMatrix();
         {
             GL11.glColor3d(1, 1, 1);
-            fontRender.drawString("§0" + text, (int) (pos - (fontRender.getStringWidth(text) / 2)), 30, 100);
+            fontRender.drawString("§3" + text, (int) (pos - (fontRender.getStringWidth(text) / 2)), 30, 100);
         }
         glPopMatrix();
     }
+
 }

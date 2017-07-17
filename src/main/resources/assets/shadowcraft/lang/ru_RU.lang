@@ -22,3 +22,12 @@ msg.first_block_selected.txt=§bВы выделили первый блок.
 msg.unable_to_create_link.txt=§4Невозможно создать связь между этими блоками.
 
 sc.tooltip.shadow_wand=Служит для связывания блоков
+
+container.wither_replacer=§8Маяк-рассказчик
+container.wither_replacer.crystal=§2Кристалл: %s
+container.wither_replacer.havent_crystal=§4Кристалл отсутствует
+container.wither_replacer.shadows=Потоки: %s
+container.wither_replacer.shadows_doesnt_required=Потоки: не требуются
+container.wither_replacer.caption=Надпись: %s
+container.wither_replacer.status_working=§2Статус: работает
+container.wither_replacer.status_idle=§4Статус: не работает

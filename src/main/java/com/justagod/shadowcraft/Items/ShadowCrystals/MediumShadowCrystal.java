@@ -1,4 +1,4 @@
-package com.justagod.shadowcraft.ShadowCrystals;
+package com.justagod.shadowcraft.Items.ShadowCrystals;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;

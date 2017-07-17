@@ -1,10 +1,9 @@
-package com.justagod.shadowcraft.ShadowCrystals;
+package com.justagod.shadowcraft.Items.ShadowCrystals;
 
 import com.justagod.shadowcraft.ShadowCraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 import java.util.List;
 

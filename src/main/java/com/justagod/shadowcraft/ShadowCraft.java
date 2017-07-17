@@ -17,16 +17,18 @@ import com.justagod.shadowcraft.Items.AutoFeeders.ReinforcedShadowFeeder;
 import com.justagod.shadowcraft.Items.AutoFeeders.ShadowFeeder;
 import com.justagod.shadowcraft.Items.RechargeableItems.*;
 import com.justagod.shadowcraft.Items.ShadowWand;
-import com.justagod.shadowcraft.ShadowCrystals.BudgetaryShadowCrystal;
-import com.justagod.shadowcraft.ShadowCrystals.MediumShadowCrystal;
-import com.justagod.shadowcraft.ShadowCrystals.StrongShadowCrystal;
-import com.justagod.shadowcraft.ShadowCrystals.WeekShadowCrystal;
+import com.justagod.shadowcraft.Items.ShadowCrystals.BudgetaryShadowCrystal;
+import com.justagod.shadowcraft.Items.ShadowCrystals.MediumShadowCrystal;
+import com.justagod.shadowcraft.Items.ShadowCrystals.StrongShadowCrystal;
+import com.justagod.shadowcraft.Items.ShadowCrystals.WeekShadowCrystal;
+import com.justagod.shadowcraft.Network.GUIHandler;
 import com.justagod.shadowcraft.Tabs.ShadowBlocksTab;
 import com.justagod.shadowcraft.Tabs.ShadowItemsTab;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -40,7 +42,7 @@ import static cpw.mods.fml.common.registry.GameRegistry.addRecipe;
 public class ShadowCraft {
     public static final String MODID = "shadowcraft";
     public static final String VERSION = "1.0";
-    public static final ToolMaterial SHADOW_MATERIAL = EnumHelper.addToolMaterial("SHADOW_MATERIAL", 3, 2897, 12, 5, 22);
+    public static final ToolMaterial SHADOW_MATERIAL = EnumHelper.addToolMaterial("SHADOW_MATERIAL", 3, 2897, 20, 5, 22);
     public static final ShadowBlocksTab blocks = new ShadowBlocksTab();
     public static final ShadowItemsTab items = new ShadowItemsTab();
     public static final ShadowCore shadowCore = new ShadowCore();
@@ -68,6 +70,7 @@ public class ShadowCraft {
     public void init(FMLInitializationEvent event) {
         instance = this;
 
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GUIHandler());
 
         GameRegistry.registerBlock(witherReplacer, "wither_replacer");
         GameRegistry.registerTileEntity(WitherReplacerEntity.class, "shadowcraft:shadowcraft:wither_replacer");
