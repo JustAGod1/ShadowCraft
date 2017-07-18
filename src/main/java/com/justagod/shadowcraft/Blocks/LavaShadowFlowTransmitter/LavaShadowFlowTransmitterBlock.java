@@ -1,12 +1,10 @@
 package com.justagod.shadowcraft.Blocks.LavaShadowFlowTransmitter;
 
 import com.justagod.shadowcraft.Flows.FlowTransmitter;
+import com.justagod.shadowcraft.Flows.FlowTransmitterEntity;
 import com.justagod.shadowcraft.Flows.Linkable;
 import com.justagod.shadowcraft.Utils.Vector3;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import static com.justagod.shadowcraft.ShadowCraft.blocks;
@@ -14,7 +12,7 @@ import static com.justagod.shadowcraft.ShadowCraft.blocks;
 /**
  * Created by Yuri on 09.07.17.
  */
-public class LavaShadowFlowTransmitterBlock extends FlowTransmitter implements ITileEntityProvider {
+public class LavaShadowFlowTransmitterBlock extends FlowTransmitter {
 
     public LavaShadowFlowTransmitterBlock() {
         super(Material.clay);
@@ -22,18 +20,6 @@ public class LavaShadowFlowTransmitterBlock extends FlowTransmitter implements I
         setBlockTextureName("shadowcraft:lava_shadow_flow_transmitter");
         setBlockName("lava_shadow_flow_transmitter");
         setHarvestLevel("pickaxe", 2);
-    }
-
-    @Override
-    public int getShadowFlowsCount(World world, int x, int y, int z) {
-        int count = 0;
-        if (world.getBlock(x, y + 1, z) == Blocks.lava) count++;
-        if (world.getBlock(x + 1, y, z) == Blocks.lava) count++;
-        if (world.getBlock(x, y, z + 1) == Blocks.lava) count++;
-        if (world.getBlock(x - 1, y, z) == Blocks.lava) count++;
-        if (world.getBlock(x, y - 1, z) == Blocks.lava) count++;
-        if (world.getBlock(x, y, z - 1) == Blocks.lava) count++;
-        return count >= 3?1:0;
     }
 
     @Override
@@ -61,8 +47,9 @@ public class LavaShadowFlowTransmitterBlock extends FlowTransmitter implements I
         entity.setLinkBlock(null);
     }
 
+
     @Override
-    public TileEntity createNewTileEntity(World world, int meta) {
+    protected FlowTransmitterEntity getFlowTransmitterEntity(World world, int meta) {
         return new LavaShadowFlowTransmitterEntity();
     }
 

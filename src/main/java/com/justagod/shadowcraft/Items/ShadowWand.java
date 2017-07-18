@@ -1,14 +1,9 @@
 package com.justagod.shadowcraft.Items;
 
 import com.justagod.shadowcraft.Flows.Linkable;
-import com.justagod.shadowcraft.ShadowCraft;
 import com.justagod.shadowcraft.Utils.Vector3;
-import cpw.mods.fml.common.registry.EntityRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockHopper;
-import net.minecraft.entity.item.EntityMinecartHopper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentTranslation;
@@ -81,7 +76,7 @@ public class ShadowWand extends ShadowItem {
 
                 player.addChatComponentMessage(new ChatComponentTranslation("msg.second_block_selected.txt"));
 
-                if (firstLink.isValidObjToBind(secondLink) && secondLink.isValidObjToBind(firstLink)) {
+                if (firstLink.isValidObjToBind(secondLink, new Vector3(previousX, previousY, previousZ), new Vector3(x, y, z), world) && secondLink.isValidObjToBind(firstLink, new Vector3(x, y, z), new Vector3(previousX, previousY, previousZ), world)) {
                     firstLink.onBlockLinked(secondLink, world, new Vector3(previousX, previousY, previousZ), new Vector3(x, y, z));
                     secondLink.onBlockLinked(firstLink, world, new Vector3(x, y, z), new Vector3(previousX, previousY, previousZ));
 

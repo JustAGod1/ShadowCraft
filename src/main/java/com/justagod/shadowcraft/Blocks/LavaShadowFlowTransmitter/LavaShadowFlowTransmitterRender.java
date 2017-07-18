@@ -14,7 +14,7 @@ public class LavaShadowFlowTransmitterRender extends TileEntitySpecialRenderer {
     public void renderTileEntityAt(TileEntity rawEntity, double x, double y, double z, float partialTick) {
         LavaShadowFlowTransmitterEntity entity = (LavaShadowFlowTransmitterEntity) rawEntity;
 
-        if (!entity.isHaveLink()) return;
+        if (!entity.isLinked()) return;
         glPointSize(15);
         glPushMatrix();
         {

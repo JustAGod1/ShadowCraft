@@ -1,6 +1,7 @@
 package com.justagod.shadowcraft.Blocks.WitherReplacer;
 
 import com.justagod.shadowcraft.Flows.FlowReceiver;
+import com.justagod.shadowcraft.Flows.FlowReceiverEntity;
 import com.justagod.shadowcraft.Flows.FlowTransmitter;
 import com.justagod.shadowcraft.Flows.Linkable;
 import com.justagod.shadowcraft.Network.GUIHandler;
@@ -29,7 +30,7 @@ import static com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerEntit
 /**
  * Created by Yuri on 06.07.17.
  */
-public class WitherReplacerBlock extends FlowReceiver implements ITileEntityProvider {
+public class WitherReplacerBlock extends FlowReceiver {
 
     private IIcon bottom;
     private IIcon top;
@@ -87,11 +88,6 @@ public class WitherReplacerBlock extends FlowReceiver implements ITileEntityProv
     @Override
     public boolean isOpaqueCube() {
         return false;
-    }
-
-    @Override
-    public TileEntity createNewTileEntity(World world, int p_149915_2_) {
-        return new WitherReplacerEntity();
     }
 
     @Override
@@ -160,18 +156,6 @@ public class WitherReplacerBlock extends FlowReceiver implements ITileEntityProv
         }
     }
 
-    @Override
-    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
-        ArrayList<ItemStack> drop = new ArrayList<ItemStack>();
-
-        drop.add(new ItemStack(this));
-
-        WitherReplacerEntity entity = (WitherReplacerEntity) world.getTileEntity(x, y, z);
-
-        if (entity.getCrystal() != null) drop.add(entity.getCrystal());
-
-        return drop;
-    }
 
 
     @Override
@@ -209,5 +193,10 @@ public class WitherReplacerBlock extends FlowReceiver implements ITileEntityProv
     @Override
     public boolean needDrawFlowEffects(World world, int x, int y, int z) {
         return ((WitherReplacerEntity) world.getTileEntity(x, y, z)).getCrystal() != null;
+    }
+
+    @Override
+    public FlowReceiverEntity getFlowReceiverEntity(World world, int meta) {
+        return new WitherReplacerEntity();
     }
 }

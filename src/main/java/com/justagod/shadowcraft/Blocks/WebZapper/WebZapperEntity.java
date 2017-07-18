@@ -1,50 +1,62 @@
 package com.justagod.shadowcraft.Blocks.WebZapper;
 
+import com.justagod.shadowcraft.Flows.Linkable;
+import com.justagod.shadowcraft.Flows.SingleLinkEntity;
+import com.justagod.shadowcraft.Utils.Vector3;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 
 import java.util.ArrayList;
 
 /**
  * Created by Yuri on 09.07.17.
  */
-public class WebZapperEntity extends TileEntity {
+public class WebZapperEntity extends SingleLinkEntity {
 
     private static final int RADIUS = 5;
 
-    private int tick = 0;
+    private boolean isAlpha = false;
+
+    public boolean isAlpha() {
+        return isAlpha;
+    }
 
     @Override
     public void updateEntity() {
-        /*{
-            EntityItem entity = new EntityItem(worldObj, xCoord + 0.5, yCoord + 1, zCoord + 0.5, new ItemStack(Items.diamond, 2));
-            worldObj.spawnEntityInWorld(entity);
-        }*/
+        super.updateEntity();
 
-        if (!hasWorldObj()) return;
+        if (hasWorldObj() && !worldObj.isRemote) {
 
-        int startX = xCoord - RADIUS;
-        int startY = yCoord - RADIUS;
-        int startZ = zCoord - RADIUS;
+            int startX = xCoord - RADIUS;
+            int startY = yCoord - RADIUS;
+            int startZ = zCoord - RADIUS;
 
-        for (int y = startY; y <= yCoord + RADIUS; y++) {
-            for (int x = startX; x <= xCoord + RADIUS; x++) {
-                for (int z = startZ; z < zCoord + RADIUS; z++) {
-                    Block block = worldObj.getBlock(x, y, z);
-                    if (block == Blocks.web) {
-                        ArrayList<ItemStack> drop = block.getDrops(worldObj, x, y, z, worldObj.getBlockMetadata(x, y, z), 5);
-                        for (ItemStack stack : drop) {
-                            EntityItem entity = new EntityItem(worldObj, x, y, z, stack);
-                            worldObj.spawnEntityInWorld(entity);
+            for (int y = startY; y <= yCoord + RADIUS; y++) {
+                for (int x = startX; x <= xCoord + RADIUS; x++) {
+                    for (int z = startZ; z < zCoord + RADIUS; z++) {
+                        Block block = worldObj.getBlock(x, y, z);
+                        if (block == Blocks.web) {
+                            ArrayList<ItemStack> drop = block.getDrops(worldObj, x, y, z, worldObj.getBlockMetadata(x, y, z), 5);
+                            for (ItemStack stack : drop) {
+                                EntityItem entity = new EntityItem(worldObj, x, y, z, stack);
+                                worldObj.spawnEntityInWorld(entity);
+                            }
+                            worldObj.setBlock(x, y, z, Blocks.air);
                         }
-                        worldObj.setBlock(x, y, z, Blocks.air);
                     }
                 }
             }
         }
+    }
+
+    @Override
+    public void onLinked(Vector3 linkPos, Linkable linkBlock) {
+        super.onLinked(linkPos, linkBlock);
+
+        WebZapperEntity linkEntity = (WebZapperEntity) worldObj.getTileEntity(linkPos.getXInt(), linkPos.getYInt(), linkPos.getZInt());
+
+        if (!linkEntity.isAlpha()) isAlpha = true;
     }
 }

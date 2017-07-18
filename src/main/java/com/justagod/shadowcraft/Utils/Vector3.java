@@ -1,6 +1,6 @@
 package com.justagod.shadowcraft.Utils;
 
-import net.minecraft.world.World;
+import net.minecraft.nbt.NBTTagCompound;
 
 /**
  * Created by Yuri on 08.07.17.
@@ -9,7 +9,6 @@ public class Vector3 {
     private float x;
     private float y;
     private float z;
-    private World world;
 
     public Vector3(float x, float y, float z) {
         this.x = x;
@@ -17,47 +16,58 @@ public class Vector3 {
         this.z = z;
     }
 
-    public Vector3(float x, float y, float z, World world) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.world = world;
+    public static Vector3 readFromNBT(NBTTagCompound compound) {
+        float x = compound.getFloat("x");
+        float y = compound.getFloat("y");
+        float z = compound.getFloat("z");
+
+        return new Vector3(x, y, z);
     }
 
     public float getX() {
         return x;
     }
 
-    public float getY() {
-        return y;
-    }
-
-    public float getZ() {
-        return z;
-    }
-
-    public World getWorld() {
-        return world;
+    public int getXInt() {
+        return (int) x;
     }
 
     public void setX(float x) {
         this.x = x;
     }
 
+    public float getY() {
+        return y;
+    }
+
+    public int getYInt() {
+        return (int) y;
+    }
+
     public void setY(float y) {
         this.y = y;
+    }
+
+    public float getZ() {
+        return z;
+    }
+
+    public int getZInt() {
+        return (int) z;
     }
 
     public void setZ(float z) {
         this.z = z;
     }
 
-    public void setWorld(World world) {
-        this.world = world;
-    }
-
     public double getDistanceTo(Vector3 vec) {
         return Math.sqrt((vec.x - x) * (vec.x - x) + (vec.y - y) * (vec.y - y) + (vec.z - z) * (vec.z - z));
+    }
+
+    public void writeToNBT(NBTTagCompound compound) {
+        compound.setFloat("x", x);
+        compound.setFloat("y", y);
+        compound.setFloat("z", z);
     }
 
     @Override
