@@ -2,7 +2,7 @@
 {
   "modid": "shadowcraft",
   "name": "Shadow Craft",
-  "description": "This mod was made special for server Shadowcraft",
+  "description": "This mod was made for server ShadowCraft",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
@@ -11,6 +11,6 @@
   "credits": "",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": []
+  "dependencies": [required_after:Waila]
 }
 ]

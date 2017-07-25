@@ -131,7 +131,7 @@ public class FlowReceiverEntity extends LinkableEntity {
     @Override
     public void onBlockDestroy() {
         for (Map.Entry<Vector3, FlowTransmitter> entry : transmitters.entrySet()) {
-            entry.getValue().onLinkedBlockDestroyed(worldObj, entry.getKey(), new Vector3(xCoord, yCoord, zCoord));
+            entry.getValue().onLinkedBlockDestroyed(worldObj, new Vector3(xCoord, yCoord, zCoord), entry.getKey());
         }
     }
 

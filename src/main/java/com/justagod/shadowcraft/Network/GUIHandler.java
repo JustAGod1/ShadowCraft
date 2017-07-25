@@ -1,5 +1,8 @@
 package com.justagod.shadowcraft.Network;
 
+import com.justagod.shadowcraft.Blocks.StringsCreator.StringsCreatorContainer;
+import com.justagod.shadowcraft.Blocks.StringsCreator.StringsCreatorEntity;
+import com.justagod.shadowcraft.Blocks.StringsCreator.StringsCreatorGUI;
 import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerContainer;
 import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerEntity;
 import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerGUIContainer;
@@ -13,12 +16,15 @@ import net.minecraft.world.World;
 public class GUIHandler implements IGuiHandler {
 
     public static final int WITHER_REPLACER_GUI = 0;
+    public static final int STRING_CREATOR_GUI = 1;
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         switch (ID) {
             case WITHER_REPLACER_GUI:
                 return new WitherReplacerContainer((WitherReplacerEntity) world.getTileEntity(x, y, z));
+            case STRING_CREATOR_GUI:
+                return new StringsCreatorContainer((StringsCreatorEntity) world.getTileEntity(x, y, z), player.inventory);
         }
         return null;
     }
@@ -28,6 +34,8 @@ public class GUIHandler implements IGuiHandler {
         switch (ID) {
             case WITHER_REPLACER_GUI:
                 return new WitherReplacerGUIContainer(new WitherReplacerContainer((WitherReplacerEntity) world.getTileEntity(x, y, z)));
+            case STRING_CREATOR_GUI:
+                return new StringsCreatorGUI(new StringsCreatorContainer((StringsCreatorEntity) world.getTileEntity(x, y, z), player.inventory));
         }
         return null;
     }

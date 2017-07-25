@@ -3,9 +3,6 @@ package com.justagod.shadowcraft.Flows;
 import com.justagod.shadowcraft.Utils.Vector3;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 
 import javax.annotation.Nullable;
 
@@ -77,6 +74,21 @@ public class SingleLinkEntity extends LinkableEntity {
         }
     }
 
+    @Override
+    public void updateEntity() {
+        super.updateEntity();
+
+        if (!worldObj.isRemote) {
+            if (isLinked && !checkEnvironment()) {
+                onUnlinked(linkPos);
+            }
+        }
+    }
+
+    public boolean checkEnvironment() {
+        return true;
+    }
+
     public void setLinked(boolean linked) {
         isLinked = linked;
     }
@@ -87,18 +99,6 @@ public class SingleLinkEntity extends LinkableEntity {
 
     public void setLinkBlock(Linkable linkBlock) {
         this.linkBlock = linkBlock;
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-        readFromNBT(pkt.func_148857_g());
-    }
-
-    @Override
-    public Packet getDescriptionPacket() {
-        NBTTagCompound compound = new NBTTagCompound();
-        writeToNBT(compound);
-        return new S35PacketUpdateTileEntity(xCoord, zCoord, yCoord, blockMetadata, compound);
     }
 
     @Override

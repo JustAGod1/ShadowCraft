@@ -5,14 +5,18 @@ import com.justagod.shadowcraft.Blocks.FloatingBlock.FloatingBlock;
 import com.justagod.shadowcraft.Blocks.LavaShadowFlowTransmitter.LavaShadowFlowTransmitterBlock;
 import com.justagod.shadowcraft.Blocks.LavaShadowFlowTransmitter.LavaShadowFlowTransmitterEntity;
 import com.justagod.shadowcraft.Blocks.LavaShadowFlowTransmitter.LavaShadowFlowTransmitterRender;
+import com.justagod.shadowcraft.Blocks.StringsCreator.StringsCreatorBlock;
+import com.justagod.shadowcraft.Blocks.StringsCreator.StringsCreatorEntity;
 import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperBlock;
 import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperEntity;
 import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperItemBlock;
+import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperRenderer;
 import com.justagod.shadowcraft.Blocks.WitherReplacer.CaptionLabelRenderer;
 import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerBlock;
 import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerEntity;
 import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerRenderer;
-import com.justagod.shadowcraft.CraftingItems.ShadowCore;
+import com.justagod.shadowcraft.Items.CraftingItems.ArtificialSpider;
+import com.justagod.shadowcraft.Items.CraftingItems.ShadowCore;
 import com.justagod.shadowcraft.Items.AutoFeeders.ReinforcedShadowFeeder;
 import com.justagod.shadowcraft.Items.AutoFeeders.ShadowFeeder;
 import com.justagod.shadowcraft.Items.RechargeableItems.*;
@@ -21,6 +25,7 @@ import com.justagod.shadowcraft.Items.ShadowCrystals.BudgetaryShadowCrystal;
 import com.justagod.shadowcraft.Items.ShadowCrystals.MediumShadowCrystal;
 import com.justagod.shadowcraft.Items.ShadowCrystals.StrongShadowCrystal;
 import com.justagod.shadowcraft.Items.ShadowCrystals.WeekShadowCrystal;
+import com.justagod.shadowcraft.Items.SpidersFood;
 import com.justagod.shadowcraft.Network.GUIHandler;
 import com.justagod.shadowcraft.Tabs.ShadowBlocksTab;
 import com.justagod.shadowcraft.Tabs.ShadowItemsTab;
@@ -34,11 +39,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 
 import static cpw.mods.fml.common.registry.GameRegistry.addRecipe;
 
-@Mod(modid = ShadowCraft.MODID, version = ShadowCraft.VERSION)
+@Mod(modid = ShadowCraft.MODID, version = ShadowCraft.VERSION, dependencies = "required_after:Waila")
 public class ShadowCraft {
     public static final String MODID = "shadowcraft";
     public static final String VERSION = "1.0";
@@ -64,6 +70,9 @@ public class ShadowCraft {
     public static final ShadowHoe shadowHoe = new ShadowHoe();
     public static final ShadowFeeder shadowFeeder = new ShadowFeeder();
     public static final ReinforcedShadowFeeder reinforcedShadowFeeder = new ReinforcedShadowFeeder();
+    public static final ArtificialSpider artificialSpider = new ArtificialSpider();
+    public static final StringsCreatorBlock stringsCreatorBlock = new StringsCreatorBlock();
+    public static final SpidersFood spidersFood = new SpidersFood();
     public static ShadowCraft instance;
 
     @EventHandler
@@ -71,6 +80,7 @@ public class ShadowCraft {
         instance = this;
 
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GUIHandler());
+
 
         GameRegistry.registerBlock(witherReplacer, "wither_replacer");
         GameRegistry.registerTileEntity(WitherReplacerEntity.class, "shadowcraft:shadowcraft:wither_replacer");
@@ -82,6 +92,10 @@ public class ShadowCraft {
 
         GameRegistry.registerBlock(webZapper, WebZapperItemBlock.class, "web_zapper");
         GameRegistry.registerTileEntity(WebZapperEntity.class, "shadowcraft:web_zapper");
+        ClientRegistry.bindTileEntitySpecialRenderer(WebZapperEntity.class, new WebZapperRenderer());
+
+        GameRegistry.registerBlock(stringsCreatorBlock, "strings_creator_block");
+        GameRegistry.registerTileEntity(StringsCreatorEntity.class, "shadowcraft:string_creator");
 
         GameRegistry.registerBlock(lavaChargePad, "lava_charge_pad");
 
@@ -102,6 +116,8 @@ public class ShadowCraft {
         GameRegistry.registerItem(shadowHoe, "shadow_hoe");
         GameRegistry.registerItem(shadowFeeder, "shadow_feeder");
         GameRegistry.registerItem(reinforcedShadowFeeder, "reinforced_shadow_feeder");
+        GameRegistry.registerItem(artificialSpider, "artificial_spider");
+        GameRegistry.registerItem(spidersFood, "spiders_food");
 
         registerRecipes();
 
@@ -118,5 +134,7 @@ public class ShadowCraft {
         addRecipe(new ItemStack(shadowShears), "C C", " S ", " C ", 'C', shadowCore, 'S', Items.shears);
         addRecipe(new ItemStack(webZapper), "OSO", "SCS", "OSO", 'O', Blocks.obsidian, 'S', shadowShears, 'C', shadowCore);
         addRecipe(new ItemStack(floatingBlock), "STS", "TBT", "STS", 'S', Items.string, 'T', Blocks.stone, 'B', Items.water_bucket);
+        addRecipe(new ItemStack(stringsCreatorBlock), "OCO", "WSW", "OCO", 'O', Blocks.obsidian, 'C', shadowCore, 'W', webZapper, 'S', artificialSpider);
+        addRecipe(new ItemStack(artificialSpider), "EIE", "EPE", "SSS", 'E', Items.spider_eye, 'I', Blocks.iron_block, 'P', Items.poisonous_potato, 'S', Items.string);
     }
 }

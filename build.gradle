@@ -39,7 +39,8 @@ dependencies {
     // for more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
-    compile 'org.jboss.forge:forge-event-bus:1.4.4.Final'
+    //compile 'org.jboss.forge:forge-event-bus:1.4.4.Final'
+    //compile "mods/Waila_1.5.10_1.7.10.jar"
 
 }
 

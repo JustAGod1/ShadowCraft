@@ -8,6 +8,7 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
@@ -96,7 +97,7 @@ public class WebZapperBlock extends Linkable implements ITileEntityProvider {
 
         if (x == lX && lZ - z <= 10 && lZ - z > 0 && meta == 3) {
             for (int i = z + 1; i < lZ; i++) {
-                if (!world.getBlock(x, y, i).isReplaceable(world, x, y, i)) {
+                if (!world.getBlock(x, y, i).isReplaceable(world, x, y, i) && world.getBlock(x, y, i) != Blocks.web) {
                     return false;
                 }
             }
@@ -104,7 +105,7 @@ public class WebZapperBlock extends Linkable implements ITileEntityProvider {
         }
         if (x == lX && z - lZ <= 10 && z - lZ > 0 && meta == 2) {
             for (int i = z - 1; i > lZ; i--) {
-                if (!world.getBlock(x, y, i).isReplaceable(world, x, y, i)) {
+                if (!world.getBlock(x, y, i).isReplaceable(world, x, y, i) && world.getBlock(x, y, i) != Blocks.web) {
                     return false;
                 }
             }
@@ -112,7 +113,7 @@ public class WebZapperBlock extends Linkable implements ITileEntityProvider {
         }
         if (z == lZ && x - lX <= 10 && x - lX > 0 && meta == 4) {
             for (int i = x - 1; i > lX; i--) {
-                if (!world.getBlock(i, y, z).isReplaceable(world, i, y, z)) {
+                if (!world.getBlock(i, y, z).isReplaceable(world, i, y, z) && world.getBlock(i, y, z) != Blocks.web) {
                     return false;
                 }
             }
@@ -120,7 +121,7 @@ public class WebZapperBlock extends Linkable implements ITileEntityProvider {
         }
         if (z == lZ && lX - x <= 10 && lX - x > 0 && meta == 5) {
             for (int i = x + 1; i < lX; i++) {
-                if (!world.getBlock(i, y, z).isReplaceable(world, i, y, z)) {
+                if (!world.getBlock(i, y, z).isReplaceable(world, i, y, z) && world.getBlock(i, y, z) != Blocks.web) {
                     return false;
                 }
             }

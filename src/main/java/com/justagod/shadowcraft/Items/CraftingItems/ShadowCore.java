@@ -1,11 +1,7 @@
-package com.justagod.shadowcraft.CraftingItems;
+package com.justagod.shadowcraft.Items.CraftingItems;
 
 import com.justagod.shadowcraft.ShadowCraft;
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 /**
  * Created by Yuri on 08.07.17.

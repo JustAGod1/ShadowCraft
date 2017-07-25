@@ -63,6 +63,10 @@ public class WitherReplacerEntity extends FlowReceiverEntity implements IInvento
 
     }
 
+    public boolean isWorking() {
+        return isHaveCrystal() && getRequiredFlows() <= getShadowFlowsCount();
+    }
+
     public float getCurrentMaxDistance() {
         if (!isTransmittersFilled()) return -1;
         if (crystal == null) return -1;
@@ -130,18 +134,7 @@ public class WitherReplacerEntity extends FlowReceiverEntity implements IInvento
 
     }
 
-    @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-        readFromNBT(pkt.func_148857_g());
 
-    }
-
-    @Override
-    public Packet getDescriptionPacket() {
-        NBTTagCompound tagCom = new NBTTagCompound();
-        this.writeToNBT(tagCom);
-        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, this.blockMetadata, tagCom);
-    }
 
 
     @Override

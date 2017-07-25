@@ -31,3 +31,5 @@ container.wither_replacer.shadows_doesnt_required=Потоки: не требу�
 container.wither_replacer.caption=Надпись: %s
 container.wither_replacer.status_working=§2Статус: работает
 container.wither_replacer.status_idle=§4Статус: не работает
+
+shadowcraft.waila.replacer.caption=Текущая надпись: %s
