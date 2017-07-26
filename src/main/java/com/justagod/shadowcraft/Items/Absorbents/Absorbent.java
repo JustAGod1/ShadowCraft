@@ -4,6 +4,7 @@ import com.justagod.shadowcraft.Items.ShadowItem;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
 /**
@@ -11,7 +12,11 @@ import net.minecraft.world.World;
  */
 public abstract class Absorbent extends ShadowItem {
 
-    public static final int NEED_TO_ABSORB = 500;
+    public static final int NEED_TO_ABSORB = 40;
+
+    public Absorbent() {
+        setFull3D();
+    }
 
     protected abstract String getDataTag();
     protected abstract ItemStack onPump(ItemStack stack, World world, EntityPlayer player, AbsorbentsData data);
@@ -21,10 +26,12 @@ public abstract class Absorbent extends ShadowItem {
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
         if (!world.isRemote) {
+            player.addChatComponentMessage(new ChatComponentText(String.valueOf(world.getWorldTime())));
             AbsorbentsData data = (AbsorbentsData) player.getExtendedProperties(getDataTag());
             if (data != null) {
-                if (data.getValue() > 0) {
+                if (data.getValue(world) > 0) {
                     ItemStack result = onPump(itemStack, world, player, data);
+
                     return result;
                 }
             }

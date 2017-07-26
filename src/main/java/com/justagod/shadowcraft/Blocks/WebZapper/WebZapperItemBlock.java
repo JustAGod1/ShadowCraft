@@ -18,6 +18,6 @@ public class WebZapperItemBlock extends ItemBlock {
 
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean p_77624_4_) {
-        list.add("Убирает паутину в радиусе 10х10х10");
+        list.add("WIP");
     }
 }

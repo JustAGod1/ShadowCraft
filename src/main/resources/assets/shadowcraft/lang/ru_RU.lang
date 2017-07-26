@@ -32,4 +32,7 @@ container.wither_replacer.caption=Надпись: %s
 container.wither_replacer.status_working=§2Статус: работает
 container.wither_replacer.status_idle=§4Статус: не работает
 
+shadowcraft.absorbent.absorbed_shadow=Абсорбиравано тени: %d/%d
+shadowcraft.absorbent.absorbed_light=Абсорбиравано света: %d/%d
+
 shadowcraft.waila.replacer.caption=Текущая надпись: %s

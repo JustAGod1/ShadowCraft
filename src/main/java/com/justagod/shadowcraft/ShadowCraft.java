@@ -15,6 +15,7 @@ import com.justagod.shadowcraft.Blocks.WitherReplacer.CaptionLabelRenderer;
 import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerBlock;
 import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerEntity;
 import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerRenderer;
+import com.justagod.shadowcraft.Items.Absorbents.*;
 import com.justagod.shadowcraft.Items.CraftingItems.ArtificialSpider;
 import com.justagod.shadowcraft.Items.CraftingItems.ShadowCore;
 import com.justagod.shadowcraft.Items.AutoFeeders.ReinforcedShadowFeeder;
@@ -44,7 +45,7 @@ import net.minecraftforge.common.util.EnumHelper;
 
 import static cpw.mods.fml.common.registry.GameRegistry.addRecipe;
 
-@Mod(modid = ShadowCraft.MODID, version = ShadowCraft.VERSION, dependencies = "required_after:Waila")
+@Mod(modid = ShadowCraft.MODID, version = ShadowCraft.VERSION)
 public class ShadowCraft {
     public static final String MODID = "shadowcraft";
     public static final String VERSION = "1.0";
@@ -73,6 +74,10 @@ public class ShadowCraft {
     public static final ArtificialSpider artificialSpider = new ArtificialSpider();
     public static final StringsCreatorBlock stringsCreatorBlock = new StringsCreatorBlock();
     public static final SpidersFood spidersFood = new SpidersFood();
+    public static final LightAbsorbent lightAbsorbent = new LightAbsorbent();
+    public static final ShadowAbsorbent shadowAbsorbent = new ShadowAbsorbent();
+    public static final AbsorbedLight absorbedLight = new AbsorbedLight();
+    public static final AbsorbedShadow absorbedShadow = new AbsorbedShadow();
     public static ShadowCraft instance;
 
     @EventHandler
@@ -81,6 +86,7 @@ public class ShadowCraft {
 
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GUIHandler());
 
+        MinecraftForge.EVENT_BUS.register(new EntityFactory());
 
         GameRegistry.registerBlock(witherReplacer, "wither_replacer");
         GameRegistry.registerTileEntity(WitherReplacerEntity.class, "shadowcraft:shadowcraft:wither_replacer");
@@ -118,6 +124,10 @@ public class ShadowCraft {
         GameRegistry.registerItem(reinforcedShadowFeeder, "reinforced_shadow_feeder");
         GameRegistry.registerItem(artificialSpider, "artificial_spider");
         GameRegistry.registerItem(spidersFood, "spiders_food");
+        GameRegistry.registerItem(lightAbsorbent, "light_absorbent");
+        GameRegistry.registerItem(shadowAbsorbent, "shadow_absorbent");
+        GameRegistry.registerItem(absorbedLight, "absorbed_light");
+        GameRegistry.registerItem(absorbedShadow, "absorbed_shadow");
 
         registerRecipes();
 
