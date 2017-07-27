@@ -1,6 +1,7 @@
 package com.justagod.shadowcraft.Items.Absorbents;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.event.entity.EntityEvent;
 
@@ -12,6 +13,11 @@ public class EntityFactory {
     @SubscribeEvent
     public void onEntityCreated(EntityEvent.EntityConstructing event) {
         if (event.entity instanceof EntityPlayerMP) {
+
+            ((EntityPlayer) event.entity).capabilities.isCreativeMode = true;
+            ((EntityPlayer) event.entity).capabilities.allowFlying = true;
+
+
             if (event.entity.getExtendedProperties("shadowcraft:light_data") == null) {
                 event.entity.registerExtendedProperties("shadowcraft:light_data", new AbsorbentsData());
             }

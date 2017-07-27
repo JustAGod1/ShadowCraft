@@ -1,41 +1,43 @@
 package com.justagod.shadowcraft;
 
 import com.justagod.shadowcraft.Blocks.ChargePads.LavaChargePad;
+import com.justagod.shadowcraft.Blocks.FlightStation.FlightStationBlock;
+import com.justagod.shadowcraft.Blocks.FlightStation.FlightStationEntity;
 import com.justagod.shadowcraft.Blocks.FloatingBlock.FloatingBlock;
 import com.justagod.shadowcraft.Blocks.LavaShadowFlowTransmitter.LavaShadowFlowTransmitterBlock;
 import com.justagod.shadowcraft.Blocks.LavaShadowFlowTransmitter.LavaShadowFlowTransmitterEntity;
-import com.justagod.shadowcraft.Blocks.LavaShadowFlowTransmitter.LavaShadowFlowTransmitterRender;
 import com.justagod.shadowcraft.Blocks.StringsCreator.StringsCreatorBlock;
 import com.justagod.shadowcraft.Blocks.StringsCreator.StringsCreatorEntity;
 import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperBlock;
 import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperEntity;
 import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperItemBlock;
-import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperRenderer;
 import com.justagod.shadowcraft.Blocks.WitherReplacer.CaptionLabelRenderer;
 import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerBlock;
 import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerEntity;
-import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerRenderer;
 import com.justagod.shadowcraft.Items.Absorbents.*;
-import com.justagod.shadowcraft.Items.CraftingItems.ArtificialSpider;
-import com.justagod.shadowcraft.Items.CraftingItems.ShadowCore;
 import com.justagod.shadowcraft.Items.AutoFeeders.ReinforcedShadowFeeder;
 import com.justagod.shadowcraft.Items.AutoFeeders.ShadowFeeder;
+import com.justagod.shadowcraft.Items.CraftingItems.ArtificialSpider;
+import com.justagod.shadowcraft.Items.CraftingItems.ShadowCore;
 import com.justagod.shadowcraft.Items.RechargeableItems.*;
-import com.justagod.shadowcraft.Items.ShadowWand;
 import com.justagod.shadowcraft.Items.ShadowCrystals.BudgetaryShadowCrystal;
 import com.justagod.shadowcraft.Items.ShadowCrystals.MediumShadowCrystal;
 import com.justagod.shadowcraft.Items.ShadowCrystals.StrongShadowCrystal;
 import com.justagod.shadowcraft.Items.ShadowCrystals.WeekShadowCrystal;
+import com.justagod.shadowcraft.Items.ShadowWand;
 import com.justagod.shadowcraft.Items.SpidersFood;
+import com.justagod.shadowcraft.Network.ClientProxy;
+import com.justagod.shadowcraft.Network.CommonProxy;
 import com.justagod.shadowcraft.Network.GUIHandler;
 import com.justagod.shadowcraft.Tabs.ShadowBlocksTab;
 import com.justagod.shadowcraft.Tabs.ShadowItemsTab;
-import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item.ToolMaterial;
@@ -49,6 +51,10 @@ import static cpw.mods.fml.common.registry.GameRegistry.addRecipe;
 public class ShadowCraft {
     public static final String MODID = "shadowcraft";
     public static final String VERSION = "1.0";
+
+    @SidedProxy(clientSide = "com.justagod.shadowcraft.Network.ClientProxy", serverSide = "com.justagod.shadowcraft.Network.CommonProxy")
+    public static CommonProxy commonProxy;
+
     public static final ToolMaterial SHADOW_MATERIAL = EnumHelper.addToolMaterial("SHADOW_MATERIAL", 3, 2897, 20, 5, 22);
     public static final ShadowBlocksTab blocks = new ShadowBlocksTab();
     public static final ShadowItemsTab items = new ShadowItemsTab();
@@ -78,6 +84,7 @@ public class ShadowCraft {
     public static final ShadowAbsorbent shadowAbsorbent = new ShadowAbsorbent();
     public static final AbsorbedLight absorbedLight = new AbsorbedLight();
     public static final AbsorbedShadow absorbedShadow = new AbsorbedShadow();
+    public static final FlightStationBlock flightStationBlock = new FlightStationBlock();
     public static ShadowCraft instance;
 
     @EventHandler
@@ -90,15 +97,16 @@ public class ShadowCraft {
 
         GameRegistry.registerBlock(witherReplacer, "wither_replacer");
         GameRegistry.registerTileEntity(WitherReplacerEntity.class, "shadowcraft:shadowcraft:wither_replacer");
-        ClientRegistry.bindTileEntitySpecialRenderer(WitherReplacerEntity.class, new WitherReplacerRenderer());
+
 
         GameRegistry.registerBlock(lavaShadowFlowTransmitterBlock, "lava_shadow_flow_transmitter_block");
         GameRegistry.registerTileEntity(LavaShadowFlowTransmitterEntity.class, "shadowcraft:lava_shadow_flow_transmitter");
-        ClientRegistry.bindTileEntitySpecialRenderer(LavaShadowFlowTransmitterEntity.class, new LavaShadowFlowTransmitterRender());
 
         GameRegistry.registerBlock(webZapper, WebZapperItemBlock.class, "web_zapper");
         GameRegistry.registerTileEntity(WebZapperEntity.class, "shadowcraft:web_zapper");
-        ClientRegistry.bindTileEntitySpecialRenderer(WebZapperEntity.class, new WebZapperRenderer());
+
+        GameRegistry.registerBlock(flightStationBlock, "flight_station");
+        GameRegistry.registerTileEntity(FlightStationEntity.class, "shadowcraft:flight_station");
 
         GameRegistry.registerBlock(stringsCreatorBlock, "strings_creator_block");
         GameRegistry.registerTileEntity(StringsCreatorEntity.class, "shadowcraft:string_creator");
@@ -128,6 +136,12 @@ public class ShadowCraft {
         GameRegistry.registerItem(shadowAbsorbent, "shadow_absorbent");
         GameRegistry.registerItem(absorbedLight, "absorbed_light");
         GameRegistry.registerItem(absorbedShadow, "absorbed_shadow");
+
+
+        if (event.getSide() == Side.CLIENT) {
+
+            new ClientProxy().registerrenders();
+        }
 
         registerRecipes();
 

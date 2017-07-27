@@ -13,6 +13,7 @@ import net.minecraft.world.World;
  */
 public class PearlCreatorBlock extends FlowReceiver implements ITileEntityProvider{
 
+    // TODO: 26.07.17 Доделать создатель эндер перлов
     public PearlCreatorBlock() {
         super(Material.clay);
     }
