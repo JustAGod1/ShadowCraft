@@ -1,5 +1,6 @@
 package com.justagod.shadowcraft.Utils;
 
+import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;
 
 /**
@@ -20,6 +21,14 @@ public class Vector3 {
         float x = compound.getFloat("x");
         float y = compound.getFloat("y");
         float z = compound.getFloat("z");
+
+        return new Vector3(x, y, z);
+    }
+
+    public static Vector3 readFromByteBuf(ByteBuf buf) {
+        float x = buf.readFloat();
+        float y = buf.readFloat();
+        float z = buf.readFloat();
 
         return new Vector3(x, y, z);
     }
@@ -68,6 +77,12 @@ public class Vector3 {
         compound.setFloat("x", x);
         compound.setFloat("y", y);
         compound.setFloat("z", z);
+    }
+
+    public void writeToByteBuf(ByteBuf buf) {
+        buf.writeFloat(x);
+        buf.writeFloat(y);
+        buf.writeFloat(z);
     }
 
     @Override

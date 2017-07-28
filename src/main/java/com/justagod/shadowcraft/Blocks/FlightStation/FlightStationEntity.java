@@ -19,8 +19,11 @@ public class FlightStationEntity extends FlowReceiverEntity {
 
     @Override
     public void updateEntity() {
+        // TODO: 28.07.17 Полеты между двумя станциями могут быть не корректны
         super.updateEntity();
-        if (worldObj.isRemote) ticks++;
+        if (worldObj.isRemote) {
+            ticks++;
+        }
 
         List<EntityPlayer> players = worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBox(xCoord - 32, 0, zCoord - 32, xCoord + 32, 260, zCoord + 32));
 
@@ -46,8 +49,10 @@ public class FlightStationEntity extends FlowReceiverEntity {
 
         if (free > 0) {
             for (EntityPlayer player : players) {
-                if (!currentFlying.contains(player)) {
-                    addFlyingPlayer(player);
+                if (!player.capabilities.isCreativeMode) {
+                    if (!currentFlying.contains(player)) {
+                        addFlyingPlayer(player);
+                    }
                 }
             }
         } else if (free < 0) {
@@ -56,10 +61,12 @@ public class FlightStationEntity extends FlowReceiverEntity {
             while (playerIterator.hasNext() && free < 0) {
                 EntityPlayer player = playerIterator.next();
                 player.capabilities.allowFlying = false;
+                player.capabilities.isFlying = false;
                 playerIterator.remove();
                 free++;
             }
         }
+
 
 
     }

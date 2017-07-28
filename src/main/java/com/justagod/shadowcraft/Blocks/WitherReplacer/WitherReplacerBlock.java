@@ -5,27 +5,21 @@ import com.justagod.shadowcraft.Flows.FlowReceiverEntity;
 import com.justagod.shadowcraft.Flows.FlowTransmitter;
 import com.justagod.shadowcraft.Flows.Linkable;
 import com.justagod.shadowcraft.Network.GUIHandler;
+import com.justagod.shadowcraft.Network.PacketHandler;
+import com.justagod.shadowcraft.Network.Packets.TellerToClientPacket;
 import com.justagod.shadowcraft.ShadowCraft;
 import com.justagod.shadowcraft.Items.ShadowCrystals.ShadowCrystal;
 import com.justagod.shadowcraft.Utils.Vector3;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFurnace;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
-
-import static com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerEntity.instances;
+import static com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerEntity.SERVER_INSTANCES;
 
 /**
  * Created by Yuri on 06.07.17.
@@ -46,6 +40,14 @@ public class WitherReplacerBlock extends FlowReceiver {
         setHardness(30);
         setHarvestLevel("pickaxe", 2);
 
+    }
+
+    @Override
+    public int onBlockPlaced(World world, int x, int y, int z, int p_149660_5_, float p_149660_6_, float p_149660_7_, float p_149660_8_, int p_149660_9_) {
+        if (!world.isRemote) {
+            PacketHandler.INSTANCE.sendToAll(new TellerToClientPacket(x, y, z));
+        }
+        return p_149660_9_;
     }
 
     @Override
@@ -149,10 +151,10 @@ public class WitherReplacerBlock extends FlowReceiver {
     }
 
     private void deleteEntity(int x, int y, int z) {
-        for (int i = 0; i < instances.size(); i++) {
-            WitherReplacerEntity entity = instances.get(i);
+        for (int i = 0; i < SERVER_INSTANCES.size(); i++) {
+            WitherReplacerEntity entity = SERVER_INSTANCES.get(i);
 
-            if ((entity.xCoord == x) && (entity.yCoord == y) && (entity.zCoord == z)) instances.remove(i);
+            if ((entity.xCoord == x) && (entity.yCoord == y) && (entity.zCoord == z)) SERVER_INSTANCES.remove(i);
         }
     }
 

@@ -11,7 +11,8 @@ import net.minecraftforge.common.MinecraftForge;
 
 import javax.annotation.Nullable;
 
-import static com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerEntity.instances;
+import static com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerEntity.CLIENT_INSTANCES;
+import static com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerEntity.SERVER_INSTANCES;
 import static net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType.TEXT;
 
 /**
@@ -20,7 +21,7 @@ import static net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType
 public class CaptionLabelRenderer {
 
     public CaptionLabelRenderer() {
-        MinecraftForge.EVENT_BUS.register(this);
+
     }
 
     @SubscribeEvent
@@ -51,11 +52,11 @@ public class CaptionLabelRenderer {
 
     @Nullable
     private WitherReplacerEntity getNearestTeller(Vector3 playerPos) {
-        if (instances.size() <= 0) return null;
-        WitherReplacerEntity nearest = instances.get(0);
+        if (CLIENT_INSTANCES.size() <= 0) return null;
+        WitherReplacerEntity nearest = CLIENT_INSTANCES.get(0);
 
-        for (int i = 1; i < instances.size(); i++) {
-            WitherReplacerEntity entity = instances.get(i);
+        for (int i = 1; i < CLIENT_INSTANCES.size(); i++) {
+            WitherReplacerEntity entity = CLIENT_INSTANCES.get(i);
             Vector3 entityPos = new Vector3(entity.xCoord, entity.yCoord, entity.zCoord);
             Vector3 nearestPos = new Vector3(nearest.xCoord, nearest.yCoord, nearest.zCoord);
 

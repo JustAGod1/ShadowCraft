@@ -13,10 +13,12 @@ import com.justagod.shadowcraft.Blocks.StringsCreator.StringsCreatorEntity;
 import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperBlock;
 import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperEntity;
 import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperItemBlock;
-import com.justagod.shadowcraft.Blocks.WitherReplacer.CaptionLabelRenderer;
 import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerBlock;
 import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerEntity;
-import com.justagod.shadowcraft.Items.Absorbents.*;
+import com.justagod.shadowcraft.Items.Absorbents.AbsorbedLight;
+import com.justagod.shadowcraft.Items.Absorbents.AbsorbedShadow;
+import com.justagod.shadowcraft.Items.Absorbents.LightAbsorbent;
+import com.justagod.shadowcraft.Items.Absorbents.ShadowAbsorbent;
 import com.justagod.shadowcraft.Items.AutoFeeders.AdvancedShadowFeeder;
 import com.justagod.shadowcraft.Items.AutoFeeders.ReinforcedShadowFeeder;
 import com.justagod.shadowcraft.Items.AutoFeeders.ShadowFeeder;
@@ -54,10 +56,6 @@ import static cpw.mods.fml.common.registry.GameRegistry.addRecipe;
 public class ShadowCraft {
     public static final String MODID = "shadowcraft";
     public static final String VERSION = "1.0";
-
-    @SidedProxy(clientSide = "com.justagod.shadowcraft.Network.ClientProxy", serverSide = "com.justagod.shadowcraft.Network.CommonProxy")
-    public static CommonProxy commonProxy;
-
     public static final ToolMaterial SHADOW_MATERIAL = EnumHelper.addToolMaterial("SHADOW_MATERIAL", 3, 2897, 20, 5, 22);
     public static final ShadowBlocksTab blocks = new ShadowBlocksTab();
     public static final ShadowItemsTab items = new ShadowItemsTab();
@@ -67,7 +65,6 @@ public class ShadowCraft {
     public static final FloatingBlock floatingBlock = new FloatingBlock();
     public static final WebZapperBlock webZapper = new WebZapperBlock();
     public static final LavaChargePad lavaChargePad = new LavaChargePad();
-    public static final CaptionLabelRenderer captionLabelRenderer = new CaptionLabelRenderer();
     public static final BudgetaryShadowCrystal budgetaryShadowCrystal = new BudgetaryShadowCrystal();
     public static final WeekShadowCrystal weekShadowCrystal = new WeekShadowCrystal();
     public static final MediumShadowCrystal mediumShadowCrystal = new MediumShadowCrystal();
@@ -93,6 +90,8 @@ public class ShadowCraft {
     public static final LightFilter lightFilter = new LightFilter();
     public static final ShadowFilter shadowFilter = new ShadowFilter();
     public static final AdvancedShadowFeeder advancedShadowFeeder = new AdvancedShadowFeeder();
+    @SidedProxy(clientSide = "com.justagod.shadowcraft.Network.ClientProxy", serverSide = "com.justagod.shadowcraft.Network.CommonProxy")
+    public static CommonProxy commonProxy;
     public static ShadowCraft instance;
 
     @EventHandler
@@ -101,7 +100,6 @@ public class ShadowCraft {
 
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GUIHandler());
 
-        MinecraftForge.EVENT_BUS.register(new EntityFactory());
 
         GameRegistry.registerBlock(witherReplacer, "wither_replacer");
         GameRegistry.registerTileEntity(WitherReplacerEntity.class, "shadowcraft:shadowcraft:wither_replacer");
@@ -157,6 +155,8 @@ public class ShadowCraft {
 
             new ClientProxy().registerrenders();
         }
+            MinecraftForge.EVENT_BUS.register(new SCEventHandler());
+
 
         registerRecipes();
 

@@ -2,13 +2,13 @@ package com.justagod.shadowcraft.Blocks.WitherReplacer;
 
 import com.justagod.shadowcraft.Flows.FlowReceiverEntity;
 import com.justagod.shadowcraft.Items.ShadowCrystals.ShadowCrystal;
+import com.justagod.shadowcraft.Network.PacketHandler;
+import com.justagod.shadowcraft.Network.Packets.TellerToClientPacket;
+import com.justagod.shadowcraft.Utils.Vector3;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
@@ -21,7 +21,8 @@ import java.util.List;
  */
 public class WitherReplacerEntity extends FlowReceiverEntity implements IInventory {
 
-    public static final List<WitherReplacerEntity> instances = new ArrayList<WitherReplacerEntity>();
+    public static final List<WitherReplacerEntity> SERVER_INSTANCES = new ArrayList<WitherReplacerEntity>();
+    public static final List<WitherReplacerEntity> CLIENT_INSTANCES = new ArrayList<WitherReplacerEntity>();
 
     private static final String CRYSTAL_TAG = "crystal";
     private static final String IS_HAVE_CRYSTAL_TAG = "is_have_crystal";
@@ -57,7 +58,9 @@ public class WitherReplacerEntity extends FlowReceiverEntity implements IInvento
         super.setWorldObj(world);
 
         if (!worldObj.isRemote) {
-            instances.add(this);
+            SERVER_INSTANCES.add(this);
+        } else {
+            CLIENT_INSTANCES.add(this);
         }
 
 
