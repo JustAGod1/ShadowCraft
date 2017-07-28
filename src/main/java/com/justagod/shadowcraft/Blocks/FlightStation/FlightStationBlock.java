@@ -14,6 +14,7 @@ public class FlightStationBlock extends FlowReceiver {
     public FlightStationBlock() {
         // TODO: 26.07.17 Сделать нормальный материал для станции полетов
         super(Material.clay);
+        setBlockName("flight_station");
     }
 
     @Override

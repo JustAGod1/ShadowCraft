@@ -8,6 +8,7 @@ import com.justagod.shadowcraft.Items.ShadowItem;
 public class AbsorbedLight extends ShadowItem {
 
     public AbsorbedLight() {
+        setTextureName("shadowcraft:absorbed_light");
         setUnlocalizedName("absorbed_light");
     }
 }

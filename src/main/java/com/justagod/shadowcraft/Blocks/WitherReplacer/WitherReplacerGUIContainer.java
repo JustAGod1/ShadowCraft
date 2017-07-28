@@ -32,26 +32,26 @@ public class WitherReplacerGUIContainer extends GuiContainer {
         glPushMatrix();
         {
             mc.getTextureManager().bindTexture(new ResourceLocation("shadowcraft", "textures/gui/wither_replacer.png"));
-            drawTexturedModalRect(i - 108, j - 100, 0, 0, 216, 75);
-            fontRendererObj.drawString(I18n.format("container.wither_replacer"), i - 100, j - 97, 100);
+            drawTexturedModalRect(i - 116, j - 100, 0, 0, 216, 75);
+            fontRendererObj.drawString(I18n.format("container.wither_replacer"), i - 108, j - 97, 100);
             WitherReplacerEntity entity = ((WitherReplacerContainer) inventorySlots).getEntity();
 
             if (entity.isHaveCrystal()) {
-                fontRendererObj.drawString(I18n.format("container.wither_replacer.crystal", I18n.format(entity.getCrystal().getItem().getUnlocalizedName() + ".name")), i - 100, j - 85, 100);
+                fontRendererObj.drawString(I18n.format("container.wither_replacer.crystal", I18n.format(entity.getCrystal().getItem().getUnlocalizedName() + ".name")), i - 108, j - 84, 100);
                 int flows = entity.getShadowFlowsCount();
                 int requiredFlows = entity.getRequiredFlows();
-                fontRendererObj.drawString((flows >= requiredFlows?"§2":"§4") + I18n.format("container.wither_replacer.shadows", (flows + "/" + requiredFlows)), i - 100, j - 72, 100);
-                fontRendererObj.drawString(I18n.format("container.wither_replacer.caption", entity.getCaption()), i - 100, j - 58, 100);
+                fontRendererObj.drawString((I18n.format("container.wither_replacer.shadows", (entity.isWorking()?"§2":"§4") + (flows + "/" + requiredFlows))), i - 108, j - 70, 100);
+                fontRendererObj.drawString(I18n.format("container.wither_replacer.caption", entity.getCaption()), i - 108, j - 56, 100);
                 if (entity.getCurrentMaxDistance() != -1)
-                    fontRendererObj.drawString(I18n.format("container.wither_replacer.status_working"), i - 100, j - 44, 100);
+                    fontRendererObj.drawString(I18n.format("container.wither_replacer.status_working"), i - 108, j - 42, 100);
                 else
-                    fontRendererObj.drawString(I18n.format("container.wither_replacer.status_idle"), i - 100, j - 44, 100);
+                    fontRendererObj.drawString(I18n.format("container.wither_replacer.status_idle"), i - 108, j - 42, 100);
 
             } else {
-                fontRendererObj.drawString(I18n.format("container.wither_replacer.havent_crystal"), i - 100, j - 85, 100);
-                fontRendererObj.drawString(I18n.format("container.wither_replacer.shadows_doesnt_required"), i - 100, j - 72, 100);
-                fontRendererObj.drawString(I18n.format("container.wither_replacer.caption", entity.getCaption()), i - 100, j - 58, 100);
-                fontRendererObj.drawString(I18n.format("container.wither_replacer.status_idle"), i - 100, j - 44, 100);
+                fontRendererObj.drawString(I18n.format("container.wither_replacer.havent_crystal"), i - 108, j - 84, 100);
+                fontRendererObj.drawString(I18n.format("container.wither_replacer.shadows_doesnt_required"), i - 108, j - 70, 100);
+                fontRendererObj.drawString(I18n.format("container.wither_replacer.caption", entity.getCaption()), i - 100, j - 56, 100);
+                fontRendererObj.drawString(I18n.format("container.wither_replacer.status_idle"), i - 108, j - 42, 100);
             }
         }
         glPopMatrix();

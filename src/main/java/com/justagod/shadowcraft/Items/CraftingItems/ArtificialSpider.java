@@ -13,5 +13,6 @@ public class ArtificialSpider extends ShadowItem {
         setMaxStackSize(1);
         setMaxDamage(192);
         setTextureName("shadowcraft:artificial_spider");
+        setUnlocalizedName("artificial_spider");
     }
 }

@@ -2,9 +2,12 @@ itemGroup.shadowBlocks=Теневые блоки
 itemGroup.shadowItems=Теневые предметы
 
 tile.wither_replacer.name=Маяк-рассказчик
-tile.lava_shadow_flow_transmitter.name=Лавовый источник теневого потока[WIP]
+tile.lava_shadow_flow_transmitter.name=Лавовый источник теневого потока
 tile.web_zapper.name=Истребитель паутины
 tile.floating_block.name=Парящий блок
+tile.flight_station.name=Станция полетов
+tile.strings_creator.name=Создатель ниток
+tile.admin_shadow_flow_transmitter.name=Админский источник теневого потока
 
 item.budgetaryShadowCrystal.name=Бюджетный теневой кристалл
 item.weekShadowCrystal.name=Слабый теневой кристалл
@@ -13,6 +16,23 @@ item.strongShadowCrystal.name=Сильный теневой кристалл
 item.shadow_core.name=Теневое ядро
 item.shadow_wand.name=Теневой посох
 item.shadow_shears.name=Ножницы тени
+item.absorbed_shadow.name=Абсорбированая тень
+item.absorbed_light.name=Абсорбированый свет
+item.light_absorbent.name=Абсорбент света
+item.shadow_absorbent.name=Абсорбент тени
+item.shadow_axe.name=Теневой топор
+item.shadow_hoe.name=Теневая мотыга
+item.shadow_pickaxe.name=Теневая кирка
+item.shadow_shovel.name=Теневая лопата
+item.shadow_feeder.name=Теневой кормитель
+item.reinforced_shadow_feeder.name=Укрепленый теневой кормитель
+item.advanced_shadow_feeder.name=Продвинутый теневой кормитель
+item.artificial_spider.name=Исскуственный паук
+item.flight_station_core.name=Ядро станции полета
+item.light_filter.name=Фильтр света
+item.shadow_filter.name=Фильтр тени
+item.spiders_food.name=Паучья еда
+
 
 msg.entityNullMsg.txt=Сущность нулевая. Пожалуйста свяжитесь с администратором или JustAGod.
 msg.something_was_changed.txt=Что-то изменилось. Создать связь невозможно.
@@ -22,6 +42,8 @@ msg.first_block_selected.txt=§bВы выделили первый блок.
 msg.unable_to_create_link.txt=§4Невозможно создать связь между этими блоками.
 
 sc.tooltip.shadow_wand=Служит для связывания блоков
+sc.tooltip.shadow_shears=Почти в три раза лучше обычных
+sc.tooltip.shadow_crystal.radius=Радиус действия: %d
 
 container.wither_replacer=§8Маяк-рассказчик
 container.wither_replacer.crystal=§2Кристалл: %s
@@ -31,6 +53,8 @@ container.wither_replacer.shadows_doesnt_required=Потоки: не требу�
 container.wither_replacer.caption=Надпись: %s
 container.wither_replacer.status_working=§2Статус: работает
 container.wither_replacer.status_idle=§4Статус: не работает
+
+container.strings_creator=Создатель ниток
 
 shadowcraft.absorbent.absorbed_shadow=Абсорбиравано тени: %d/%d
 shadowcraft.absorbent.absorbed_light=Абсорбиравано света: %d/%d

@@ -120,12 +120,17 @@ public class FlowReceiverEntity extends LinkableEntity {
 
     @Override
     public void onLinked(Vector3 linkPos, Linkable linkBlock) {
-
+        transmitters.put(linkPos, (FlowTransmitter) linkBlock);
+        this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+        this.markDirty();
     }
 
     @Override
     public void onUnlinked(Vector3 linkPos) {
         transmitters.remove(linkPos);
+        this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+        this.markDirty();
+
     }
 
     @Override

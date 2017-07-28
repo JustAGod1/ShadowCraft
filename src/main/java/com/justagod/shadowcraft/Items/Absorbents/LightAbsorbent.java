@@ -23,6 +23,7 @@ public class LightAbsorbent extends Absorbent {
     public LightAbsorbent() {
         super();
         setUnlocalizedName("light_absorbent");
+        setTextureName("shadowcraft:light_absorbent");
         setMaxStackSize(1);
     }
 

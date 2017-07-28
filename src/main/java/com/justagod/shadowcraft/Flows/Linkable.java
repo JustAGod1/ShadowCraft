@@ -20,19 +20,19 @@ public abstract class Linkable extends ShadowBlock implements ITileEntityProvide
     public abstract boolean isValidObjToBind(Linkable obj, Vector3 linkPos, Vector3 blockPos, World world);
 
     public void onBlockLinked(Linkable linkable, World world, Vector3 linkPos, Vector3 blockPos) {
-        SingleLinkEntity entity = (SingleLinkEntity) world.getTileEntity((int) blockPos.getX(), (int) blockPos.getY(), (int) blockPos.getZ());
+        LinkableEntity entity = (LinkableEntity) world.getTileEntity((int) blockPos.getX(), (int) blockPos.getY(), (int) blockPos.getZ());
 
         entity.onLinked(linkPos, linkable);
     }
 
     public void onLinkedBlockDestroyed(World world, Vector3 linkPos, Vector3 blockPos) {
-        SingleLinkEntity entity = (SingleLinkEntity) world.getTileEntity((int) blockPos.getX(), (int) blockPos.getY(), (int) blockPos.getZ());
+        LinkableEntity entity = (LinkableEntity) world.getTileEntity((int) blockPos.getX(), (int) blockPos.getY(), (int) blockPos.getZ());
 
         entity.onUnlinked(linkPos);
     }
 
     public void onBlockUnlinked(World world, Vector3 linkPos, Vector3 blockPos) {
-        SingleLinkEntity entity = (SingleLinkEntity) world.getTileEntity((int) blockPos.getX(), (int) blockPos.getY(), (int) blockPos.getZ());
+        LinkableEntity entity = (LinkableEntity) world.getTileEntity((int) blockPos.getX(), (int) blockPos.getY(), (int) blockPos.getZ());
 
         entity.onUnlinked(linkPos);
     }

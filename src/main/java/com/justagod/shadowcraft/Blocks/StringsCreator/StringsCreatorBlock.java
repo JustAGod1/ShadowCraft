@@ -19,6 +19,7 @@ public class StringsCreatorBlock extends ShadowBlock implements ITileEntityProvi
         super(new WitherReplacerMaterial());
 
         setBlockTextureName("shadowcraft:strings_creater");
+        setBlockName("strings_creator");
 
         opaque = true;
     }

@@ -9,6 +9,7 @@ buildscript {
             name = "sonatype"
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
+
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
@@ -18,8 +19,15 @@ buildscript {
 apply plugin: 'forge'
 
 version = "1.0"
-group= "com.yourname.modid" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "modid"
+group= "com.justagod.shadowcraft" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "shadowcraft"
+
+sourceSets {
+    main {
+        java { srcDirs = ["$projectDir/src/main/java"] }
+        resources { srcDirs = ["$projectDir/src/main/resources"] }
+    }
+}
 
 minecraft {
     version = "1.7.10-10.13.4.1614-1.7.10"
@@ -27,6 +35,7 @@ minecraft {
 }
 
 dependencies {
+    //classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
     //compile "some.group:artifact:version:classifier"
@@ -40,7 +49,8 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
     //compile 'org.jboss.forge:forge-event-bus:1.4.4.Final'
-    //compile "mods/Waila_1.5.10_1.7.10.jar"
+    compile "mods/CodeChickenCore_1.7.10_1.0.7.47_universal.jar"
+    compile "mods/NotEnoughItems_1.7.10_1.0.5.120_universal.jar"
 
 }
 

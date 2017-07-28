@@ -1,5 +1,6 @@
 package com.justagod.shadowcraft.Blocks.StringsCreator;
 
+import com.justagod.shadowcraft.ShadowCraft;
 import net.minecraft.client.gui.inventory.GuiFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -50,7 +51,12 @@ public class StringsCreatorContainer extends Container {
 
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 3; j++) {
-                addSlotToContainer(new Slot(entity,i * 3 + j + 1, 19 + j * 18, 25 + i * 18));
+                addSlotToContainer(new Slot(entity,i * 3 + j + 1, 19 + j * 18, 25 + i * 18) {
+                    @Override
+                    public boolean isItemValid(ItemStack stack) {
+                        return stack.getItem() == ShadowCraft.artificialSpider;
+                    }
+                });
             }
         }
 

@@ -17,16 +17,19 @@ public class AdvancedShadowFeeder extends ShadowItem {
         super();
         setUnlocalizedName("advanced_shadow_feeder");
         setTextureName("shadowcraft:advanced_shadow_feeder");
+        setMaxStackSize(1);
     }
 
     @Override
     public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean isSelected) {
-        if ((entity instanceof EntityPlayer) && isSelected) {
-            EntityPlayer player = (EntityPlayer) entity;
-            FoodStats stats = player.getFoodStats();
+        if (!world.isRemote) {
+            if ((entity instanceof EntityPlayer) && isSelected) {
+                EntityPlayer player = (EntityPlayer) entity;
+                FoodStats stats = player.getFoodStats();
 
-            if (stats.needFood()) {
-                stats.setFoodLevel(20);
+                if (stats.needFood()) {
+                    stats.addStats(1, 1);
+                }
             }
         }
     }

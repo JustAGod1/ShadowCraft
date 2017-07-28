@@ -16,6 +16,8 @@ public class FlightStationRender extends TileEntitySpecialRenderer {
     private ResourceLocation crossbeams = new ResourceLocation("shadowcraft", "textures/blocks/flight_station/crossbeam.png");
     private ResourceLocation edge = new ResourceLocation("shadowcraft", "textures/blocks/flight_station/edge.png");
     private ResourceLocation core = new ResourceLocation("shadowcraft", "textures/blocks/flight_station/core.png");
+    private ResourceLocation glass = new ResourceLocation("shadowcraft", "textures/blocks/flight_station/glass.png");
+    private ResourceLocation glass_edge = new ResourceLocation("shadowcraft", "textures/blocks/flight_station/glass_edge.png");
     private double angle = 0;
 
     @Override
@@ -28,16 +30,17 @@ public class FlightStationRender extends TileEntitySpecialRenderer {
 
             drawCrossbeams();
             drawEdges();
-            drawCore();
+            drawCore((((FlightStationEntity) entity).getTicks() + partialTick) * 2.0f);
+            drawGlasses();
         }
         glPopMatrix();
     }
 
-    private void drawCore() {
+    private void drawCore(float angle) {
         glPushMatrix();
         {
             glTranslated(0.5, 0.5, 0.5);
-            glRotated(angle * 3, 0, 1, 0);
+            glRotated(angle, 0, 1, 0);
 
 
 
@@ -82,6 +85,79 @@ public class FlightStationRender extends TileEntitySpecialRenderer {
                 t.addVertexWithUV(-0.15, 0.15, 0.15, 1, 0);
                 t.addVertexWithUV(-0.15, 0.15, -0.15, 0, 0);
 
+            }
+            t.draw();
+        }
+        glPopMatrix();
+    }
+
+    private void drawGlasses() {
+        glDisable(GL_CULL_FACE);
+        glPushMatrix();
+        drawGlass();
+        glPopMatrix();
+
+        glPushMatrix();
+        glTranslated(1, 0, 0);
+        glRotated(-90, 0, 1, 0);
+        drawGlass();
+        glPopMatrix();
+
+        glPushMatrix();
+        glTranslated(1, 0, 1);
+        glRotated(180, 0, 1, 0);
+        drawGlass();
+        glPopMatrix();
+
+        glPushMatrix();
+        glTranslated(0, 0, 1);
+        glRotated(90, 0, 1, 0);
+        drawGlass();
+        glPopMatrix();
+
+        glPushMatrix();
+        glTranslated(1, 0.99, 0);
+        glRotated(90, 0, 0, 1);
+        drawGlass();
+        glPopMatrix();
+
+        glPushMatrix();
+        glTranslated(0, 0.009, 0);
+        glRotated(-90, 0, 0, 1);
+        drawGlass();
+        glPopMatrix();
+
+        glEnable(GL_CULL_FACE);
+    }
+
+    private void drawGlass() {
+        glPushMatrix();
+        {
+            Tessellator t = Tessellator.instance;
+
+            bindTexture(glass);
+
+            t.startDrawingQuads();
+            {
+                t.setNormal(0, 0, -1);
+
+                t.addVertexWithUV(0.001, 0.001, 0.001, 0, 1);
+                t.addVertexWithUV(0.001, 0.001, 0.999, 1, 1);
+                t.addVertexWithUV(0.001, 0.999, 0.999, 1, 0);
+                t.addVertexWithUV(0.001, 0.999, 0.001, 0, 0);
+            }
+            t.draw();
+
+            bindTexture(glass_edge);
+
+            t.startDrawingQuads();
+            {
+                t.setNormal(0, 0, -1);
+
+                t.addVertexWithUV(0.001, 0.001, 0.001, 0, 1);
+                t.addVertexWithUV(0.001, 0.001, 0.999, 1, 1);
+                t.addVertexWithUV(0.001, 0.999, 0.999, 1, 0);
+                t.addVertexWithUV(0.001, 0.999, 0.001, 0, 0);
             }
             t.draw();
         }

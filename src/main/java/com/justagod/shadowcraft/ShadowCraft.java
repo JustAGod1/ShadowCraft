@@ -1,5 +1,7 @@
 package com.justagod.shadowcraft;
 
+import com.justagod.shadowcraft.Blocks.AdminShadowFlowTransmitter.AdminShadowFlowTransmitterBlock;
+import com.justagod.shadowcraft.Blocks.AdminShadowFlowTransmitter.AdminShadowFlowTransmitterEntity;
 import com.justagod.shadowcraft.Blocks.ChargePads.LavaChargePad;
 import com.justagod.shadowcraft.Blocks.FlightStation.FlightStationBlock;
 import com.justagod.shadowcraft.Blocks.FlightStation.FlightStationEntity;
@@ -15,10 +17,10 @@ import com.justagod.shadowcraft.Blocks.WitherReplacer.CaptionLabelRenderer;
 import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerBlock;
 import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerEntity;
 import com.justagod.shadowcraft.Items.Absorbents.*;
+import com.justagod.shadowcraft.Items.AutoFeeders.AdvancedShadowFeeder;
 import com.justagod.shadowcraft.Items.AutoFeeders.ReinforcedShadowFeeder;
 import com.justagod.shadowcraft.Items.AutoFeeders.ShadowFeeder;
-import com.justagod.shadowcraft.Items.CraftingItems.ArtificialSpider;
-import com.justagod.shadowcraft.Items.CraftingItems.ShadowCore;
+import com.justagod.shadowcraft.Items.CraftingItems.*;
 import com.justagod.shadowcraft.Items.RechargeableItems.*;
 import com.justagod.shadowcraft.Items.ShadowCrystals.BudgetaryShadowCrystal;
 import com.justagod.shadowcraft.Items.ShadowCrystals.MediumShadowCrystal;
@@ -44,6 +46,7 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import static cpw.mods.fml.common.registry.GameRegistry.addRecipe;
 
@@ -85,6 +88,11 @@ public class ShadowCraft {
     public static final AbsorbedLight absorbedLight = new AbsorbedLight();
     public static final AbsorbedShadow absorbedShadow = new AbsorbedShadow();
     public static final FlightStationBlock flightStationBlock = new FlightStationBlock();
+    public static final AdminShadowFlowTransmitterBlock adminShadowFlowTransmitterBlock = new AdminShadowFlowTransmitterBlock();
+    public static final FlightStationCore flightStationCore = new FlightStationCore();
+    public static final LightFilter lightFilter = new LightFilter();
+    public static final ShadowFilter shadowFilter = new ShadowFilter();
+    public static final AdvancedShadowFeeder advancedShadowFeeder = new AdvancedShadowFeeder();
     public static ShadowCraft instance;
 
     @EventHandler
@@ -111,7 +119,10 @@ public class ShadowCraft {
         GameRegistry.registerBlock(stringsCreatorBlock, "strings_creator_block");
         GameRegistry.registerTileEntity(StringsCreatorEntity.class, "shadowcraft:string_creator");
 
-        GameRegistry.registerBlock(lavaChargePad, "lava_charge_pad");
+        GameRegistry.registerBlock(adminShadowFlowTransmitterBlock, "admin_shadow_flow_transmitter_block");
+        GameRegistry.registerTileEntity(AdminShadowFlowTransmitterEntity.class, "shadowcraft:admin_shadow_flow_transmitter");
+
+        //GameRegistry.registerBlock(lavaChargePad, "lava_charge_pad");
 
         GameRegistry.registerBlock(floatingBlock, "floating_block");
 
@@ -136,6 +147,10 @@ public class ShadowCraft {
         GameRegistry.registerItem(shadowAbsorbent, "shadow_absorbent");
         GameRegistry.registerItem(absorbedLight, "absorbed_light");
         GameRegistry.registerItem(absorbedShadow, "absorbed_shadow");
+        GameRegistry.registerItem(lightFilter, "light_filter");
+        GameRegistry.registerItem(shadowFilter, "shadow_filter");
+        GameRegistry.registerItem(flightStationCore, "flight_station_core");
+        GameRegistry.registerItem(advancedShadowFeeder, "advanced_shadow_feeder");
 
 
         if (event.getSide() == Side.CLIENT) {
@@ -148,7 +163,7 @@ public class ShadowCraft {
     }
 
     private void registerRecipes() {
-        addRecipe(new ItemStack(witherReplacer), "O#O", "###", "#E#", 'O', ShadowCraft.shadowCore, '#', Blocks.obsidian, 'E', Items.ender_pearl);
+        addRecipe(new ItemStack(witherReplacer), " S ", "O#O", "#E#", 'O', ShadowCraft.shadowCore, '#', Blocks.obsidian, 'E', Items.ender_pearl, 'S', absorbedShadow);
         addRecipe(new ItemStack(shadowCore), "#O#", "OEO", "#O#", '#', Items.ender_pearl, 'O', Blocks.obsidian, 'E', Items.ender_eye);
         addRecipe(new ItemStack(budgetaryShadowCrystal), "#O#", "OGO", "#O#", '#', Blocks.iron_block, 'O', Blocks.redstone_block, 'G', Blocks.glowstone);
         addRecipe(new ItemStack(weekShadowCrystal), "#O#", "OEO", "#O#", '#', Blocks.iron_block, 'O', Blocks.redstone_block, 'E', shadowCore);
@@ -159,6 +174,21 @@ public class ShadowCraft {
         addRecipe(new ItemStack(webZapper), "OSO", "SCS", "OSO", 'O', Blocks.obsidian, 'S', shadowShears, 'C', shadowCore);
         addRecipe(new ItemStack(floatingBlock), "STS", "TBT", "STS", 'S', Items.string, 'T', Blocks.stone, 'B', Items.water_bucket);
         addRecipe(new ItemStack(stringsCreatorBlock), "OCO", "WSW", "OCO", 'O', Blocks.obsidian, 'C', shadowCore, 'W', webZapper, 'S', artificialSpider);
-        addRecipe(new ItemStack(artificialSpider), "EIE", "EPE", "SSS", 'E', Items.spider_eye, 'I', Blocks.iron_block, 'P', Items.poisonous_potato, 'S', Items.string);
+        addRecipe(new ShapedOreRecipe(new ItemStack(artificialSpider), "EIE", "EPE", "SSS", 'E', Items.spider_eye, 'I', Blocks.iron_block, 'P', Items.poisonous_potato, 'S', Items.string));
+        addRecipe(new ItemStack(lightFilter), "OOO", "IWI", "OOO", 'O', Blocks.obsidian, 'I', Items.iron_ingot, 'W', new ItemStack(Items.dye, 1, 15));
+        addRecipe(new ItemStack(shadowFilter), "OOO", "IBI", "OOO", 'O', Blocks.obsidian, 'I', Items.iron_ingot, 'B', new ItemStack(Items.dye, 1, 0));
+        addRecipe(new ItemStack(lightAbsorbent), "ICI", "CFC", "ICI", 'C', shadowCore, 'F', lightFilter, 'I', Items.iron_ingot);
+        addRecipe(new ItemStack(shadowAbsorbent), "ICI", "CFC", "ICI", 'C', shadowCore, 'F', shadowFilter, 'I', Items.iron_ingot);
+        addRecipe(new ShapedOreRecipe(new ItemStack(flightStationCore), "SFS", "CNC", "TVT", 'S', absorbedShadow, 'F', lightFilter, 'C', shadowCore, 'N', Items.nether_star, 'T', absorbedLight, 'V', shadowFilter));
+        addRecipe(new ShapedOreRecipe(new ItemStack(flightStationBlock), "QGQ", "GCG", "QGQ", 'Q', "blockQuartz", 'G', "blockGlass", 'C', flightStationCore));
+        addRecipe(new ShapedOreRecipe(new ItemStack(spidersFood), "FWF", "SSS", "FWF", 'F', Items.rotten_flesh, 'W', "cropWheat", 'S', Items.string));
+        addRecipe(new ItemStack(shadowFeeder), "RIR", "ICI", "RIR", 'R', Items.redstone, 'I', Items.iron_ingot, 'C', shadowCore);
+        addRecipe(new ItemStack(reinforcedShadowFeeder), "ICI", "CFC", "ICI", 'I', Items.iron_ingot, 'C', shadowCore, 'F', shadowFeeder);
+        addRecipe(new ItemStack(advancedShadowFeeder), " S ", "CFC", "OCO", 'S', Items.nether_star, 'C', shadowCore, 'O', Blocks.obsidian, 'F', reinforcedShadowFeeder);
+        addRecipe(new ItemStack(shadowPickaxe), "CCC", " P ", " O ", 'C', shadowCore, 'P', Items.iron_pickaxe, 'O', Blocks.obsidian);
+        addRecipe(new ItemStack(shadowShovel), " C ", " S ", " O ", 'C', shadowCore, 'S', Items.iron_shovel, 'O', Blocks.obsidian);
+        addRecipe(new ItemStack(shadowAxe), " CC", " AC", " O ", 'C', shadowCore, 'A', Items.iron_axe, 'O', Blocks.obsidian);
+        addRecipe(new ItemStack(shadowHoe), "C C", " H ", " O ", 'C', shadowCore, 'H', Items.iron_hoe, 'O', Blocks.obsidian);
+
     }
 }

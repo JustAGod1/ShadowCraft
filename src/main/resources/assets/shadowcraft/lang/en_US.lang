@@ -1,10 +1,13 @@
 itemGroup.shadowBlocks=Shadow blocks
 itemGroup.shadowItems=Shadow items
 
-tile.wither_replacer.name=Beacon-Teller
-tile.lava_shadow_flow_transmitter.name=Lava Shadow Flow Transmitter[WIP]
+tile.wither_replacer.name=Beacon_Teller
+tile.lava_shadow_flow_transmitter.name=Lava Shadow Flow Transmitter
 tile.web_zapper.name=Web Zapper
-tile.floating_block.name=Floating block
+tile.floating_block.name=Floating Block
+tile.flight_station.name=Flight Station
+tile.strings_creator.name=Strings Creator
+tile.admin_shadow_flow_transmitter.name=Admin Shadow Flow Transmitter
 
 item.budgetaryShadowCrystal.name=Budgetary Shadow Crystal
 item.weekShadowCrystal.name=Week Shadow Crystal
@@ -13,12 +16,47 @@ item.strongShadowCrystal.name=Strong Shadow Crystal
 item.shadow_core.name=Shadow Core
 item.shadow_wand.name=Shadow Wand
 item.shadow_shears.name=Shadow Shears
+item.absorbed_shadow.name=Absorbed Shadow
+item.absorbed_light.name=Absorbed Light
+item.light_absorbent.name=Light Absorbent
+item.shadow_absorbent.name=Shadow Absorbent
+item.shadow_axe.name=Shadow Axe
+item.shadow_hoe.name=Shadow Hoe
+item.shadow_pickaxe.name=Shadow Pickaxe
+item.shadow_shovel.name=Shadow Shovel
+item.shadow_feeder.name=Shadow Feeder
+item.reinforced_shadow_feeder.name=Reinforced Shadow Feeder
+item.advanced_shadow_feeder.name=Advanced Shadow Feeder
+item.artificial_spider.name=Artificial Spider
+item.flight_station_core.name=Flight Station Core
+item.light_filter.name=Light Filter
+item.shadow_filter.name=Shadow Filter
+item.spiders_food.name=Spiders' food
 
-msg.entityNullMsg.txt=Entity is null. Please contact admin or JustAGod.
-msg.something_was_changed.txt=Something was changed. Unable to create link.
-msg.second_block_selected.txt=Second block was selected.
-msg.bind_completed.txt=Link was created successfully!
-msg.first_block_selected.txt=First block was selected.
-msg.unable_to_create_link.txt=Unable to create link between this blocks.
 
-container.wither_replacer=Beacon-Teller
+msg.entityNullMsg.txt=Entity is null.
+msg.something_was_changed.txt=Something changed. Can't create link!
+msg.second_block_selected.txt=§9You have selected second block.
+msg.bind_completed.txt=§aLink was created!
+msg.first_block_selected.txt=§bYou have selected first block.
+msg.unable_to_create_link.txt=§4Can't create link.
+
+sc.tooltip.shadow_wand=Needed to create links
+sc.tooltip.shadow_shears=Almost three times better than ordinary
+sc.tooltip.shadow_crystal.radius=Radius of action: %d
+
+container.wither_replacer=§8Beacon-Teller
+container.wither_replacer.crystal=Crystal:§2 %s
+container.wither_replacer.havent_crystal=§4Crystal is missing
+container.wither_replacer.shadows=Flows: %s
+container.wither_replacer.shadows_doesnt_required=Flows: isn't needed
+container.wither_replacer.caption=Caption: %s
+container.wither_replacer.status_working=Status: §2working
+container.wither_replacer.status_idle=Status: §4idle
+
+container.strings_creator=Strings Creator
+
+shadowcraft.absorbent.absorbed_shadow=Absorbed shadow: %d/%d
+shadowcraft.absorbent.absorbed_light=Absorbed light: %d/%d
+
+shadowcraft.waila.replacer.caption=Current caption: %s
