@@ -1,7 +1,6 @@
 package com.justagod.shadowcraft.Blocks.FlightStation;
 
 import com.justagod.shadowcraft.ShadowCraft;
-import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,7 +12,7 @@ import net.minecraftforge.client.IItemRenderer;
 public class FlightStationItemRender implements IItemRenderer {
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-        return item != null && item.getItem() == Item.getItemFromBlock(ShadowCraft.flightStationBlock);
+        return item != null && item.getItem() == Item.getItemFromBlock(ShadowCraft.flight_station_block);
     }
 
     @Override

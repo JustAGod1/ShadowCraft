@@ -1,4 +1,4 @@
-package com.justagod.shadowcraft.Blocks.AdminShadowFlowTransmitter;
+package com.justagod.shadowcraft.Blocks.Trasmitters.AdminShadowFlowTransmitter;
 
 import com.justagod.shadowcraft.Flows.FlowTransmitterEntity;
 
@@ -7,7 +7,7 @@ import com.justagod.shadowcraft.Flows.FlowTransmitterEntity;
  */
 public class AdminShadowFlowTransmitterEntity extends FlowTransmitterEntity {
     @Override
-    public int getFlowsCount() {
+    public float getFlowsCount() {
         return 200;
     }
 }

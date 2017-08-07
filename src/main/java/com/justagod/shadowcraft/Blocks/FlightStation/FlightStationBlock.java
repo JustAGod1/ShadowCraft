@@ -1,9 +1,9 @@
 package com.justagod.shadowcraft.Blocks.FlightStation;
 
-import com.justagod.shadowcraft.Blocks.ShadowBlock;
 import com.justagod.shadowcraft.Flows.FlowReceiver;
 import com.justagod.shadowcraft.Flows.FlowReceiverEntity;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 /**
@@ -12,9 +12,10 @@ import net.minecraft.world.World;
 public class FlightStationBlock extends FlowReceiver {
 
     public FlightStationBlock() {
-        // TODO: 26.07.17 Сделать нормальный материал для станции полетов
         super(Material.clay);
         setBlockName("flight_station");
+        setBlockUnbreakable();
+        setResistance(90000);
     }
 
     @Override
@@ -40,5 +41,12 @@ public class FlightStationBlock extends FlowReceiver {
     @Override
     public boolean isOpaqueCube() {
         return false;
+    }
+
+    @Override
+    public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player) {
+        FlightStationEntity tile = (FlightStationEntity) world.getTileEntity(x, y, z);
+
+        tile.onClick(player);
     }
 }

@@ -25,7 +25,7 @@ public abstract class FlowTransmitter extends Linkable {
 
     protected abstract FlowTransmitterEntity getFlowTransmitterEntity(World world, int meta);
 
-    public int getShadowFlowsCount(World world, int x, int y, int z) {
+    public float getShadowFlowsCount(World world, int x, int y, int z) {
         FlowTransmitterEntity entity = (FlowTransmitterEntity) world.getTileEntity(x, y, z);
 
         if (entity != null) {

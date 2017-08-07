@@ -2,16 +2,13 @@ package com.justagod.shadowcraft.Blocks.StringsCreator;
 
 import com.justagod.shadowcraft.Flows.FlowReceiverEntity;
 import com.justagod.shadowcraft.ShadowCraft;
-import net.minecraft.client.gui.inventory.GuiFurnace;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
 
 /**
  * Created by Yuri on 23.07.17.
@@ -217,7 +214,7 @@ public class StringsCreatorEntity extends FlowReceiverEntity implements ISidedIn
         }
 
         if (slot == 7) {
-            return stack.getItem() == ShadowCraft.spidersFood;
+            return stack.getItem() == ShadowCraft.spiders_food;
         }
         return false;
     }

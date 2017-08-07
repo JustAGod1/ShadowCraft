@@ -1,17 +1,13 @@
 package com.justagod.shadowcraft.Items.Absorbents;
 
-import com.justagod.shadowcraft.Items.ShadowItem;
 import com.justagod.shadowcraft.ShadowCraft;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import net.minecraftforge.common.IExtendedEntityProperties;
 
 import java.util.List;
 
@@ -47,7 +43,7 @@ public class ShadowAbsorbent extends Absorbent {
             data.pump(world);
             player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 1000, 4, true));
             player.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 1000, 2, true));
-            return new ItemStack(ShadowCraft.absorbedShadow);
+            return new ItemStack(ShadowCraft.absorbed_shadow);
         } else {
             compound.setInteger("shadow", currentShadow + data.pump(world));
             player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 1000, 4, true));

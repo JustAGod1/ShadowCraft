@@ -1,4 +1,4 @@
-package com.justagod.shadowcraft.Blocks.LavaShadowFlowTransmitter;
+package com.justagod.shadowcraft.Blocks.Trasmitters.LavaShadowFlowTransmitter;
 
 import com.justagod.shadowcraft.Flows.FlowTransmitter;
 import com.justagod.shadowcraft.Flows.FlowTransmitterEntity;

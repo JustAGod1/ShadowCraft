@@ -38,7 +38,7 @@ public class WitherReplacerGUIContainer extends GuiContainer {
 
             if (entity.isHaveCrystal()) {
                 fontRendererObj.drawString(I18n.format("container.wither_replacer.crystal", I18n.format(entity.getCrystal().getItem().getUnlocalizedName() + ".name")), i - 108, j - 84, 100);
-                int flows = entity.getShadowFlowsCount();
+                float flows = entity.getShadowFlowsCount();
                 int requiredFlows = entity.getRequiredFlows();
                 fontRendererObj.drawString((I18n.format("container.wither_replacer.shadows", (entity.isWorking()?"§2":"§4") + (flows + "/" + requiredFlows))), i - 108, j - 70, 100);
                 fontRendererObj.drawString(I18n.format("container.wither_replacer.caption", entity.getCaption()), i - 108, j - 56, 100);

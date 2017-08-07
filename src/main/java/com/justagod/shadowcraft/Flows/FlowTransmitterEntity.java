@@ -5,5 +5,5 @@ package com.justagod.shadowcraft.Flows;
  */
 public abstract class FlowTransmitterEntity extends SingleLinkEntity {
 
-    public abstract int getFlowsCount();
+    public abstract float getFlowsCount();
 }

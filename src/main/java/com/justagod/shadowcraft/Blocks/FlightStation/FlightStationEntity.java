@@ -1,6 +1,7 @@
 package com.justagod.shadowcraft.Blocks.FlightStation;
 
 import com.justagod.shadowcraft.Flows.FlowReceiverEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 
@@ -14,8 +15,11 @@ import java.util.Set;
  */
 public class FlightStationEntity extends FlowReceiverEntity {
 
+    public static final int MAX_CLICKS = 15;
+
     private final Set<EntityPlayer> currentFlying = new HashSet<EntityPlayer>();
     private int ticks = 0;
+    private int clicks = 0;
 
     @Override
     public void updateEntity() {
@@ -71,12 +75,22 @@ public class FlightStationEntity extends FlowReceiverEntity {
 
     }
 
+    public void onClick(Entity entity) {
+        clicks++;
+
+        if (clicks >= MAX_CLICKS) {
+            worldObj.setBlockToAir(xCoord, yCoord, zCoord);
+            worldObj.newExplosion(entity, xCoord, yCoord, zCoord, 5, true, true);
+        }
+
+    }
+
     public int getTicks() {
         return ticks;
     }
 
     private int getMaxFlightPeople() {
-        return getShadowFlowsCount() / 2;
+        return (int) (getShadowFlowsCount() / 2);
     }
 
     private void addFlyingPlayer(EntityPlayer player) {
@@ -84,4 +98,7 @@ public class FlightStationEntity extends FlowReceiverEntity {
         player.capabilities.allowFlying = true;
     }
 
+    public double getRed() {
+        return (double) clicks / (double) MAX_CLICKS;
+    }
 }

@@ -21,16 +21,18 @@ public class FlightStationRender extends TileEntitySpecialRenderer {
     private double angle = 0;
 
     @Override
-    public void renderTileEntityAt(TileEntity entity, double x, double y, double z, float partialTick) {
+    public void renderTileEntityAt(TileEntity rawEntity, double x, double y, double z, float partialTick) {
         glPushMatrix();
         {
             glTranslated(x, y, z);
 
+            FlightStationEntity entity = ((FlightStationEntity) rawEntity);
+
             angle += 0.1;
 
             drawCrossbeams();
-            drawEdges();
-            drawCore((((FlightStationEntity) entity).getTicks() + partialTick) * 2.0f);
+            drawEdges(entity.getRed());
+            drawCore((entity.getTicks() + partialTick) * 2.0f);
             drawGlasses();
         }
         glPopMatrix();
@@ -269,8 +271,9 @@ public class FlightStationRender extends TileEntitySpecialRenderer {
         glPopMatrix();
     }
 
-    private void drawEdges() {
+    private void drawEdges(double red) {
         glDisable(GL_CULL_FACE);
+        glColor3d(1, 1 - red, 1 - red);
         glPushMatrix();
         {
             glPushMatrix();
@@ -344,6 +347,7 @@ public class FlightStationRender extends TileEntitySpecialRenderer {
             glPopMatrix();
         }
         glPopMatrix();
+        glColor3d(1, 1, 1);
         glEnable(GL_CULL_FACE);
     }
 

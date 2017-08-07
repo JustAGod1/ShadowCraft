@@ -1,4 +1,4 @@
-package com.justagod.shadowcraft.Blocks.LavaShadowFlowTransmitter;
+package com.justagod.shadowcraft.Blocks.Trasmitters.LavaShadowFlowTransmitter;
 
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

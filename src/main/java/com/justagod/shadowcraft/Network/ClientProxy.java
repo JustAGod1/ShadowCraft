@@ -3,14 +3,17 @@ package com.justagod.shadowcraft.Network;
 import com.justagod.shadowcraft.Blocks.FlightStation.FlightStationEntity;
 import com.justagod.shadowcraft.Blocks.FlightStation.FlightStationItemRender;
 import com.justagod.shadowcraft.Blocks.FlightStation.FlightStationRender;
-import com.justagod.shadowcraft.Blocks.LavaShadowFlowTransmitter.LavaShadowFlowTransmitterEntity;
-import com.justagod.shadowcraft.Blocks.LavaShadowFlowTransmitter.LavaShadowFlowTransmitterRender;
+import com.justagod.shadowcraft.Blocks.ShadowCore.ShadowCoreRender;
+import com.justagod.shadowcraft.Blocks.ShadowCore.ShadowCoreTile;
+import com.justagod.shadowcraft.Blocks.Trasmitters.LavaShadowFlowTransmitter.LavaShadowFlowTransmitterEntity;
+import com.justagod.shadowcraft.Blocks.Trasmitters.LavaShadowFlowTransmitter.LavaShadowFlowTransmitterRender;
 import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperEntity;
 import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperRenderer;
 import com.justagod.shadowcraft.Blocks.WitherReplacer.CaptionLabelRenderer;
 import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerEntity;
 import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerRenderer;
 import com.justagod.shadowcraft.EntityFactory;
+import com.justagod.shadowcraft.Items.CraftingItems.ShadowCore;
 import com.justagod.shadowcraft.ShadowCraft;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -30,11 +33,12 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(LavaShadowFlowTransmitterEntity.class, new LavaShadowFlowTransmitterRender());
         ClientRegistry.bindTileEntitySpecialRenderer(WebZapperEntity.class, new WebZapperRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(FlightStationEntity.class, new FlightStationRender());
+        ClientRegistry.bindTileEntitySpecialRenderer(ShadowCoreTile.class, new ShadowCoreRender());
 
         MinecraftForge.EVENT_BUS.register(new CaptionLabelRenderer());
         MinecraftForge.EVENT_BUS.register(new EntityFactory());
 
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ShadowCraft.flightStationBlock), new FlightStationItemRender());
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ShadowCraft.flight_station_block), new FlightStationItemRender());
     }
 
     @Override

@@ -69,8 +69,8 @@ public class FlowReceiverEntity extends LinkableEntity {
         return isTransmittersFilled;
     }
 
-    public int getShadowFlowsCount() {
-        int count = 0;
+    public float getShadowFlowsCount() {
+        float count = 0;
         for (Map.Entry<Vector3, FlowTransmitter> entry : transmitters.entrySet()) {
             count += entry.getValue().getShadowFlowsCount(worldObj, (int) entry.getKey().getX(), (int) entry.getKey().getY(), (int) entry.getKey().getZ());
         }
