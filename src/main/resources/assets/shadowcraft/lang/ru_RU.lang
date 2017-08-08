@@ -44,6 +44,7 @@ msg.unable_to_create_link.txt=§4Невозможно создать связь 
 sc.tooltip.shadow_wand=Служит для связывания блоков
 sc.tooltip.shadow_shears=Почти в три раза лучше обычных
 sc.tooltip.shadow_crystal.radius=Радиус действия: %d
+sc.tooltip.person_locker_upgrade=Привязано к: %s
 
 container.wither_replacer=§8Маяк-рассказчик
 container.wither_replacer.crystal=§2Кристалл: %s
@@ -60,3 +61,8 @@ shadowcraft.absorbent.absorbed_shadow=Абсорбиравано тени: %d/%d
 shadowcraft.absorbent.absorbed_light=Абсорбиравано света: %d/%d
 
 shadowcraft.waila.replacer.caption=Текущая надпись: %s
+
+shadowwand.upgrade=Улучшения:
+shadowwand.upgrade.autofeeder=Теневой кормитель. Прочность: %d
+shadowwand.upgrade.earth_placer=Создатель грязи
+shadowwand.upgrade.advanced_shadow_feeder=Продвинутый теневой кормитель.

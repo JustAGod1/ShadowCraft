@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * Created by Yuri on 18.07.17.
  */
-public class FlowReceiverEntity extends LinkableEntity {
+public abstract class FlowReceiverEntity extends LinkableEntity {
 
     private static final String TRANSMITTERS_TAG = "transmitters";
     private static final String TRANSMITTER_X = "x";

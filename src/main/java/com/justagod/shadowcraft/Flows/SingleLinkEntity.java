@@ -9,7 +9,7 @@ import javax.annotation.Nullable;
 /**
  * Created by Yuri on 17.07.17.
  */
-public class SingleLinkEntity extends LinkableEntity {
+public abstract class SingleLinkEntity extends LinkableEntity {
 
     private boolean isLinked;
 

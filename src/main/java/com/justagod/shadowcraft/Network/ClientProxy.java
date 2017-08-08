@@ -5,8 +5,12 @@ import com.justagod.shadowcraft.Blocks.FlightStation.FlightStationItemRender;
 import com.justagod.shadowcraft.Blocks.FlightStation.FlightStationRender;
 import com.justagod.shadowcraft.Blocks.ShadowCore.ShadowCoreRender;
 import com.justagod.shadowcraft.Blocks.ShadowCore.ShadowCoreTile;
+import com.justagod.shadowcraft.Blocks.StringsCreator.StringsCreatorEntity;
+import com.justagod.shadowcraft.Blocks.StringsCreator.StringsCreatorRender;
 import com.justagod.shadowcraft.Blocks.Trasmitters.LavaShadowFlowTransmitter.LavaShadowFlowTransmitterEntity;
 import com.justagod.shadowcraft.Blocks.Trasmitters.LavaShadowFlowTransmitter.LavaShadowFlowTransmitterRender;
+import com.justagod.shadowcraft.Blocks.Trasmitters.ShadowFluidFlowTransmitter.ShadowFluidFlowTransmitterRender;
+import com.justagod.shadowcraft.Blocks.Trasmitters.ShadowFluidFlowTransmitter.ShadowFluidFlowTransmitterTile;
 import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperEntity;
 import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperRenderer;
 import com.justagod.shadowcraft.Blocks.WitherReplacer.CaptionLabelRenderer;
@@ -28,12 +32,14 @@ import net.minecraftforge.common.MinecraftForge;
  */
 public class ClientProxy extends CommonProxy {
 
-    public void registerrenders() {
+    public void registerRenders() {
         ClientRegistry.bindTileEntitySpecialRenderer(WitherReplacerEntity.class, new WitherReplacerRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(LavaShadowFlowTransmitterEntity.class, new LavaShadowFlowTransmitterRender());
         ClientRegistry.bindTileEntitySpecialRenderer(WebZapperEntity.class, new WebZapperRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(FlightStationEntity.class, new FlightStationRender());
         ClientRegistry.bindTileEntitySpecialRenderer(ShadowCoreTile.class, new ShadowCoreRender());
+        ClientRegistry.bindTileEntitySpecialRenderer(ShadowFluidFlowTransmitterTile.class, new ShadowFluidFlowTransmitterRender());
+        ClientRegistry.bindTileEntitySpecialRenderer(StringsCreatorEntity.class, new StringsCreatorRender());
 
         MinecraftForge.EVENT_BUS.register(new CaptionLabelRenderer());
         MinecraftForge.EVENT_BUS.register(new EntityFactory());

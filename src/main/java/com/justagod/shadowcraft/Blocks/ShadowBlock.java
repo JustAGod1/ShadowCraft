@@ -11,7 +11,11 @@ import static com.justagod.shadowcraft.ShadowCraft.blocks;
 public class ShadowBlock extends Block {
 
     protected ShadowBlock(Material material) {
+        this(material, true);
+    }
+
+    protected ShadowBlock(Material material, boolean setCreativeTab) {
         super(material);
-        setCreativeTab(blocks);
+        if (setCreativeTab) setCreativeTab(blocks);
     }
 }

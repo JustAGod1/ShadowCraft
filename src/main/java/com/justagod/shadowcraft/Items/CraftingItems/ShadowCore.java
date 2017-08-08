@@ -40,6 +40,9 @@ public class ShadowCore extends ShadowItem {
                 world.setBlock(x, y + 1, z, ShadowCraft.shadow_core_block);
                 stack.splitStack(1);
             }
+        } else if (world.getBlock(x, y, z).isReplaceable(world, x, y, z) && world.getBlock(x, y - 1, z).isSideSolid(world, x, y - 1, z, ForgeDirection.UP) && stack.stackSize > 0) {
+            world.setBlock(x, y, z, ShadowCraft.shadow_core_block);
+            stack.splitStack(1);
         }
 
         return true;

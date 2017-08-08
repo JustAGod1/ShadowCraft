@@ -84,7 +84,7 @@ public class ShadowFluidBlock extends AbstractFluidBlock implements ITileEntityP
                 f3 = 0.0F;
             }
 
-            world.spawnParticle("reddust", d0, d1 + 1, d2, (double)f1, (double)f2, (double)f3);
+            world.spawnParticle("reddust", d0, d1 + 1.2, d2, (double)f1, (double)f2, (double)f3);
         }
     }
 }

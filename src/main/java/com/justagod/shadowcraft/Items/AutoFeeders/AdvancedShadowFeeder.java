@@ -1,8 +1,10 @@
 package com.justagod.shadowcraft.Items.AutoFeeders;
 
 import com.justagod.shadowcraft.Items.ShadowItem;
+import com.justagod.shadowcraft.Items.ShadowWand;
+import com.justagod.shadowcraft.ShadowCraft;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.FoodStats;
@@ -18,6 +20,7 @@ public class AdvancedShadowFeeder extends ShadowItem {
         setUnlocalizedName("advanced_shadow_feeder");
         setTextureName("shadowcraft:advanced_shadow_feeder");
         setMaxStackSize(1);
+        ShadowWand.UpgradeRegistry.registerUpgrade(new WandUpgrade(), "advanced_shadow_feeder_upgrade");
     }
 
     @Override
@@ -31,6 +34,39 @@ public class AdvancedShadowFeeder extends ShadowItem {
                     stats.addStats(1, 1);
                 }
             }
+        }
+    }
+
+    public class WandUpgrade extends ShadowWand.WandUpgrade {
+
+
+        @Override
+        public String getDescription(ShadowWand.WandWrapper wand) {
+            return I18n.format("shadowwand.upgrade.advanced_shadow_feeder");
+        }
+
+        @Override
+        public ItemStack getUpgradeItem() {
+            return new ItemStack(ShadowCraft.advanced_shadow_feeder);
+        }
+
+        @Override
+        public void onUpdate(ShadowWand.WandWrapper stack, World world, Entity entity, int slot, boolean isEquipped) {
+            if (!world.isRemote) {
+                if ((entity instanceof EntityPlayer) && isEquipped) {
+                    EntityPlayer player = (EntityPlayer) entity;
+                    FoodStats stats = player.getFoodStats();
+
+                    if (stats.needFood()) {
+                        stats.addStats(1, 1);
+                    }
+                }
+            }
+        }
+
+        @Override
+        public void onUplicate(ShadowWand.WandWrapper wrapper, ItemStack upgradeStack) {
+            super.onUplicate(wrapper, upgradeStack);
         }
     }
 }

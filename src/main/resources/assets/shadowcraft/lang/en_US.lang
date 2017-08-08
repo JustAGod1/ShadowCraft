@@ -44,6 +44,7 @@ msg.unable_to_create_link.txt=§4Can't create link.
 sc.tooltip.shadow_wand=Needed to create links
 sc.tooltip.shadow_shears=Almost three times better than ordinary
 sc.tooltip.shadow_crystal.radius=Radius of action: %d
+sc.tooltip.person_locker_upgrade=Bind to: %s
 
 container.wither_replacer=§8Beacon-Teller
 container.wither_replacer.crystal=Crystal:§2 %s
@@ -60,3 +61,8 @@ shadowcraft.absorbent.absorbed_shadow=Absorbed shadow: %d/%d
 shadowcraft.absorbent.absorbed_light=Absorbed light: %d/%d
 
 shadowcraft.waila.replacer.caption=Current caption: %s
+
+shadowwand.upgrade=Upgrades:
+shadowwand.upgrade.autofeeder=Shadow Feeder. Durability: %d
+shadowwand.upgrade.earth_placer=Earth Placer
+shadowwand.upgrade.advanced_shadow_feeder=Advanced Shadow Feeder
