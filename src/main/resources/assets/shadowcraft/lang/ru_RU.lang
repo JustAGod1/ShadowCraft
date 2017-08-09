@@ -32,6 +32,9 @@ item.flight_station_core.name=Ядро станции полета
 item.light_filter.name=Фильтр света
 item.shadow_filter.name=Фильтр тени
 item.spiders_food.name=Паучья еда
+item.person_locker_upgrade.name=Улучшение: Персональный замыкатель
+item.shadow_fluid_bucket.name=Ведро жидкой тени
+item.earth_placer_upgrade.name=Улучшение: создатель грязи
 
 
 msg.entityNullMsg.txt=Сущность нулевая. Пожалуйста свяжитесь с администратором или JustAGod.
@@ -44,7 +47,7 @@ msg.unable_to_create_link.txt=§4Невозможно создать связь 
 sc.tooltip.shadow_wand=Служит для связывания блоков
 sc.tooltip.shadow_shears=Почти в три раза лучше обычных
 sc.tooltip.shadow_crystal.radius=Радиус действия: %d
-sc.tooltip.person_locker_upgrade=Привязано к: %s
+sc.tooltip.person_locker_upgrade=Привязано к %s
 
 container.wither_replacer=§8Маяк-рассказчик
 container.wither_replacer.crystal=§2Кристалл: %s

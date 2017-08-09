@@ -1,5 +1,7 @@
 package com.justagod.shadowcraft;
 
+import com.justagod.shadowcraft.Blocks.Grower.GrowerBlock;
+import com.justagod.shadowcraft.Blocks.Grower.GrowerTile;
 import com.justagod.shadowcraft.Blocks.ShadowCore.ShadowCoreBlock;
 import com.justagod.shadowcraft.Blocks.ShadowCore.ShadowCoreTile;
 import com.justagod.shadowcraft.Blocks.Trasmitters.AdminShadowFlowTransmitter.AdminShadowFlowTransmitterBlock;
@@ -85,7 +87,7 @@ public class ShadowCraft {
     public static final ShadowHoe shadowHoe = new ShadowHoe();
     public static final ShadowFeeder shadow_feeder = new ShadowFeeder();
     public static final ReinforcedShadowFeeder reinforced_shadow_feeder = new ReinforcedShadowFeeder();
-    public static final ArtificialSpider artificialSpider = new ArtificialSpider();
+    public static final ArtificialSpider artificial_spider = new ArtificialSpider();
     public static final StringsCreatorBlock stringsCreatorBlock = new StringsCreatorBlock();
     public static final SpidersFood spiders_food = new SpidersFood();
     public static final LightAbsorbent light_absorbent = new LightAbsorbent();
@@ -102,6 +104,7 @@ public class ShadowCraft {
     public static final ShadowFluidFlowTransmitterBlock shadow_fluid_transmitter_block = new ShadowFluidFlowTransmitterBlock();
     public static final EarthPlacerUpgradeItem earth_placer_upgrade = new EarthPlacerUpgradeItem();
     public static final PersonLockerUpgradeItem person_locker_upgrade = new PersonLockerUpgradeItem();
+    public static final GrowerBlock grower = new GrowerBlock();
     @SidedProxy(clientSide = "com.justagod.shadowcraft.Network.ClientProxy", serverSide = "com.justagod.shadowcraft.Network.CommonProxy")
     public static CommonProxy commonProxy;
     public static ShadowCraft instance;
@@ -134,6 +137,9 @@ public class ShadowCraft {
         GameRegistry.registerBlock(shadow_fluid_transmitter_block, "shadow_fluid_transmitter_block");
         GameRegistry.registerTileEntity(ShadowFluidFlowTransmitterTile.class, "shadowcraft:shadow_fluid_transmitter_block");
 
+        GameRegistry.registerBlock(grower, "grower");
+        GameRegistry.registerTileEntity(GrowerTile.class, "shadowcraft:grower");
+
         //GameRegistry.registerBlock(lavaChargePad, "lava_charge_pad");
 
         GameRegistry.registerBlock(floatingBlock, "floating_block");
@@ -155,7 +161,7 @@ public class ShadowCraft {
         GameRegistry.registerItem(shadowHoe, "shadow_hoe");
         GameRegistry.registerItem(shadow_feeder, "shadow_feeder");
         GameRegistry.registerItem(reinforced_shadow_feeder, "reinforced_shadow_feeder");
-        GameRegistry.registerItem(artificialSpider, "artificial_spider");
+        GameRegistry.registerItem(artificial_spider, "artificial_spider");
         GameRegistry.registerItem(spiders_food, "spiders_food");
         GameRegistry.registerItem(light_absorbent, "light_absorbent");
         GameRegistry.registerItem(shadow_absorbent, "shadow_absorbent");
@@ -203,8 +209,8 @@ public class ShadowCraft {
         addRecipe(new ItemStack(shadowShears), "C C", " S ", " C ", 'C', shadow_core, 'S', Items.shears);
         addRecipe(new ItemStack(webZapper), "OSO", "SCS", "OSO", 'O', Blocks.obsidian, 'S', shadowShears, 'C', shadow_core);
         addRecipe(new ItemStack(floatingBlock), "STS", "TBT", "STS", 'S', Items.string, 'T', Blocks.stone, 'B', Items.water_bucket);
-        addRecipe(new ItemStack(stringsCreatorBlock), "OCO", "WSW", "OCO", 'O', Blocks.obsidian, 'C', shadow_core, 'W', webZapper, 'S', artificialSpider);
-        addRecipe(new ShapedOreRecipe(new ItemStack(artificialSpider), "EIE", "EPE", "SSS", 'E', Items.spider_eye, 'I', Blocks.iron_block, 'P', Items.poisonous_potato, 'S', Items.string));
+        addRecipe(new ItemStack(stringsCreatorBlock), "OCO", "WSW", "OCO", 'O', Blocks.obsidian, 'C', shadow_core, 'W', webZapper, 'S', artificial_spider);
+        addRecipe(new ShapedOreRecipe(new ItemStack(artificial_spider), "EIE", "EPE", "SSS", 'E', Items.spider_eye, 'I', Blocks.iron_block, 'P', Items.poisonous_potato, 'S', Items.string));
         addRecipe(new ItemStack(light_filter), "OOO", "IWI", "OOO", 'O', Blocks.obsidian, 'I', Items.iron_ingot, 'W', new ItemStack(Items.dye, 1, 15));
         addRecipe(new ItemStack(shadow_filter), "OOO", "IBI", "OOO", 'O', Blocks.obsidian, 'I', Items.iron_ingot, 'B', new ItemStack(Items.dye, 1, 0));
         addRecipe(new ItemStack(light_absorbent), "ICI", "CFC", "ICI", 'C', shadow_core, 'F', light_filter, 'I', Items.iron_ingot);

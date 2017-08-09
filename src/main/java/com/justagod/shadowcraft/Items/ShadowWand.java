@@ -399,7 +399,7 @@ public class ShadowWand extends ShadowItem {
         public void saveData() {
             try {
 
-                NBTTagCompound compound = new NBTTagCompound();
+                NBTTagCompound compound = wand.getTagCompound();
 
                 NBTTagList upgradesNBT = new NBTTagList();
 
@@ -424,7 +424,7 @@ public class ShadowWand extends ShadowItem {
                 }
 
                 compound.setTag(UPGRADES_LIST_TAG, upgradesNBT);
-                wand.setTagCompound(compound);
+
 
             } catch (Throwable e) {
                 throw new RuntimeException(e);

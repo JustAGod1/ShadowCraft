@@ -36,6 +36,7 @@ public class ShadowFluidFlowTransmitterRender extends TileEntitySpecialRenderer 
 
         bindTexture(beam);
         glDisable(GL_CULL_FACE);
+        glColor3d(1, 1, 1);
         t.startDrawingQuads();
         {
             t.addVertexWithUV(0.55, 0.9, 0.55, 1, 0);

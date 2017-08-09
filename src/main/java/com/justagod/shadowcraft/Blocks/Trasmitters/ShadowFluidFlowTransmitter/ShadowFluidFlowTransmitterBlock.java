@@ -4,6 +4,8 @@ import com.justagod.shadowcraft.Flows.FlowTransmitter;
 import com.justagod.shadowcraft.Flows.FlowTransmitterEntity;
 import com.justagod.shadowcraft.ShadowCraft;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 /**
@@ -12,9 +14,14 @@ import net.minecraft.world.World;
  */
 public class ShadowFluidFlowTransmitterBlock extends FlowTransmitter {
 
+    private IIcon side;
+    private IIcon top;
+    private IIcon bottom;
+
     public ShadowFluidFlowTransmitterBlock() {
         super(Material.anvil);
         setBlockBounds(0, 0.6f, 0, 1, 1, 1);
+        setBlockName("shadow_fluid_flow_transmitter");
     }
 
     @Override
@@ -37,5 +44,19 @@ public class ShadowFluidFlowTransmitterBlock extends FlowTransmitter {
     @Override
     public boolean isOpaqueCube() {
         return false;
+    }
+
+    @Override
+    public void registerBlockIcons(IIconRegister register) {
+        top = register.registerIcon("shadowcraft:shadow_fluid_transmitter/top");
+        bottom = register.registerIcon("shadowcraft:shadow_fluid_transmitter/bottom");
+        side = register.registerIcon("shadowcraft:shadow_fluid_transmitter/side");
+    }
+
+    @Override
+    public IIcon getIcon(int side, int meta) {
+        if (side == 1) return top;
+        if (side == 0) return bottom;
+        return this.side;
     }
 }

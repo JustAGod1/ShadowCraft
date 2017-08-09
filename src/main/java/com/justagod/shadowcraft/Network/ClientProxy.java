@@ -3,6 +3,8 @@ package com.justagod.shadowcraft.Network;
 import com.justagod.shadowcraft.Blocks.FlightStation.FlightStationEntity;
 import com.justagod.shadowcraft.Blocks.FlightStation.FlightStationItemRender;
 import com.justagod.shadowcraft.Blocks.FlightStation.FlightStationRender;
+import com.justagod.shadowcraft.Blocks.Grower.GrowerRender;
+import com.justagod.shadowcraft.Blocks.Grower.GrowerTile;
 import com.justagod.shadowcraft.Blocks.ShadowCore.ShadowCoreRender;
 import com.justagod.shadowcraft.Blocks.ShadowCore.ShadowCoreTile;
 import com.justagod.shadowcraft.Blocks.StringsCreator.StringsCreatorEntity;
@@ -40,6 +42,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(ShadowCoreTile.class, new ShadowCoreRender());
         ClientRegistry.bindTileEntitySpecialRenderer(ShadowFluidFlowTransmitterTile.class, new ShadowFluidFlowTransmitterRender());
         ClientRegistry.bindTileEntitySpecialRenderer(StringsCreatorEntity.class, new StringsCreatorRender());
+        ClientRegistry.bindTileEntitySpecialRenderer(GrowerTile.class, new GrowerRender());
 
         MinecraftForge.EVENT_BUS.register(new CaptionLabelRenderer());
         MinecraftForge.EVENT_BUS.register(new EntityFactory());

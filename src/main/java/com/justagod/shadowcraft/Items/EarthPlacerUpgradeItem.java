@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -18,6 +19,7 @@ public class EarthPlacerUpgradeItem extends ShadowItem {
         ShadowWand.UpgradeRegistry.registerUpgrade(new WandUpgrade(), "earth_placer_upgrade");
         setUnlocalizedName("earth_placer_upgrade");
         setTextureName("shadowcraft:earth_placer_upgrade");
+        setMaxStackSize(1);
     }
 
     public class WandUpgrade extends ShadowWand.WandUpgrade {
@@ -65,8 +67,11 @@ public class EarthPlacerUpgradeItem extends ShadowItem {
                     }
                 }
 
-
                 if (!player.canPlayerEdit(x, y, z, side, new ItemStack(Blocks.dirt))) {
+
+                } else if (!player.canPlayerEdit(x, y, z, side, new ItemStack(Blocks.dirt))) {
+                } else if (y == 255 && Blocks.dirt.getMaterial().isSolid()) {
+
                 } else if (world.canPlaceEntityOnSide(Blocks.dirt, x, y, z, false, side, player, new ItemStack(Blocks.dirt))) {
                     int i1 = 0;
                     int j1 = Blocks.dirt.onBlockPlaced(world, x, y, z, side, hitX, hitY, hitZ, i1);
@@ -80,16 +85,13 @@ public class EarthPlacerUpgradeItem extends ShadowItem {
             }
         }
 
-        public boolean placeBlockAt(EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata)
-        {
+        public boolean placeBlockAt(EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata) {
 
-            if (!world.setBlock(x, y, z, Blocks.dirt, metadata, 3))
-            {
+            if (!world.setBlock(x, y, z, Blocks.dirt, metadata, 3)) {
                 return false;
             }
 
-            if (world.getBlock(x, y, z) == Blocks.dirt)
-            {
+            if (world.getBlock(x, y, z) == Blocks.dirt) {
                 Blocks.dirt.onBlockPlacedBy(world, x, y, z, player, new ItemStack(Blocks.dirt));
                 Blocks.dirt.onPostBlockPlaced(world, x, y, z, metadata);
             }

@@ -17,5 +17,6 @@ public class ShadowItemBucket extends ItemBucket {
         super(block);
         setTextureName(MODID + ':' + "shadow_fluid_bucket");
         setCreativeTab(ShadowCraft.items);
+        setUnlocalizedName("shadow_fluid_bucket");
     }
 }

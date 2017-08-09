@@ -17,9 +17,10 @@ public class StringsCreatorEntity extends FlowReceiverEntity implements ISidedIn
 
     private static final int MAX_COOLDOWN = 500;
     private static final double SPIDER_MODIFIER = 1;
-    private static final int FOOD_USES_COUNT = 64;
+    private static final int FOOD_USES_COUNT = 16;
 
     private int ticks = 0;
+    private int graphicTicks = 0;
     private int usesLeft = 0;
 
     private ItemStack[] inventory = new ItemStack[getSizeInventory()];
@@ -28,11 +29,14 @@ public class StringsCreatorEntity extends FlowReceiverEntity implements ISidedIn
     public void updateEntity() {
         super.updateEntity();
 
+
         if (!worldObj.isRemote) {
             if (getStackInSlot(0) != null && this.getStackInSlot(0).stackSize >= getInventoryStackLimit()) {
                 return;
             }
-            ticks++;
+            if (isWorking()) {
+                ticks++;
+            }
 
             if (usesLeft <= 0) {
                 if ((getStackInSlot(7) != null) && getStackInSlot(7).stackSize > 0) {
@@ -58,7 +62,11 @@ public class StringsCreatorEntity extends FlowReceiverEntity implements ISidedIn
             }
             markDirty();
             worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-        }
+        } else if (isWorking()) graphicTicks++;
+    }
+
+    public boolean isWorking() {
+        return getShadowFlowsCount() >= 4;
     }
 
     public double getProgress() {
@@ -73,7 +81,7 @@ public class StringsCreatorEntity extends FlowReceiverEntity implements ISidedIn
         int count = 0;
         for (int i = 1; i < 7; i++) {
             if (getStackInSlot(i) != null) {
-                if (getStackInSlot(i).getItem() == ShadowCraft.artificialSpider) {
+                if (getStackInSlot(i).getItem() == ShadowCraft.artificial_spider) {
                     if (!(getStackInSlot(i).getItemDamage() >= getStackInSlot(i).getMaxDamage())) {
                         count++;
                     } else {
@@ -89,7 +97,7 @@ public class StringsCreatorEntity extends FlowReceiverEntity implements ISidedIn
     private void feedSpiders() {
         for (int i = 1; i < 7; i++) {
             if (getStackInSlot(i) != null) {
-                if (getStackInSlot(i).getItem() == ShadowCraft.artificialSpider) {
+                if (getStackInSlot(i).getItem() == ShadowCraft.artificial_spider) {
                     if (!(getStackInSlot(i).getItemDamage() >= getStackInSlot(i).getMaxDamage())) {
                         ItemStack stack = getStackInSlot(i);
 
@@ -210,7 +218,7 @@ public class StringsCreatorEntity extends FlowReceiverEntity implements ISidedIn
         if (slot == 0) return false;
 
         if (slot > 0 && slot < 7) {
-            return stack.getItem() == ShadowCraft.artificialSpider;
+            return stack.getItem() == ShadowCraft.artificial_spider;
         }
 
         if (slot == 7) {
@@ -270,11 +278,32 @@ public class StringsCreatorEntity extends FlowReceiverEntity implements ISidedIn
 
     @Override
     public boolean canInsertItem(int slot, ItemStack stack, int side) {
-        return stack.getItem() == ShadowCraft.artificialSpider && slot >= 1 && slot <= 6;
+        return stack.getItem() == ShadowCraft.artificial_spider && slot >= 1 && slot <= 6;
     }
 
     @Override
     public boolean canExtractItem(int slot, ItemStack p_102008_2_, int p_102008_3_) {
         return slot == 0;
+    }
+
+    public boolean hasSpiderAt(int index) {
+        ItemStack stack = getStackInSlot(index + 1);
+        if (stack != null) {
+            if (stack.getItem() == ShadowCraft.artificial_spider) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    public int getGraphicTicks() {
+        return graphicTicks;
+    }
+
+    public boolean hasString() {
+        ItemStack stack = getStackInSlot(0);
+
+        return stack != null && stack.stackSize > 0 && stack.getItem() == Items.string;
     }
 }

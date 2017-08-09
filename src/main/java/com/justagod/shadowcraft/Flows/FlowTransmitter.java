@@ -15,7 +15,7 @@ public abstract class FlowTransmitter extends Linkable {
 
     @Override
     public boolean isValidObjToBind(Linkable obj, Vector3 linkPos, Vector3 blockPos, World world) {
-        return obj instanceof FlowReceiver;
+        return obj instanceof FlowReceiver && linkPos.getDistanceTo(blockPos) <= 10;
     }
 
     @Override

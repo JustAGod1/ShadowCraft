@@ -32,6 +32,9 @@ item.flight_station_core.name=Flight Station Core
 item.light_filter.name=Light Filter
 item.shadow_filter.name=Shadow Filter
 item.spiders_food.name=Spiders' food
+item.person_locker_upgrade.name=Upgrade: Person Locker
+item.shadow_fluid_bucket.name=Shadow Fluid Bucket
+item.earth_placer_upgrade.name=Upgrade: Earth placer
 
 
 msg.entityNullMsg.txt=Entity is null.
@@ -44,7 +47,7 @@ msg.unable_to_create_link.txt=§4Can't create link.
 sc.tooltip.shadow_wand=Needed to create links
 sc.tooltip.shadow_shears=Almost three times better than ordinary
 sc.tooltip.shadow_crystal.radius=Radius of action: %d
-sc.tooltip.person_locker_upgrade=Bind to: %s
+sc.tooltip.person_locker_upgrade=Bind to %s
 
 container.wither_replacer=§8Beacon-Teller
 container.wither_replacer.crystal=Crystal:§2 %s

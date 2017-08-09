@@ -22,6 +22,7 @@ public class PersonLockerUpgradeItem extends ShadowItem {
         ShadowWand.UpgradeRegistry.registerUpgrade(new WandUpgrade(), "person_locker_upgrade");
         setUnlocalizedName("person_locker_upgrade");
         setTextureName("shadowcraft:person_locker_upgrade");
+        setMaxStackSize(1);
     }
 
     @Override
