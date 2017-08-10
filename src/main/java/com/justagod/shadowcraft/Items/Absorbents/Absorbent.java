@@ -12,7 +12,7 @@ import net.minecraft.world.World;
  */
 public abstract class Absorbent extends ShadowItem {
 
-    public static final int NEED_TO_ABSORB = 40;
+    public static final int NEED_TO_ABSORB = 100;
 
     public Absorbent() {
         setFull3D();

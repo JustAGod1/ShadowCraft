@@ -1,5 +1,7 @@
 package com.justagod.shadowcraft.Items;
 
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.ImmutableSet.Builder;
 import com.justagod.shadowcraft.Flows.Linkable;
 import com.justagod.shadowcraft.ShadowCraft;
 import com.justagod.shadowcraft.Utils.CraftingUtility;
@@ -16,6 +18,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.StringUtils;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeHooks;
 
 import java.util.*;
 
@@ -47,6 +50,13 @@ public class ShadowWand extends ShadowItem {
         WandWrapper wrapper = getWrapper(stack);
 
         wrapper.getDescription(list);
+    }
+
+    @Override
+    public Set<String> getToolClasses(ItemStack stack) {
+        WandWrapper wrapper = getWrapper(stack);
+
+        return wrapper.getToolClasses();
     }
 
     @Override
@@ -135,6 +145,23 @@ public class ShadowWand extends ShadowItem {
         wrapper.fireUpdate(stack, world, entity, slot, isEquipped);
     }
 
+    @Override
+    public int getHarvestLevel(ItemStack stack, String toolClass)
+    {
+        WandWrapper wrapper = getWrapper(stack);
+
+        return wrapper.getHarvestLevel(toolClass);
+    }
+
+    @Override
+    public float getDigSpeed(ItemStack itemstack, Block block, int metadata) {
+        if (ForgeHooks.isToolEffective(itemstack, block, metadata))
+        {
+            return ShadowCraft.SHADOW_MATERIAL.getEfficiencyOnProperMaterial();
+        }
+        return super.getDigSpeed(itemstack, block, metadata);
+    }
+
     public static final class UpgradeRegistry {
         private static final Map<String, WandUpgrade> UPGRADE_MAP = new HashMap<String, WandUpgrade>();
 
@@ -184,7 +211,10 @@ public class ShadowWand extends ShadowItem {
         }
 
         public void onItemUse(WandWrapper stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-            return;
+        }
+
+        public String getToolClass() {
+            return null;
         }
 
         public ItemStack onItemRightClick(WandWrapper stack, World world, EntityPlayer player) {
@@ -202,6 +232,10 @@ public class ShadowWand extends ShadowItem {
 
         public boolean needInstantiate() {
             return false;
+        }
+
+        public int getHarvestLevel(String toolClass) {
+            return -1;
         }
 
         public void writeToNBT(NBTTagCompound compound) {
@@ -456,7 +490,7 @@ public class ShadowWand extends ShadowItem {
                 if (upgrade != null) {
 
 
-                    list.add("- " + upgrade.getDescription(this));
+                    list.add(" - " + upgrade.getDescription(this));
                 }
             }
         }
@@ -483,6 +517,27 @@ public class ShadowWand extends ShadowItem {
                 upgrade.onItemRightClick(this, world, player);
             }
             saveData();
+        }
+
+        public Set<String> getToolClasses() {
+            Builder<String> builder = ImmutableSet.builder();
+
+            for (WandUpgrade upgrade : getUpgrades()) {
+                if (!StringUtils.isNullOrEmpty(upgrade.getToolClass())) {
+                    builder.add(upgrade.getToolClass());
+                }
+            }
+            return builder.build();
+        }
+
+        public int getHarvestLevel(String toolClass) {
+            for (WandUpgrade upgrade : getUpgrades()) {
+                int level = upgrade.getHarvestLevel(toolClass);
+                if (level != -1) {
+                    return level;
+                }
+            }
+            return -1;
         }
     }
 }

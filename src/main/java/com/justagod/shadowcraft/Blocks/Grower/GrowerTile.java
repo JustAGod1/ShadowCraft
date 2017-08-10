@@ -7,7 +7,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import org.lwjgl.util.mapped.MappedHelper;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,17 +19,119 @@ import java.util.Map;
  */
 public class GrowerTile extends FlowReceiverEntity implements ISidedInventory {
 
-    private static final Item GROW_ACCELERATOR = ShadowCraft.shadow_core;
+    public static final Item GROW_ACCELERATOR = ShadowCraft.shadow_core;
+    public static final int ACCELERATOR_TIME = 600;
 
-    private boolean open = false;
-    private int ticks = 0;
+    private int ticksLeft = 0;
+    private int firstLeft = 0;
+    private int secondLeft = 0;
     private GrowRecipe currentRecipe;
     private int graphicTick;
-    private ItemStack[] inventory = new ItemStack[4];
+    private ItemStack[] inventory = new ItemStack[getSizeInventory()];
+
+    public boolean tryPutItem(ItemStack stack) {
+        if (getMain() == null) {
+            if (GrowRecipeRegister.isInput(stack.getItem()) && getOutput() == null) {
+                setInventorySlotContents(0, new ItemStack(stack.getItem(), 1));
+
+                GrowRecipe recipe = GrowRecipeRegister.getRecipeByInput(stack.getItem());
+                setInventorySlotContents(3, new ItemStack(recipe.getOutput()));
+                currentRecipe = recipe;
+                ticksLeft = recipe.getTime();
+                markEntity();
+                return true;
+            }
+        } else if (getFirstSecondary() == null) {
+            if (stack.getItem() == GROW_ACCELERATOR) {
+                setInventorySlotContents(1, new ItemStack(GROW_ACCELERATOR, 1));
+                firstLeft = ACCELERATOR_TIME;
+                markEntity();
+                return true;
+            }
+        } else if (getSecondSecondary() == null) {
+            if (stack.getItem() == GROW_ACCELERATOR) {
+                setInventorySlotContents(2, new ItemStack(GROW_ACCELERATOR, 1));
+                secondLeft = ACCELERATOR_TIME;
+                markEntity();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void markEntity() {
+        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+        markDirty();
+    }
+
+    public double getFirstScale() {
+        return (double) firstLeft / ACCELERATOR_TIME;
+    }
+
+    public double getSecondScale() {
+        return (double) secondLeft / ACCELERATOR_TIME;
+    }
+
+    public double getMainScale() {
+        if (currentRecipe != null) {
+            return (double) ticksLeft / currentRecipe.getTime();
+        } else return 0;
+    }
+
+    public double getOutputScale() {
+        if (currentRecipe != null) {
+            return (currentRecipe.getTime() - (double) ticksLeft) / currentRecipe.getTime();
+        } else return 1;
+    }
+
+    public ItemStack getMain() {
+        return getStackInSlot(0);
+    }
+
+    public ItemStack getFirstSecondary() {
+        return getStackInSlot(1);
+    }
+
+    public ItemStack getSecondSecondary() {
+        return getStackInSlot(2);
+    }
+
+    public ItemStack getOutput() {
+        return getStackInSlot(3);
+    }
 
     @Override
     public void updateEntity() {
-        graphicTick++;
+        super.updateEntity();
+            graphicTick++;
+
+        if (!worldObj.isRemote && isWorking()) {
+            if (currentRecipe != null) {
+                if (ticksLeft > 0) {
+                    ticksLeft--;
+                    if (firstLeft > 0) ticksLeft--;
+                    if (secondLeft > 0) ticksLeft--;
+                } else {
+                    setInventorySlotContents(0, null);
+                    //setInventorySlotContents(3, new ItemStack(currentRecipe.getOutput()));
+                    currentRecipe = null;
+                    markEntity();
+                }
+
+                if (firstLeft > 0) {
+                    firstLeft--;
+                } else {
+                    setInventorySlotContents(1, null);
+                }
+
+                if (secondLeft > 0) {
+                    secondLeft--;
+                } else {
+                    setInventorySlotContents(2, null);
+                }
+                markEntity();
+            }
+        }
     }
 
     public int getGraphicTick() {
@@ -37,7 +140,7 @@ public class GrowerTile extends FlowReceiverEntity implements ISidedInventory {
 
     @Override
     public int[] getAccessibleSlotsFromSide(int side) {
-        return new int[] {0, 1, 2, 3};
+        return new int[]{0, 1, 2, 3};
     }
 
     @Override
@@ -53,7 +156,7 @@ public class GrowerTile extends FlowReceiverEntity implements ISidedInventory {
 
     @Override
     public boolean canExtractItem(int slot, ItemStack stack, int side) {
-        return slot == 3;
+        return slot == 3 && ticksLeft <= 0;
     }
 
     @Override
@@ -115,8 +218,30 @@ public class GrowerTile extends FlowReceiverEntity implements ISidedInventory {
             stack = null;
 
         this.inventory[index] = stack;
+        if (stack != null) {
+            if (index == 1) {
+                firstLeft = ACCELERATOR_TIME;
+            }
+            if (index == 2) {
+                secondLeft = ACCELERATOR_TIME;
+            }
+            if (index == 0) {
+
+                GrowRecipe recipe = GrowRecipeRegister.getRecipeByInput(stack.getItem());
+
+                if (recipe != null) {
+                    currentRecipe = recipe;
+                    ticksLeft = recipe.getTime();
+                    setInventorySlotContents(3, new ItemStack(recipe.getOutput()));
+                }
+            }
+        }
         this.markDirty();
         this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+    }
+
+    public boolean isWorking() {
+        return getShadowFlowsCount() >= 10;
     }
 
     @Override
@@ -160,6 +285,81 @@ public class GrowerTile extends FlowReceiverEntity implements ISidedInventory {
         return false;
     }
 
+    @Override
+    public void writeToNBT(NBTTagCompound compound) {
+        super.writeToNBT(compound);
+
+        NBTTagList nbttaglist = new NBTTagList();
+
+        for (int i = 0; i < this.inventory.length; ++i) {
+            if (this.inventory[i] != null) {
+                NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+                nbttagcompound1.setByte("Slot", (byte) i);
+                this.inventory[i].writeToNBT(nbttagcompound1);
+                nbttaglist.appendTag(nbttagcompound1);
+            }
+        }
+
+        compound.setTag("Items", nbttaglist);
+        compound.setInteger("ticks_left", ticksLeft);
+        compound.setInteger("first_left", firstLeft);
+        compound.setInteger("second_left", secondLeft);
+
+        if (currentRecipe != null) {
+            compound.setBoolean("has_recipe", true);
+            compound.setString("recipe_id", GrowRecipeRegister.getRecipeId(currentRecipe));
+        } else {
+            compound.setBoolean("has_recipe", false);
+        }
+
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        super.readFromNBT(compound);
+
+        NBTTagList nbttaglist = compound.getTagList("Items", 10);
+        this.inventory = new ItemStack[this.getSizeInventory()];
+
+
+        for (int i = 0; i < nbttaglist.tagCount(); ++i) {
+            NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+            int j = nbttagcompound1.getByte("Slot") & 255;
+
+            if (j >= 0 && j < this.inventory.length) {
+                this.inventory[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+            }
+        }
+        ticksLeft = compound.getInteger("ticks_left");
+        firstLeft = compound.getInteger("first_left");
+        secondLeft = compound.getInteger("second_left");
+
+        if (compound.getBoolean("has_recipe")) {
+            String id = compound.getString("recipe_id");
+            GrowRecipe recipe = GrowRecipeRegister.getRecipe(id);
+            if (recipe == null) {
+                throw new RuntimeException("Не получается найти рецепт по id: " + id);
+            }
+            currentRecipe = recipe;
+        } else {
+            currentRecipe = null;
+        }
+
+    }
+
+    public ItemStack getResult() {
+        if (currentRecipe == null) return getOutput();
+        else return null;
+    }
+
+    public int getMeta() {
+        return blockMetadata;//worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+    }
+
+    public void setMeta(int meta) {
+        this.blockMetadata = meta;
+    }
+
     public static class GrowRecipeRegister {
         private static final Map<String, GrowRecipe> RECIPES = new HashMap<String, GrowRecipe>();
 
@@ -185,7 +385,7 @@ public class GrowerTile extends FlowReceiverEntity implements ISidedInventory {
             return MapUtility.getSomeFromValue(RECIPES, new MapUtility.Tester<GrowRecipe, GrowRecipe>() {
                 @Override
                 public GrowRecipe test(GrowRecipe arg) {
-                    return arg.getInput() == item?arg:null;
+                    return arg.getInput() == item ? arg : null;
                 }
             });
         }

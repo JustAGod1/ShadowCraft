@@ -3,6 +3,7 @@ package com.justagod.shadowcraft.Network;
 import com.justagod.shadowcraft.Blocks.FlightStation.FlightStationEntity;
 import com.justagod.shadowcraft.Blocks.FlightStation.FlightStationItemRender;
 import com.justagod.shadowcraft.Blocks.FlightStation.FlightStationRender;
+import com.justagod.shadowcraft.Blocks.Grower.GrowerItemRender;
 import com.justagod.shadowcraft.Blocks.Grower.GrowerRender;
 import com.justagod.shadowcraft.Blocks.Grower.GrowerTile;
 import com.justagod.shadowcraft.Blocks.ShadowCore.ShadowCoreRender;
@@ -26,6 +27,8 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -48,6 +51,7 @@ public class ClientProxy extends CommonProxy {
         MinecraftForge.EVENT_BUS.register(new EntityFactory());
 
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ShadowCraft.flight_station_block), new FlightStationItemRender());
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ShadowCraft.grower), new GrowerItemRender());
     }
 
     @Override

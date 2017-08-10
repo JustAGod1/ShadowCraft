@@ -1,6 +1,7 @@
 package com.justagod.shadowcraft;
 
 import com.justagod.shadowcraft.Blocks.Grower.GrowerBlock;
+import com.justagod.shadowcraft.Blocks.Grower.GrowerRecipes;
 import com.justagod.shadowcraft.Blocks.Grower.GrowerTile;
 import com.justagod.shadowcraft.Blocks.ShadowCore.ShadowCoreBlock;
 import com.justagod.shadowcraft.Blocks.ShadowCore.ShadowCoreTile;
@@ -22,6 +23,7 @@ import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperItemBlock;
 import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerBlock;
 import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerEntity;
 import com.justagod.shadowcraft.Fluids.ShadowFluid.ShadowFluidParticles;
+import com.justagod.shadowcraft.Items.*;
 import com.justagod.shadowcraft.Items.Absorbents.AbsorbedLight;
 import com.justagod.shadowcraft.Items.Absorbents.AbsorbedShadow;
 import com.justagod.shadowcraft.Items.Absorbents.LightAbsorbent;
@@ -30,15 +32,11 @@ import com.justagod.shadowcraft.Items.AutoFeeders.AdvancedShadowFeeder;
 import com.justagod.shadowcraft.Items.AutoFeeders.ReinforcedShadowFeeder;
 import com.justagod.shadowcraft.Items.AutoFeeders.ShadowFeeder;
 import com.justagod.shadowcraft.Items.CraftingItems.*;
-import com.justagod.shadowcraft.Items.EarthPlacerUpgradeItem;
-import com.justagod.shadowcraft.Items.PersonLockerUpgradeItem;
 import com.justagod.shadowcraft.Items.RechargeableItems.*;
 import com.justagod.shadowcraft.Items.ShadowCrystals.BudgetaryShadowCrystal;
 import com.justagod.shadowcraft.Items.ShadowCrystals.MediumShadowCrystal;
 import com.justagod.shadowcraft.Items.ShadowCrystals.StrongShadowCrystal;
 import com.justagod.shadowcraft.Items.ShadowCrystals.WeekShadowCrystal;
-import com.justagod.shadowcraft.Items.ShadowWand;
-import com.justagod.shadowcraft.Items.SpidersFood;
 import com.justagod.shadowcraft.Network.ClientProxy;
 import com.justagod.shadowcraft.Network.CommonProxy;
 import com.justagod.shadowcraft.Network.GUIHandler;
@@ -81,10 +79,10 @@ public class ShadowCraft {
     public static final StrongShadowCrystal strongShadowCrystal = new StrongShadowCrystal();
     public static final ShadowWand shadow_wand = new ShadowWand();
     public static final ShadowShears shadowShears = new ShadowShears();
-    public static final ShadowPickaxe shadowPickaxe = new ShadowPickaxe();
-    public static final ShadowAxe shadowAxe = new ShadowAxe();
-    public static final ShadowShovel shadowShovel = new ShadowShovel();
-    public static final ShadowHoe shadowHoe = new ShadowHoe();
+    public static final ShadowPickaxe shadow_pickaxe = new ShadowPickaxe();
+    public static final ShadowAxe shadow_axe = new ShadowAxe();
+    public static final ShadowShovel shadow_shovel = new ShadowShovel();
+    public static final ShadowHoe shadow_hoe = new ShadowHoe();
     public static final ShadowFeeder shadow_feeder = new ShadowFeeder();
     public static final ReinforcedShadowFeeder reinforced_shadow_feeder = new ReinforcedShadowFeeder();
     public static final ArtificialSpider artificial_spider = new ArtificialSpider();
@@ -105,6 +103,7 @@ public class ShadowCraft {
     public static final EarthPlacerUpgradeItem earth_placer_upgrade = new EarthPlacerUpgradeItem();
     public static final PersonLockerUpgradeItem person_locker_upgrade = new PersonLockerUpgradeItem();
     public static final GrowerBlock grower = new GrowerBlock();
+    public static final ShadowMetal shadow_metal = new ShadowMetal();
     @SidedProxy(clientSide = "com.justagod.shadowcraft.Network.ClientProxy", serverSide = "com.justagod.shadowcraft.Network.CommonProxy")
     public static CommonProxy commonProxy;
     public static ShadowCraft instance;
@@ -155,10 +154,10 @@ public class ShadowCraft {
 
         GameRegistry.registerItem(shadow_wand, "shadow_wand");
         GameRegistry.registerItem(shadowShears, "shadow_shears");
-        GameRegistry.registerItem(shadowPickaxe, "shadow_pickaxe");
-        GameRegistry.registerItem(shadowAxe, "shadow_axe");
-        GameRegistry.registerItem(shadowShovel, "shadow_shovel");
-        GameRegistry.registerItem(shadowHoe, "shadow_hoe");
+        GameRegistry.registerItem(shadow_pickaxe, "shadow_pickaxe");
+        GameRegistry.registerItem(shadow_axe, "shadow_axe");
+        GameRegistry.registerItem(shadow_shovel, "shadow_shovel");
+        GameRegistry.registerItem(shadow_hoe, "shadow_hoe");
         GameRegistry.registerItem(shadow_feeder, "shadow_feeder");
         GameRegistry.registerItem(reinforced_shadow_feeder, "reinforced_shadow_feeder");
         GameRegistry.registerItem(artificial_spider, "artificial_spider");
@@ -173,6 +172,7 @@ public class ShadowCraft {
         GameRegistry.registerItem(advanced_shadow_feeder, "advanced_shadow_feeder");
         GameRegistry.registerItem(earth_placer_upgrade, "earth_placer_upgrade");
         GameRegistry.registerItem(person_locker_upgrade, "person_locker_upgrade");
+        GameRegistry.registerItem(shadow_metal, "shadow_metal");
 
         EntityRegistry.registerModEntity(
                 ShadowFluidParticles.class,
@@ -194,6 +194,7 @@ public class ShadowCraft {
 
         registerRecipes();
         ShadowFluids.init();
+        GrowerRecipes.init();
 
 
     }
@@ -216,15 +217,15 @@ public class ShadowCraft {
         addRecipe(new ItemStack(light_absorbent), "ICI", "CFC", "ICI", 'C', shadow_core, 'F', light_filter, 'I', Items.iron_ingot);
         addRecipe(new ItemStack(shadow_absorbent), "ICI", "CFC", "ICI", 'C', shadow_core, 'F', shadow_filter, 'I', Items.iron_ingot);
         addRecipe(new ShapedOreRecipe(new ItemStack(flight_station_core), "SFS", "CNC", "TVT", 'S', absorbed_shadow, 'F', light_filter, 'C', shadow_core, 'N', Items.nether_star, 'T', absorbed_light, 'V', shadow_filter));
-        addRecipe(new ShapedOreRecipe(new ItemStack(flight_station_block), "QGQ", "GCG", "QGQ", 'Q', "blockQuartz", 'G', "blockGlass", 'C', flight_station_core));
+        addRecipe(new ShapedOreRecipe(new ItemStack(flight_station_block), "QGQ", "GCG", "QGQ", 'Q', shadow_metal, 'G', "blockGlass", 'C', flight_station_core));
         addRecipe(new ShapedOreRecipe(new ItemStack(spiders_food), "FWF", "SSS", "FWF", 'F', Items.rotten_flesh, 'W', "cropWheat", 'S', Items.string));
         addRecipe(new ItemStack(shadow_feeder), "RIR", "ICI", "RIR", 'R', Blocks.redstone_block, 'I', Items.iron_ingot, 'C', shadow_core);
         addRecipe(new ItemStack(reinforced_shadow_feeder), "ICI", "CFC", "ICI", 'I', Items.iron_ingot, 'C', shadow_core, 'F', shadow_feeder);
         addRecipe(new ItemStack(advanced_shadow_feeder), " S ", "CFC", "OCO", 'S', Items.nether_star, 'C', shadow_core, 'O', Blocks.obsidian, 'F', reinforced_shadow_feeder);
-        addRecipe(new ItemStack(shadowPickaxe), "CCC", " P ", " O ", 'C', shadow_core, 'P', Items.iron_pickaxe, 'O', Blocks.obsidian);
-        addRecipe(new ItemStack(shadowShovel), " C ", " S ", " O ", 'C', shadow_core, 'S', Items.iron_shovel, 'O', Blocks.obsidian);
-        addRecipe(new ItemStack(shadowAxe), " CC", " AC", " O ", 'C', shadow_core, 'A', Items.iron_axe, 'O', Blocks.obsidian);
-        addRecipe(new ItemStack(shadowHoe), "C C", " H ", " O ", 'C', shadow_core, 'H', Items.iron_hoe, 'O', Blocks.obsidian);
+        addRecipe(new ItemStack(shadow_pickaxe), "MMM", " O ", " O ", 'M', shadow_metal, 'O', Blocks.obsidian);
+        addRecipe(new ItemStack(shadow_shovel), " M ", " O ", " O ", 'M', shadow_metal, 'O', Blocks.obsidian);
+        addRecipe(new ItemStack(shadow_axe), " MM", " OM", " O ", 'M', shadow_metal, 'O', Blocks.obsidian);
+        addRecipe(new ItemStack(shadow_hoe), " MM", " O ", " O ", 'O', Blocks.obsidian, 'M', shadow_metal);
         addRecipe(new ShadowWand.UpgradeRecipe());
     }
 }
