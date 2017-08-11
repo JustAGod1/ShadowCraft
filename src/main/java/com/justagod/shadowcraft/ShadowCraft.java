@@ -1,47 +1,48 @@
 package com.justagod.shadowcraft;
 
-import com.justagod.shadowcraft.Blocks.Grower.GrowerBlock;
-import com.justagod.shadowcraft.Blocks.Grower.GrowerRecipes;
-import com.justagod.shadowcraft.Blocks.Grower.GrowerTile;
-import com.justagod.shadowcraft.Blocks.ShadowCore.ShadowCoreBlock;
-import com.justagod.shadowcraft.Blocks.ShadowCore.ShadowCoreTile;
-import com.justagod.shadowcraft.Blocks.Trasmitters.AdminShadowFlowTransmitter.AdminShadowFlowTransmitterBlock;
-import com.justagod.shadowcraft.Blocks.Trasmitters.AdminShadowFlowTransmitter.AdminShadowFlowTransmitterEntity;
-import com.justagod.shadowcraft.Blocks.ChargePads.LavaChargePad;
-import com.justagod.shadowcraft.Blocks.FlightStation.FlightStationBlock;
-import com.justagod.shadowcraft.Blocks.FlightStation.FlightStationEntity;
-import com.justagod.shadowcraft.Blocks.FloatingBlock.FloatingBlock;
-import com.justagod.shadowcraft.Blocks.Trasmitters.LavaShadowFlowTransmitter.LavaShadowFlowTransmitterBlock;
-import com.justagod.shadowcraft.Blocks.Trasmitters.LavaShadowFlowTransmitter.LavaShadowFlowTransmitterEntity;
-import com.justagod.shadowcraft.Blocks.StringsCreator.StringsCreatorBlock;
-import com.justagod.shadowcraft.Blocks.StringsCreator.StringsCreatorEntity;
-import com.justagod.shadowcraft.Blocks.Trasmitters.ShadowFluidFlowTransmitter.ShadowFluidFlowTransmitterBlock;
-import com.justagod.shadowcraft.Blocks.Trasmitters.ShadowFluidFlowTransmitter.ShadowFluidFlowTransmitterTile;
-import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperBlock;
-import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperEntity;
-import com.justagod.shadowcraft.Blocks.WebZapper.WebZapperItemBlock;
-import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerBlock;
-import com.justagod.shadowcraft.Blocks.WitherReplacer.WitherReplacerEntity;
-import com.justagod.shadowcraft.Fluids.ShadowFluid.ShadowFluidParticles;
-import com.justagod.shadowcraft.Items.*;
-import com.justagod.shadowcraft.Items.Absorbents.AbsorbedLight;
-import com.justagod.shadowcraft.Items.Absorbents.AbsorbedShadow;
-import com.justagod.shadowcraft.Items.Absorbents.LightAbsorbent;
-import com.justagod.shadowcraft.Items.Absorbents.ShadowAbsorbent;
-import com.justagod.shadowcraft.Items.AutoFeeders.AdvancedShadowFeeder;
-import com.justagod.shadowcraft.Items.AutoFeeders.ReinforcedShadowFeeder;
-import com.justagod.shadowcraft.Items.AutoFeeders.ShadowFeeder;
-import com.justagod.shadowcraft.Items.CraftingItems.*;
-import com.justagod.shadowcraft.Items.RechargeableItems.*;
-import com.justagod.shadowcraft.Items.ShadowCrystals.BudgetaryShadowCrystal;
-import com.justagod.shadowcraft.Items.ShadowCrystals.MediumShadowCrystal;
-import com.justagod.shadowcraft.Items.ShadowCrystals.StrongShadowCrystal;
-import com.justagod.shadowcraft.Items.ShadowCrystals.WeekShadowCrystal;
-import com.justagod.shadowcraft.Network.ClientProxy;
-import com.justagod.shadowcraft.Network.CommonProxy;
-import com.justagod.shadowcraft.Network.GUIHandler;
-import com.justagod.shadowcraft.Tabs.ShadowBlocksTab;
-import com.justagod.shadowcraft.Tabs.ShadowItemsTab;
+import com.justagod.shadowcraft.block.grower.GrowerBlock;
+import com.justagod.shadowcraft.block.grower.GrowerRecipes;
+import com.justagod.shadowcraft.block.grower.GrowerTile;
+import com.justagod.shadowcraft.block.shadowcore.ShadowCoreBlock;
+import com.justagod.shadowcraft.block.shadowcore.ShadowCoreTile;
+import com.justagod.shadowcraft.block.ShadowMetalBlock;
+import com.justagod.shadowcraft.block.trasmitter.AdminShadowFlowTransmitter.AdminShadowFlowTransmitterBlock;
+import com.justagod.shadowcraft.block.trasmitter.AdminShadowFlowTransmitter.AdminShadowFlowTransmitterEntity;
+import com.justagod.shadowcraft.block.chargepad.LavaChargePad;
+import com.justagod.shadowcraft.block.flightstation.FlightStationBlock;
+import com.justagod.shadowcraft.block.flightstation.FlightStationEntity;
+import com.justagod.shadowcraft.block.floatingblock.FloatingBlock;
+import com.justagod.shadowcraft.block.trasmitter.LavaShadowFlowTransmitter.LavaShadowFlowTransmitterBlock;
+import com.justagod.shadowcraft.block.trasmitter.LavaShadowFlowTransmitter.LavaShadowFlowTransmitterEntity;
+import com.justagod.shadowcraft.block.stringscreator.StringsCreatorBlock;
+import com.justagod.shadowcraft.block.stringscreator.StringsCreatorEntity;
+import com.justagod.shadowcraft.block.trasmitter.ShadowFluidFlowTransmitter.ShadowFluidFlowTransmitterBlock;
+import com.justagod.shadowcraft.block.trasmitter.ShadowFluidFlowTransmitter.ShadowFluidFlowTransmitterTile;
+import com.justagod.shadowcraft.block.webzapper.WebZapperBlock;
+import com.justagod.shadowcraft.block.webzapper.WebZapperEntity;
+import com.justagod.shadowcraft.block.webzapper.WebZapperItemBlock;
+import com.justagod.shadowcraft.block.witherreplacer.WitherReplacerBlock;
+import com.justagod.shadowcraft.block.witherreplacer.WitherReplacerEntity;
+import com.justagod.shadowcraft.fluid.ShadowFluid.ShadowFluidParticles;
+import com.justagod.shadowcraft.item.*;
+import com.justagod.shadowcraft.item.absorbent.AbsorbedLight;
+import com.justagod.shadowcraft.item.absorbent.AbsorbedShadow;
+import com.justagod.shadowcraft.item.absorbent.LightAbsorbent;
+import com.justagod.shadowcraft.item.absorbent.ShadowAbsorbent;
+import com.justagod.shadowcraft.item.feeder.AdvancedShadowFeeder;
+import com.justagod.shadowcraft.item.feeder.ReinforcedShadowFeeder;
+import com.justagod.shadowcraft.item.feeder.ShadowFeeder;
+import com.justagod.shadowcraft.item.crafting.*;
+import com.justagod.shadowcraft.item.rechargeable.*;
+import com.justagod.shadowcraft.item.shadowcrystal.BudgetaryShadowCrystal;
+import com.justagod.shadowcraft.item.shadowcrystal.MediumShadowCrystal;
+import com.justagod.shadowcraft.item.shadowcrystal.StrongShadowCrystal;
+import com.justagod.shadowcraft.item.shadowcrystal.WeekShadowCrystal;
+import com.justagod.shadowcraft.network.ClientProxy;
+import com.justagod.shadowcraft.network.CommonProxy;
+import com.justagod.shadowcraft.network.GUIHandler;
+import com.justagod.shadowcraft.tab.ShadowBlocksTab;
+import com.justagod.shadowcraft.tab.ShadowItemsTab;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
@@ -64,7 +65,7 @@ import static cpw.mods.fml.common.registry.GameRegistry.addRecipe;
 public class ShadowCraft {
     public static final String MODID = "shadowcraft";
     public static final String VERSION = "1.0";
-    public static final ToolMaterial SHADOW_MATERIAL = EnumHelper.addToolMaterial("SHADOW_MATERIAL", 3, 2897, 20, 5, 22);
+    public static final ToolMaterial SHADOW_MATERIAL = EnumHelper.addToolMaterial("SHADOW_MATERIAL", 4, 2897, 40, 5, 22);
     public static final ShadowBlocksTab blocks = new ShadowBlocksTab();
     public static final ShadowItemsTab items = new ShadowItemsTab();
     public static final ShadowCore shadow_core = new ShadowCore();
@@ -104,7 +105,8 @@ public class ShadowCraft {
     public static final PersonLockerUpgradeItem person_locker_upgrade = new PersonLockerUpgradeItem();
     public static final GrowerBlock grower = new GrowerBlock();
     public static final ShadowMetal shadow_metal = new ShadowMetal();
-    @SidedProxy(clientSide = "com.justagod.shadowcraft.Network.ClientProxy", serverSide = "com.justagod.shadowcraft.Network.CommonProxy")
+    public static final ShadowMetalBlock shadow_metal_block = new ShadowMetalBlock();
+    @SidedProxy(clientSide = "com.justagod.shadowcraft.network.ClientProxy", serverSide = "com.justagod.shadowcraft.network.CommonProxy")
     public static CommonProxy commonProxy;
     public static ShadowCraft instance;
 
@@ -142,6 +144,7 @@ public class ShadowCraft {
         //GameRegistry.registerBlock(lavaChargePad, "lava_charge_pad");
 
         GameRegistry.registerBlock(floatingBlock, "floating_block");
+        GameRegistry.registerBlock(shadow_metal_block, "shadow_metal_block");
         GameRegistry.registerBlock(shadow_core_block, "shadow_core_block");
         GameRegistry.registerTileEntity(ShadowCoreTile.class, "shadowcraft:shadow_core_block");
 
@@ -205,7 +208,7 @@ public class ShadowCraft {
         addRecipe(new ItemStack(budgetaryShadowCrystal), "#O#", "OGO", "#O#", '#', Blocks.iron_block, 'O', Blocks.redstone_block, 'G', Blocks.glowstone);
         addRecipe(new ItemStack(weekShadowCrystal), "#O#", "OEO", "#O#", '#', Blocks.iron_block, 'O', Blocks.redstone_block, 'E', shadow_core);
         addRecipe(new ItemStack(mediumShadowCrystal), " Q ", "COC", " Q ", 'Q', Blocks.quartz_block, 'C', weekShadowCrystal, 'O', shadow_core);
-        addRecipe(new ItemStack(strongShadowCrystal), " Q ", "COC", " Q ", 'Q', shadow_core, 'C', mediumShadowCrystal, 'O', Items.nether_star);
+        addRecipe(new ItemStack(strongShadowCrystal), " Q ", "COC", " Q ", 'Q', shadow_core, 'C', mediumShadowCrystal, 'O', shadow_metal_block);
         addRecipe(new ItemStack(shadow_wand), "  Q", " R ", "R  ", 'R', Items.blaze_rod, 'Q', shadow_core);
         addRecipe(new ItemStack(shadowShears), "C C", " S ", " C ", 'C', shadow_core, 'S', Items.shears);
         addRecipe(new ItemStack(webZapper), "OSO", "SCS", "OSO", 'O', Blocks.obsidian, 'S', shadowShears, 'C', shadow_core);
@@ -226,6 +229,7 @@ public class ShadowCraft {
         addRecipe(new ItemStack(shadow_shovel), " M ", " O ", " O ", 'M', shadow_metal, 'O', Blocks.obsidian);
         addRecipe(new ItemStack(shadow_axe), " MM", " OM", " O ", 'M', shadow_metal, 'O', Blocks.obsidian);
         addRecipe(new ItemStack(shadow_hoe), " MM", " O ", " O ", 'O', Blocks.obsidian, 'M', shadow_metal);
+        addRecipe(new ItemStack(shadow_metal_block), "MMM", "MMM", "MMM", 'M', shadow_metal);
         addRecipe(new ShadowWand.UpgradeRecipe());
     }
 }

@@ -1,8 +1,7 @@
 package com.justagod.shadowcraft;
 
-import com.justagod.shadowcraft.Items.Absorbents.AbsorbentsData;
+import com.justagod.shadowcraft.item.absorbent.AbsorbentsData;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.event.entity.EntityEvent;
 

@@ -1,8 +1,7 @@
 package com.justagod.shadowcraft;
 
-import com.justagod.shadowcraft.Network.PacketHandler;
-import com.justagod.shadowcraft.Network.Packets.TellersSyncPacket;
-import cpw.mods.fml.common.eventhandler.Event;
+import com.justagod.shadowcraft.network.PacketHandler;
+import com.justagod.shadowcraft.network.packet.TellersSyncPacket;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import net.minecraft.entity.player.EntityPlayerMP;

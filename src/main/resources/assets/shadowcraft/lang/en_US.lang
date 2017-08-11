@@ -69,3 +69,6 @@ shadowwand.upgrade=Upgrades:
 shadowwand.upgrade.autofeeder=Shadow Feeder. Durability: %d
 shadowwand.upgrade.earth_placer=Earth Placer
 shadowwand.upgrade.advanced_shadow_feeder=Advanced Shadow Feeder
+shadowwand.upgrade.shadow_shovel=Shadow Shovel
+shadowwand.upgrade.shadow_pickaxe=Shadow Pickaxe
+shadowwand.upgrade.shadow_axe=Shadow Axe

@@ -1,16 +1,14 @@
 package com.justagod.shadowcraft;
 
-import com.justagod.shadowcraft.Fluids.AbstractShadowFluid;
-import com.justagod.shadowcraft.Fluids.OnBucketRightClickListener;
-import com.justagod.shadowcraft.Fluids.ShadowFluid.ShadowFluid;
-import com.justagod.shadowcraft.Fluids.ShadowFluid.ShadowFluidBlock;
-import com.justagod.shadowcraft.Fluids.ShadowFluid.ShadowItemBucket;
-import com.justagod.shadowcraft.Fluids.ShadowFluid.ShadowFluidTile;
+import com.justagod.shadowcraft.fluid.OnBucketRightClickListener;
+import com.justagod.shadowcraft.fluid.ShadowFluid.ShadowFluid;
+import com.justagod.shadowcraft.fluid.ShadowFluid.ShadowFluidBlock;
+import com.justagod.shadowcraft.fluid.ShadowFluid.ShadowItemBucket;
+import com.justagod.shadowcraft.fluid.ShadowFluid.ShadowFluidTile;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBucket;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
 /**
