@@ -6,6 +6,9 @@ import com.justagod.shadowcraft.block.grower.GrowerTile;
 import com.justagod.shadowcraft.block.shadowcore.ShadowCoreBlock;
 import com.justagod.shadowcraft.block.shadowcore.ShadowCoreTile;
 import com.justagod.shadowcraft.block.ShadowMetalBlock;
+import com.justagod.shadowcraft.block.spawnersminer.SpawnerItemBlock;
+import com.justagod.shadowcraft.block.spawnersminer.SpawnersMinerBlock;
+import com.justagod.shadowcraft.block.spawnersminer.SpawnersMinerItem;
 import com.justagod.shadowcraft.block.trasmitter.AdminShadowFlowTransmitter.AdminShadowFlowTransmitterBlock;
 import com.justagod.shadowcraft.block.trasmitter.AdminShadowFlowTransmitter.AdminShadowFlowTransmitterEntity;
 import com.justagod.shadowcraft.block.chargepad.LavaChargePad;
@@ -51,6 +54,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
+import net.minecraft.block.BlockColored;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item.ToolMaterial;
@@ -60,12 +64,13 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import static cpw.mods.fml.common.registry.GameRegistry.addRecipe;
+import static cpw.mods.fml.common.registry.GameRegistry.addShapelessRecipe;
 
 @Mod(modid = ShadowCraft.MODID, version = ShadowCraft.VERSION)
 public class ShadowCraft {
     public static final String MODID = "shadowcraft";
     public static final String VERSION = "1.0";
-    public static final ToolMaterial SHADOW_MATERIAL = EnumHelper.addToolMaterial("SHADOW_MATERIAL", 4, 2897, 40, 5, 22);
+    public static final ToolMaterial SHADOW_MATERIAL = EnumHelper.addToolMaterial("SHADOW_MATERIAL", 4, 2897, 3000, 5, 22);
     public static final ShadowBlocksTab blocks = new ShadowBlocksTab();
     public static final ShadowItemsTab items = new ShadowItemsTab();
     public static final ShadowCore shadow_core = new ShadowCore();
@@ -106,6 +111,8 @@ public class ShadowCraft {
     public static final GrowerBlock grower = new GrowerBlock();
     public static final ShadowMetal shadow_metal = new ShadowMetal();
     public static final ShadowMetalBlock shadow_metal_block = new ShadowMetalBlock();
+    public static final SpawnersMinerBlock spawners_miner_block = new SpawnersMinerBlock();
+    public static final SpawnerItemBlock spawner_item_block = new SpawnerItemBlock();
     @SidedProxy(clientSide = "com.justagod.shadowcraft.network.ClientProxy", serverSide = "com.justagod.shadowcraft.network.CommonProxy")
     public static CommonProxy commonProxy;
     public static ShadowCraft instance;
@@ -145,6 +152,7 @@ public class ShadowCraft {
 
         GameRegistry.registerBlock(floatingBlock, "floating_block");
         GameRegistry.registerBlock(shadow_metal_block, "shadow_metal_block");
+        GameRegistry.registerBlock(spawners_miner_block, SpawnersMinerItem.class, "spawners_miner_block");
         GameRegistry.registerBlock(shadow_core_block, "shadow_core_block");
         GameRegistry.registerTileEntity(ShadowCoreTile.class, "shadowcraft:shadow_core_block");
 
@@ -176,6 +184,7 @@ public class ShadowCraft {
         GameRegistry.registerItem(earth_placer_upgrade, "earth_placer_upgrade");
         GameRegistry.registerItem(person_locker_upgrade, "person_locker_upgrade");
         GameRegistry.registerItem(shadow_metal, "shadow_metal");
+        GameRegistry.registerItem(spawner_item_block, "shadow_spawner_item_block");
 
         EntityRegistry.registerModEntity(
                 ShadowFluidParticles.class,
@@ -198,6 +207,7 @@ public class ShadowCraft {
         registerRecipes();
         ShadowFluids.init();
         GrowerRecipes.init();
+        System.out.println(Blocks.wool);
 
 
     }
@@ -224,12 +234,13 @@ public class ShadowCraft {
         addRecipe(new ShapedOreRecipe(new ItemStack(spiders_food), "FWF", "SSS", "FWF", 'F', Items.rotten_flesh, 'W', "cropWheat", 'S', Items.string));
         addRecipe(new ItemStack(shadow_feeder), "RIR", "ICI", "RIR", 'R', Blocks.redstone_block, 'I', Items.iron_ingot, 'C', shadow_core);
         addRecipe(new ItemStack(reinforced_shadow_feeder), "ICI", "CFC", "ICI", 'I', Items.iron_ingot, 'C', shadow_core, 'F', shadow_feeder);
-        addRecipe(new ItemStack(advanced_shadow_feeder), " S ", "CFC", "OCO", 'S', Items.nether_star, 'C', shadow_core, 'O', Blocks.obsidian, 'F', reinforced_shadow_feeder);
+        addRecipe(new ItemStack(advanced_shadow_feeder), " S ", "CFC", "OCO", 'S', Items.nether_star, 'C', shadow_core, 'O', shadow_metal, 'F', reinforced_shadow_feeder);
         addRecipe(new ItemStack(shadow_pickaxe), "MMM", " O ", " O ", 'M', shadow_metal, 'O', Blocks.obsidian);
         addRecipe(new ItemStack(shadow_shovel), " M ", " O ", " O ", 'M', shadow_metal, 'O', Blocks.obsidian);
         addRecipe(new ItemStack(shadow_axe), " MM", " OM", " O ", 'M', shadow_metal, 'O', Blocks.obsidian);
         addRecipe(new ItemStack(shadow_hoe), " MM", " O ", " O ", 'O', Blocks.obsidian, 'M', shadow_metal);
         addRecipe(new ItemStack(shadow_metal_block), "MMM", "MMM", "MMM", 'M', shadow_metal);
+        addShapelessRecipe(new ItemStack(shadow_wand), shadow_wand);
         addRecipe(new ShadowWand.UpgradeRecipe());
     }
 }

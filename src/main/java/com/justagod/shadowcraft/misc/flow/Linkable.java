@@ -1,4 +1,4 @@
-package com.justagod.shadowcraft.flow;
+package com.justagod.shadowcraft.misc.flow;
 
 
 import com.justagod.shadowcraft.block.ShadowBlock;

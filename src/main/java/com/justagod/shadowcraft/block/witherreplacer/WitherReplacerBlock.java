@@ -1,9 +1,9 @@
 package com.justagod.shadowcraft.block.witherreplacer;
 
-import com.justagod.shadowcraft.flow.FlowReceiver;
-import com.justagod.shadowcraft.flow.FlowReceiverEntity;
-import com.justagod.shadowcraft.flow.FlowTransmitter;
-import com.justagod.shadowcraft.flow.Linkable;
+import com.justagod.shadowcraft.misc.flow.FlowReceiver;
+import com.justagod.shadowcraft.misc.flow.FlowReceiverEntity;
+import com.justagod.shadowcraft.misc.flow.FlowTransmitter;
+import com.justagod.shadowcraft.misc.flow.Linkable;
 import com.justagod.shadowcraft.network.GUIHandler;
 import com.justagod.shadowcraft.network.PacketHandler;
 import com.justagod.shadowcraft.network.packet.TellerToClientPacket;

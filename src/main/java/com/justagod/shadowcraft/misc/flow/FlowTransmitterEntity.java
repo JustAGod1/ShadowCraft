@@ -1,4 +1,4 @@
-package com.justagod.shadowcraft.flow;
+package com.justagod.shadowcraft.misc.flow;
 
 /**
  * Created by Yuri on 18.07.17.

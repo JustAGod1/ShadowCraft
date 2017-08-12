@@ -1,6 +1,6 @@
 package com.justagod.shadowcraft.block.grower;
 
-import com.justagod.shadowcraft.flow.FlowReceiverEntity;
+import com.justagod.shadowcraft.misc.flow.FlowReceiverEntity;
 import com.justagod.shadowcraft.ShadowCraft;
 import com.justagod.shadowcraft.util.MapUtility;
 import net.minecraft.entity.player.EntityPlayer;

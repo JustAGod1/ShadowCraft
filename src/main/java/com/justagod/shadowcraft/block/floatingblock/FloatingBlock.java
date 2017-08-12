@@ -55,7 +55,7 @@ public class FloatingBlock extends Block {
         if (meta == MAX_META) {
             return Item.getItemFromBlock(this);
         }
-        return null;
+        else return null;
     }
 
     @Override
@@ -68,6 +68,6 @@ public class FloatingBlock extends Block {
     public IIcon getIcon(int side, int meta) {
         if (meta <= 0) return this.bottom_top;
         if ((side == 0) || (side == 1)) return bottom_top;
-        return this.side;
+        else return this.side;
     }
 }

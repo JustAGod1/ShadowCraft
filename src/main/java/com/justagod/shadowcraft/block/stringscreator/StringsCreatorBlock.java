@@ -1,8 +1,8 @@
 package com.justagod.shadowcraft.block.stringscreator;
 
 import com.justagod.shadowcraft.block.witherreplacer.WitherReplacerMaterial;
-import com.justagod.shadowcraft.flow.FlowReceiver;
-import com.justagod.shadowcraft.flow.FlowReceiverEntity;
+import com.justagod.shadowcraft.misc.flow.FlowReceiver;
+import com.justagod.shadowcraft.misc.flow.FlowReceiverEntity;
 import com.justagod.shadowcraft.network.GUIHandler;
 import com.justagod.shadowcraft.ShadowCraft;
 import net.minecraft.entity.player.EntityPlayer;

@@ -1,7 +1,7 @@
 package com.justagod.shadowcraft.block.trasmitter.ShadowFluidFlowTransmitter;
 
-import com.justagod.shadowcraft.flow.FlowTransmitter;
-import com.justagod.shadowcraft.flow.FlowTransmitterEntity;
+import com.justagod.shadowcraft.misc.flow.FlowTransmitter;
+import com.justagod.shadowcraft.misc.flow.FlowTransmitterEntity;
 import com.justagod.shadowcraft.ShadowCraft;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;

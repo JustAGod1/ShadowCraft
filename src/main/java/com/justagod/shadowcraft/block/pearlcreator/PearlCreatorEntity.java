@@ -1,6 +1,6 @@
 package com.justagod.shadowcraft.block.pearlcreator;
 
-import com.justagod.shadowcraft.flow.FlowReceiverEntity;
+import com.justagod.shadowcraft.misc.flow.FlowReceiverEntity;
 
 /**
  * Created by Yuri on 25.07.17.

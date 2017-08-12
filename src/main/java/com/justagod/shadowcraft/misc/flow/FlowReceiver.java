@@ -1,4 +1,4 @@
-package com.justagod.shadowcraft.flow;
+package com.justagod.shadowcraft.misc.flow;
 
 import com.justagod.shadowcraft.util.Vector3;
 import com.sun.istack.internal.NotNull;

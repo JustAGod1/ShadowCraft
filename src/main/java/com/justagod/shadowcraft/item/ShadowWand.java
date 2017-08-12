@@ -2,7 +2,8 @@ package com.justagod.shadowcraft.item;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
-import com.justagod.shadowcraft.flow.Linkable;
+import com.justagod.shadowcraft.misc.IWandable;
+import com.justagod.shadowcraft.misc.flow.Linkable;
 import com.justagod.shadowcraft.ShadowCraft;
 import com.justagod.shadowcraft.util.CraftingUtility;
 import com.justagod.shadowcraft.util.Vector3;
@@ -89,59 +90,62 @@ public class ShadowWand extends ShadowItem {
 
             Block block = world.getBlock(x, y, z);
 
-            if (!(block instanceof Linkable)) return false;
+            if ((block instanceof Linkable)) {
 
-            if (!stack.hasTagCompound()) {
-                stack.setTagCompound(new NBTTagCompound());
-            }
-            NBTTagCompound compound = stack.getTagCompound();
+                if (!stack.hasTagCompound()) {
+                    stack.setTagCompound(new NBTTagCompound());
+                }
+                NBTTagCompound compound = stack.getTagCompound();
 
 
-            boolean isBlockInMemory = compound.getBoolean(IS_BLOCK_IN_MEMORY_TAG);
+                boolean isBlockInMemory = compound.getBoolean(IS_BLOCK_IN_MEMORY_TAG);
 
-            if (isBlockInMemory) {
-                int previousX = compound.getInteger(BLOCK_X_TAG);
-                int previousY = compound.getInteger(BLOCK_Y_TAG);
-                int previousZ = compound.getInteger(BLOCK_Z_TAG);
+                if (isBlockInMemory) {
+                    int previousX = compound.getInteger(BLOCK_X_TAG);
+                    int previousY = compound.getInteger(BLOCK_Y_TAG);
+                    int previousZ = compound.getInteger(BLOCK_Z_TAG);
 
-                Block previousBlock = world.getBlock(previousX, previousY, previousZ);
-                if (!(previousBlock instanceof Linkable)) {
-                    player.addChatComponentMessage(new ChatComponentTranslation("msg.something_was_changed.txt"));
+                    Block previousBlock = world.getBlock(previousX, previousY, previousZ);
+                    if (!(previousBlock instanceof Linkable)) {
+                        player.addChatComponentMessage(new ChatComponentTranslation("msg.something_was_changed.txt"));
 
-                    compound.setBoolean(IS_BLOCK_IN_MEMORY_TAG, false);
+                        compound.setBoolean(IS_BLOCK_IN_MEMORY_TAG, false);
+
+                        return true;
+                    }
+
+                    Linkable firstLink = (Linkable) block;
+                    Linkable secondLink = (Linkable) previousBlock;
+
+                    player.addChatComponentMessage(new ChatComponentTranslation("msg.second_block_selected.txt"));
+
+                    if (firstLink.isValidObjToBind(secondLink, new Vector3(previousX, previousY, previousZ), new Vector3(x, y, z), world) && secondLink.isValidObjToBind(firstLink, new Vector3(x, y, z), new Vector3(previousX, previousY, previousZ), world)) {
+                        firstLink.onBlockLinked(secondLink, world, new Vector3(previousX, previousY, previousZ), new Vector3(x, y, z));
+                        secondLink.onBlockLinked(firstLink, world, new Vector3(x, y, z), new Vector3(previousX, previousY, previousZ));
+
+                        compound.setBoolean(IS_BLOCK_IN_MEMORY_TAG, false);
+
+                        player.addChatComponentMessage(new ChatComponentTranslation("msg.bind_completed.txt"));
+                    } else {
+                        compound.setBoolean(IS_BLOCK_IN_MEMORY_TAG, false);
+
+                        player.addChatComponentMessage(new ChatComponentTranslation("msg.unable_to_create_link.txt"));
+                    }
 
                     return true;
                 }
 
-                Linkable firstLink = (Linkable) block;
-                Linkable secondLink = (Linkable) previousBlock;
+                compound.setBoolean(IS_BLOCK_IN_MEMORY_TAG, true);
+                compound.setInteger(BLOCK_X_TAG, x);
+                compound.setInteger(BLOCK_Y_TAG, y);
+                compound.setInteger(BLOCK_Z_TAG, z);
 
-                player.addChatComponentMessage(new ChatComponentTranslation("msg.second_block_selected.txt"));
-
-                if (firstLink.isValidObjToBind(secondLink, new Vector3(previousX, previousY, previousZ), new Vector3(x, y, z), world) && secondLink.isValidObjToBind(firstLink, new Vector3(x, y, z), new Vector3(previousX, previousY, previousZ), world)) {
-                    firstLink.onBlockLinked(secondLink, world, new Vector3(previousX, previousY, previousZ), new Vector3(x, y, z));
-                    secondLink.onBlockLinked(firstLink, world, new Vector3(x, y, z), new Vector3(previousX, previousY, previousZ));
-
-                    compound.setBoolean(IS_BLOCK_IN_MEMORY_TAG, false);
-
-                    player.addChatComponentMessage(new ChatComponentTranslation("msg.bind_completed.txt"));
-                } else {
-                    compound.setBoolean(IS_BLOCK_IN_MEMORY_TAG, false);
-
-                    player.addChatComponentMessage(new ChatComponentTranslation("msg.unable_to_create_link.txt"));
-                }
+                player.addChatComponentMessage(new ChatComponentTranslation("msg.first_block_selected.txt"));
 
                 return true;
+            } else if (block instanceof IWandable) {
+                ((IWandable) block).onWand(getWrapper(stack), world, block, x, y, z, world.getBlockMetadata(x, y, z));
             }
-
-            compound.setBoolean(IS_BLOCK_IN_MEMORY_TAG, true);
-            compound.setInteger(BLOCK_X_TAG, x);
-            compound.setInteger(BLOCK_Y_TAG, y);
-            compound.setInteger(BLOCK_Z_TAG, z);
-
-            player.addChatComponentMessage(new ChatComponentTranslation("msg.first_block_selected.txt"));
-
-            return true;
         }
         return true;
     }

@@ -1,6 +1,6 @@
 package com.justagod.shadowcraft.block.stringscreator;
 
-import com.justagod.shadowcraft.flow.FlowReceiverEntity;
+import com.justagod.shadowcraft.misc.flow.FlowReceiverEntity;
 import com.justagod.shadowcraft.ShadowCraft;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;

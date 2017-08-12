@@ -23,4 +23,6 @@ public class FlightStationItem extends ItemBlock {
 
         p_77624_3_.add(I18n.format("flight_station_tooltip"));
     }
+
+
 }

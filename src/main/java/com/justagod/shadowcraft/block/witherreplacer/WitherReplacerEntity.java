@@ -1,6 +1,6 @@
 package com.justagod.shadowcraft.block.witherreplacer;
 
-import com.justagod.shadowcraft.flow.FlowReceiverEntity;
+import com.justagod.shadowcraft.misc.flow.FlowReceiverEntity;
 import com.justagod.shadowcraft.item.shadowcrystal.ShadowCrystal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

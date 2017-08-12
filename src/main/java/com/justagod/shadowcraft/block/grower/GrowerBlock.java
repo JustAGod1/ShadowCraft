@@ -1,7 +1,7 @@
 package com.justagod.shadowcraft.block.grower;
 
-import com.justagod.shadowcraft.flow.FlowReceiver;
-import com.justagod.shadowcraft.flow.FlowReceiverEntity;
+import com.justagod.shadowcraft.misc.flow.FlowReceiver;
+import com.justagod.shadowcraft.misc.flow.FlowReceiverEntity;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;

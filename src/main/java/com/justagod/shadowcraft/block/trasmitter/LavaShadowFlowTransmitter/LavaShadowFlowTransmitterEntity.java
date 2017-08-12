@@ -1,6 +1,6 @@
 package com.justagod.shadowcraft.block.trasmitter.LavaShadowFlowTransmitter;
 
-import com.justagod.shadowcraft.flow.FlowTransmitterEntity;
+import com.justagod.shadowcraft.misc.flow.FlowTransmitterEntity;
 import net.minecraft.init.Blocks;
 
 /**

@@ -1,7 +1,7 @@
 package com.justagod.shadowcraft.block.pearlcreator;
 
-import com.justagod.shadowcraft.flow.FlowReceiver;
-import com.justagod.shadowcraft.flow.FlowReceiverEntity;
+import com.justagod.shadowcraft.misc.flow.FlowReceiver;
+import com.justagod.shadowcraft.misc.flow.FlowReceiverEntity;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;

@@ -1,8 +1,8 @@
 package com.justagod.shadowcraft.block.webzapper;
 
 import com.justagod.shadowcraft.block.witherreplacer.WitherReplacerMaterial;
-import com.justagod.shadowcraft.flow.Linkable;
-import com.justagod.shadowcraft.flow.SingleLinkEntity;
+import com.justagod.shadowcraft.misc.flow.Linkable;
+import com.justagod.shadowcraft.misc.flow.SingleLinkEntity;
 import com.justagod.shadowcraft.util.Vector3;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.client.renderer.texture.IIconRegister;

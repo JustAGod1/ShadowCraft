@@ -1,6 +1,6 @@
 package com.justagod.shadowcraft.block.trasmitter.ShadowFluidFlowTransmitter;
 
-import com.justagod.shadowcraft.flow.FlowTransmitterEntity;
+import com.justagod.shadowcraft.misc.flow.FlowTransmitterEntity;
 import com.justagod.shadowcraft.ShadowFluids;
 import net.minecraft.util.AxisAlignedBB;
 

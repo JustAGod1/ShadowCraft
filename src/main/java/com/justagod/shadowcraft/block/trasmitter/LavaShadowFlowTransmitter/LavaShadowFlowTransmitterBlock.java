@@ -1,8 +1,8 @@
 package com.justagod.shadowcraft.block.trasmitter.LavaShadowFlowTransmitter;
 
-import com.justagod.shadowcraft.flow.FlowTransmitter;
-import com.justagod.shadowcraft.flow.FlowTransmitterEntity;
-import com.justagod.shadowcraft.flow.Linkable;
+import com.justagod.shadowcraft.misc.flow.FlowTransmitter;
+import com.justagod.shadowcraft.misc.flow.FlowTransmitterEntity;
+import com.justagod.shadowcraft.misc.flow.Linkable;
 import com.justagod.shadowcraft.util.Vector3;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
