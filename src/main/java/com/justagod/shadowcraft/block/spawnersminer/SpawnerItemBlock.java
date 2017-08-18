@@ -17,6 +17,7 @@ public class SpawnerItemBlock extends Item {
 
     public SpawnerItemBlock() {
         super();
+        setUnlocalizedName("spawner");
     }
 
     @Override

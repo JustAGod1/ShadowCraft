@@ -1,5 +1,7 @@
-package com.justagod.shadowcraft.item;
+package com.justagod.shadowcraft.item.upgrade;
 
+import com.justagod.shadowcraft.item.ShadowItem;
+import com.justagod.shadowcraft.item.ShadowWand;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

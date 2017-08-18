@@ -1,7 +1,6 @@
 package com.justagod.shadowcraft.misc.flow;
 
 import com.justagod.shadowcraft.util.Vector3;
-import com.sun.istack.internal.NotNull;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 
@@ -26,6 +25,5 @@ public abstract class FlowReceiver extends Linkable {
         return getFlowReceiverEntity(world, meta);
     }
 
-    @NotNull
     public abstract FlowReceiverEntity getFlowReceiverEntity(World world, int meta);
 }

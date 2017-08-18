@@ -1,6 +1,6 @@
 package com.justagod.shadowcraft.util;
 
-import com.sun.istack.internal.NotNull;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureManager;
@@ -116,7 +116,7 @@ public class RenderUtility {
         t.draw();
     }
 
-    public static void drawItem(@NotNull Item item, double radius) {
+    public static void drawItem(Item item, double radius) {
         drawItem(item, radius, radius, 0.01);
     }
 
@@ -124,11 +124,11 @@ public class RenderUtility {
         drawItem(radius, radius, 0.01, 0, 0, 1, 1);
     }
 
-    public static void drawItem(@NotNull Item item, double xyRadius, double zRadius) {
+    public static void drawItem(Item item, double xyRadius, double zRadius) {
         drawItem(item, xyRadius, xyRadius, zRadius);
     }
 
-    public static void drawItem(@NotNull Item item, double xRadius, double yRadius, double zRadius) {
+    public static void drawItem(Item item, double xRadius, double yRadius, double zRadius) {
         ItemStack stack = new ItemStack(item);
         IIcon iicon = item.getIcon(stack, 1);
 

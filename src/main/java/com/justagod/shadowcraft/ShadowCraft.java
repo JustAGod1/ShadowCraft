@@ -41,6 +41,9 @@ import com.justagod.shadowcraft.item.shadowcrystal.BudgetaryShadowCrystal;
 import com.justagod.shadowcraft.item.shadowcrystal.MediumShadowCrystal;
 import com.justagod.shadowcraft.item.shadowcrystal.StrongShadowCrystal;
 import com.justagod.shadowcraft.item.shadowcrystal.WeekShadowCrystal;
+import com.justagod.shadowcraft.item.upgrade.EarthPlacerUpgradeItem;
+import com.justagod.shadowcraft.item.upgrade.PersonLockerUpgradeItem;
+import com.justagod.shadowcraft.item.upgrade.UpgradePlaceholder;
 import com.justagod.shadowcraft.network.ClientProxy;
 import com.justagod.shadowcraft.network.CommonProxy;
 import com.justagod.shadowcraft.network.GUIHandler;
@@ -54,11 +57,15 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.block.BlockColored;
+import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -113,6 +120,7 @@ public class ShadowCraft {
     public static final ShadowMetalBlock shadow_metal_block = new ShadowMetalBlock();
     public static final SpawnersMinerBlock spawners_miner_block = new SpawnersMinerBlock();
     public static final SpawnerItemBlock spawner_item_block = new SpawnerItemBlock();
+    public static final UpgradePlaceholder upgrade_placeholder = new UpgradePlaceholder();
     @SidedProxy(clientSide = "com.justagod.shadowcraft.network.ClientProxy", serverSide = "com.justagod.shadowcraft.network.CommonProxy")
     public static CommonProxy commonProxy;
     public static ShadowCraft instance;
@@ -185,16 +193,7 @@ public class ShadowCraft {
         GameRegistry.registerItem(person_locker_upgrade, "person_locker_upgrade");
         GameRegistry.registerItem(shadow_metal, "shadow_metal");
         GameRegistry.registerItem(spawner_item_block, "shadow_spawner_item_block");
-
-        EntityRegistry.registerModEntity(
-                ShadowFluidParticles.class,
-                "shadowcraft:shadow_fluid_particles",
-                EntityRegistry.findGlobalUniqueEntityId(),
-                instance,
-                20,
-                20,
-                true
-                );
+        GameRegistry.registerItem(upgrade_placeholder, "upgrade_placeholder");
 
 
         if (event.getSide() == Side.CLIENT) {
@@ -242,5 +241,6 @@ public class ShadowCraft {
         addRecipe(new ItemStack(shadow_metal_block), "MMM", "MMM", "MMM", 'M', shadow_metal);
         addShapelessRecipe(new ItemStack(shadow_wand), shadow_wand);
         addRecipe(new ShadowWand.UpgradeRecipe());
+
     }
 }

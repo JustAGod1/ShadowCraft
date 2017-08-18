@@ -2,11 +2,13 @@ package com.justagod.shadowcraft.item;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
+import com.justagod.shadowcraft.item.upgrade.UpgradePlaceholder;
 import com.justagod.shadowcraft.misc.IWandable;
 import com.justagod.shadowcraft.misc.flow.Linkable;
 import com.justagod.shadowcraft.ShadowCraft;
 import com.justagod.shadowcraft.util.CraftingUtility;
 import com.justagod.shadowcraft.util.Vector3;
+import cpw.mods.fml.common.FMLLog;
 import net.minecraft.block.Block;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
@@ -359,7 +361,8 @@ public class ShadowWand extends ShadowItem {
                 ItemStack upgradeStack = getUpgradeItem(inventoryCrafting);
                 WandUpgrade upgrade = getUpgradeFromItemStack(upgradeStack);
                 ItemStack wand = getWand(inventoryCrafting);
-                return upgrade.isAplicableTo(getWrapper(wand), upgradeStack);
+                WandWrapper wrapper = getWrapper(wand);
+                return upgrade == UpgradeRegistry.getUpgrade(UpgradePlaceholder.PLACEHOLDER_ID) || (upgrade.isAplicableTo(wrapper, upgradeStack) && wrapper.getUpgrades().contains(UpgradeRegistry.getUpgrade(UpgradePlaceholder.PLACEHOLDER_ID)));
             } else return false;
         }
 
@@ -381,8 +384,12 @@ public class ShadowWand extends ShadowItem {
             }
 
             WandWrapper wrapper = ShadowCraft.shadow_wand.getWrapper(copyWand);
+            WandUpgrade upgrade = getUpgradeFromItemStack(getUpgradeItem(inventoryCrafting));
 
-            wrapper.addUpgrade(getUpgradeFromItemStack(getUpgradeItem(inventoryCrafting)), getUpgradeItem(inventoryCrafting));
+            wrapper.addUpgrade(upgrade, getUpgradeItem(inventoryCrafting));
+            if (upgrade != UpgradeRegistry.getUpgrade(UpgradePlaceholder.PLACEHOLDER_ID)) {
+                wrapper.removeOnePlaceholder();
+            }
             wrapper.saveData();
 
             return copyWand;
@@ -515,6 +522,18 @@ public class ShadowWand extends ShadowItem {
 
         public void removeUpgrade(WandUpgrade upgrade) {
             getUpgrades().remove(upgrade);
+        }
+
+        public void removeOnePlaceholder() {
+            for (int i = 0; i < getUpgrades().size(); i++) {
+                WandUpgrade upgrade = getUpgrades().get(i);
+
+                if (upgrade == UpgradeRegistry.getUpgrade(UpgradePlaceholder.PLACEHOLDER_ID)) {
+                    getUpgrades().remove(i);
+                    return;
+                }
+            }
+            FMLLog.warning("Попросили убрать место под улучшение, а его нет.");
         }
 
         public void getDescription(List list) {
