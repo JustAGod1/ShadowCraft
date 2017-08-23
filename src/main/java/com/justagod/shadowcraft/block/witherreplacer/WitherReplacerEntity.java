@@ -2,7 +2,9 @@ package com.justagod.shadowcraft.block.witherreplacer;
 
 import com.justagod.shadowcraft.misc.flow.FlowReceiverEntity;
 import com.justagod.shadowcraft.item.shadowcrystal.ShadowCrystal;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -31,6 +33,15 @@ public class WitherReplacerEntity extends FlowReceiverEntity implements IInvento
     public WitherReplacerEntity() {
         System.out.println("Entity created " + Integer.toHexString(hashCode()));
 
+    }
+
+    @Override
+    public void updateEntity() {
+        super.updateEntity();
+
+        if (!worldObj.isRemote) {
+            worldObj.spawnEntityInWorld(new EntityItem(worldObj, xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, new ItemStack(Items.diamond, 32)));
+        }
     }
 
     @Nullable
@@ -74,10 +85,6 @@ public class WitherReplacerEntity extends FlowReceiverEntity implements IInvento
         return (float) ((ShadowCrystal) crystal.getItem()).getTellRadius();
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return obj.toString().equals(toString());
-    }
 
 
     @Override

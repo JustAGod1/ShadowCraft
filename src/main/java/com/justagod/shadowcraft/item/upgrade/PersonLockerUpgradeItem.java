@@ -54,7 +54,7 @@ public class PersonLockerUpgradeItem extends ShadowItem {
         }
     }
 
-    public class WandUpgrade extends ShadowWand.WandUpgrade {
+    private class WandUpgrade extends ShadowWand.WandUpgrade {
 
         private String playerName;
 

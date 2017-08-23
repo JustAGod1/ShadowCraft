@@ -35,7 +35,7 @@ public class ShadowAxe extends ItemAxe {
         return false;
     }
 
-    public class WandUpgrade extends ShadowWand.WandUpgrade {
+    private class WandUpgrade extends ShadowWand.WandUpgrade {
 
         private final Set proper_blocks = Sets.newHashSet(new Block[] {Blocks.planks, Blocks.bookshelf, Blocks.log, Blocks.log2, Blocks.chest, Blocks.pumpkin, Blocks.lit_pumpkin});
 

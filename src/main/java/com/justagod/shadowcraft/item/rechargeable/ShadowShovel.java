@@ -36,7 +36,7 @@ public class ShadowShovel extends ItemSpade {
         return false;
     }
 
-    public class WandUpgrade extends ShadowWand.WandUpgrade {
+    private class WandUpgrade extends ShadowWand.WandUpgrade {
 
         private final Set proper_blocks = Sets.newHashSet(Blocks.grass, Blocks.dirt, Blocks.sand, Blocks.gravel, Blocks.snow_layer, Blocks.snow, Blocks.clay, Blocks.farmland, Blocks.soul_sand, Blocks.mycelium);
 

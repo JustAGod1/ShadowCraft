@@ -37,7 +37,7 @@ public class AdvancedShadowFeeder extends ShadowItem {
         }
     }
 
-    public class WandUpgrade extends ShadowWand.WandUpgrade {
+    private class WandUpgrade extends ShadowWand.WandUpgrade {
 
 
         @Override
@@ -64,9 +64,6 @@ public class AdvancedShadowFeeder extends ShadowItem {
             }
         }
 
-        @Override
-        public void onUplicate(ShadowWand.WandWrapper wrapper, ItemStack upgradeStack) {
-            super.onUplicate(wrapper, upgradeStack);
-        }
+
     }
 }

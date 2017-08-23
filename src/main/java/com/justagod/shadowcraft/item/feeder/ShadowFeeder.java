@@ -89,7 +89,7 @@ public class ShadowFeeder extends ShadowItem {
         }
     }
 
-    public class WandUpgrade extends ShadowWand.WandUpgrade {
+    protected class WandUpgrade extends ShadowWand.WandUpgrade {
 
         protected int durability = 96;
 

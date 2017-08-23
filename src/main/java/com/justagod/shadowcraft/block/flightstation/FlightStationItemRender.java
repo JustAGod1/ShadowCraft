@@ -1,6 +1,7 @@
 package com.justagod.shadowcraft.block.flightstation;
 
 import com.justagod.shadowcraft.ShadowCraft;
+import net.minecraft.client.renderer.texture.Stitcher;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

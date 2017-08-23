@@ -16,7 +16,7 @@ public class UpgradePlaceholder extends ShadowItem {
 
     }
 
-    private class WandUpgrade extends ShadowWand.WandUpgrade {
+    public class WandUpgrade extends ShadowWand.WandUpgrade {
 
         @Override
         public String getDescription(ShadowWand.WandWrapper wand) {

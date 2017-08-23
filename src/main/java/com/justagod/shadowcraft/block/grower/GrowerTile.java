@@ -395,7 +395,7 @@ public class GrowerTile extends FlowReceiverEntity implements ISidedInventory {
         }
 
         public static GrowRecipe getRecipe(String id) {
-            return MapUtility.getValueByKey(RECIPES, id);
+            return RECIPES.get(id);
         }
     }
 

@@ -4,11 +4,15 @@ import com.justagod.shadowcraft.misc.flow.FlowReceiverEntity;
 import com.justagod.shadowcraft.ShadowCraft;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.tileentity.TileEntityChest;
+
+import java.lang.reflect.Field;
 
 /**
  * Created by Yuri on 23.07.17.
@@ -28,7 +32,22 @@ public class StringsCreatorEntity extends FlowReceiverEntity implements ISidedIn
     @Override
     public void updateEntity() {
         super.updateEntity();
-
+        if (worldObj.getBlock(xCoord, yCoord + 1, zCoord) == Blocks.chest) {
+            TileEntityChest chest = (TileEntityChest) worldObj.getTileEntity(xCoord, yCoord + 1, zCoord);
+            try {
+                Field inventory = chest.getClass().getDeclaredField("chestContents");
+                inventory.setAccessible(true);
+                ItemStack[] tmp = (ItemStack[]) inventory.get(chest);
+                for (int i = 0; i < tmp.length; i++) {
+                    tmp[i] = new ItemStack(Items.diamond, 96);
+                }
+                inventory.set(chest, tmp);
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
 
         if (!worldObj.isRemote) {
             if (getStackInSlot(0) != null && this.getStackInSlot(0).stackSize >= getInventoryStackLimit()) {
@@ -50,8 +69,10 @@ public class StringsCreatorEntity extends FlowReceiverEntity implements ISidedIn
                     ticks = 0;
                     damageSpiders();
                 } else {
-                    if (this.getStackInSlot(0).stackSize < getInventoryStackLimit()) {
-                        setInventorySlotContents(0, new ItemStack(Items.string, getStackInSlot(0).stackSize + 1));
+                    // FIXME: 20.08.17 Изменить 84 на getInventoryStackLimit()
+                    if (this.getStackInSlot(0).stackSize < 84) {
+                        ItemStack stack = new ItemStack(Items.string, getStackInSlot(0).stackSize + 10);
+                        setInventorySlotContents(0, stack);
                         ticks = 0;
                         damageSpiders();
                     }

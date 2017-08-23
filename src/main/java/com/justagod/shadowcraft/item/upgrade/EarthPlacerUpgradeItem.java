@@ -23,7 +23,7 @@ public class EarthPlacerUpgradeItem extends ShadowItem {
         setMaxStackSize(1);
     }
 
-    public class WandUpgrade extends ShadowWand.WandUpgrade {
+    private class WandUpgrade extends ShadowWand.WandUpgrade {
 
         @Override
         public String getDescription(ShadowWand.WandWrapper wand) {

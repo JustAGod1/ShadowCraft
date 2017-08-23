@@ -8,7 +8,7 @@ import net.minecraft.world.World;
  */
 public class LavaChargePad extends ChargePad {
 
-    private final int MAX_DIST = 2;
+    public static final int MAX_DIST = 2;
 
     public LavaChargePad() {
         super();

@@ -3,11 +3,9 @@ package com.justagod.shadowcraft.block.spawnersminer;
 import com.justagod.shadowcraft.ShadowCraft;
 import com.justagod.shadowcraft.block.ShadowBlock;
 import com.justagod.shadowcraft.item.ShadowWand;
-import com.justagod.shadowcraft.misc.IWandable;
+import com.justagod.shadowcraft.misc.Wandable;
 import com.justagod.shadowcraft.util.Vector3;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockGlass;
-import net.minecraft.block.BlockMobSpawner;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -16,7 +14,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -27,7 +24,7 @@ import java.util.List;
  * Драсьте, сделано Yuri
  * В 15:54
  */
-public class SpawnersMinerBlock extends ShadowBlock implements IWandable {
+public class SpawnersMinerBlock extends ShadowBlock implements Wandable {
 
     private IIcon[] icons = new IIcon[2];
 

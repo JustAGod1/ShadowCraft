@@ -49,7 +49,7 @@ public class ShadowShears extends ItemShears {
         return false;
     }
 
-    public class WandUpgrade extends ShadowWand.WandUpgrade {
+    private class WandUpgrade extends ShadowWand.WandUpgrade {
 
         @Override
         public String getDescription(ShadowWand.WandWrapper wand) {

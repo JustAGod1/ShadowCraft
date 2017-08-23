@@ -9,12 +9,7 @@ import java.util.Map;
  */
 public class MapUtility {
 
-    public static <K, V>  V getValueByKey(Map<K, V> map, K key) {
-        for (Map.Entry<K, V> entry : map.entrySet()) {
-            if (entry.getKey().equals(key)) return entry.getValue();
-        }
-        return null;
-    }
+
 
     public static <K, V>  K getKeyByValue(Map<K, V> map, V value) {
         for (Map.Entry<K, V> entry : map.entrySet()) {

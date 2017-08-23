@@ -20,7 +20,7 @@ public class ReinforcedShadowFeeder extends ShadowFeeder {
         ShadowWand.UpgradeRegistry.registerUpgrade(new WandUpgrade(), "reinforced_shadow_feeder_upgrade");
     }
 
-    public class WandUpgrade extends ShadowFeeder.WandUpgrade {
+    private class WandUpgrade extends ShadowFeeder.WandUpgrade {
 
         public WandUpgrade() {
             durability = 200;

@@ -3,7 +3,7 @@ package com.justagod.shadowcraft.item;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
 import com.justagod.shadowcraft.item.upgrade.UpgradePlaceholder;
-import com.justagod.shadowcraft.misc.IWandable;
+import com.justagod.shadowcraft.misc.Wandable;
 import com.justagod.shadowcraft.misc.flow.Linkable;
 import com.justagod.shadowcraft.ShadowCraft;
 import com.justagod.shadowcraft.util.CraftingUtility;
@@ -145,8 +145,8 @@ public class ShadowWand extends ShadowItem {
                 player.addChatComponentMessage(new ChatComponentTranslation("msg.first_block_selected.txt"));
 
                 return true;
-            } else if (block instanceof IWandable) {
-                ((IWandable) block).onWand(getWrapper(stack), world, block, x, y, z, world.getBlockMetadata(x, y, z));
+            } else if (block instanceof Wandable) {
+                ((Wandable) block).onWand(getWrapper(stack), world, block, x, y, z, world.getBlockMetadata(x, y, z));
             }
         }
         return true;
@@ -383,7 +383,7 @@ public class ShadowWand extends ShadowItem {
                 throw new RuntimeException("Херня какая-то! Так быть не должно.");
             }
 
-            WandWrapper wrapper = ShadowCraft.shadow_wand.getWrapper(copyWand);
+            WandWrapper wrapper = ShadowWand.getWrapper(copyWand);
             WandUpgrade upgrade = getUpgradeFromItemStack(getUpgradeItem(inventoryCrafting));
 
             wrapper.addUpgrade(upgrade, getUpgradeItem(inventoryCrafting));
